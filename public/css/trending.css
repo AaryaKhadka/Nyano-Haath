@@ -1,0 +1,566 @@
+
+:root {
+    --primary-color: #28a745; /* A warm, trustworthy green */
+    --primary-hover: #218838;
+    --dark-text: #1c1b0d;
+    --secondary-text: #555;
+    --light-bg: #fdfdfc;
+    --border-color: #f4f3e6;
+    --section-padding: 80px 0;
+    --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Basic Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--secondary-text);
+    background-color: #fff;
+    line-height: 1.6;
+}
+
+/* General container for centered content */
+.container {
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+h1, h2, h3, h4 {
+    color: var(--dark-text);
+    font-weight: 700;
+}
+
+h1 { font-size: 3em; margin-bottom: 20px; line-height: 1.2; }
+h2 { font-size: 2.5em; margin-bottom: 20px; text-align: center; }
+h3 { font-size: 1.5em; margin-bottom: 15px; }
+
+/* Animation for sections on scroll */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ========================================
+   NEW: Search Styles
+   ======================================== */
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    width: 0;
+    padding: 6px 0;
+    border: none;
+    border-radius: 50px;
+    outline: none;
+    background-color: transparent;
+    color: var(--dark-text);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease-in-out;
+}
+
+.search-icon {
+    /* This makes the icon itself clickable */
+    padding: 5px; /* Adds a bit of clickable area */
+    color: var(--dark-text);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.search-icon:hover {
+    color: var(--primary-color);
+}
+
+/* Styles for when the search is active */
+.search-container.active .search-input {
+    width: 180px;
+    opacity: 1;
+    visibility: visible;
+    padding: 6px 15px;
+    border: 1px solid var(--border-color);
+    margin-right: 5px; /* Space between input and nav links */
+    background-color: #fff;
+}
+
+.search-container.active .search-icon {
+    color: var(--primary-color);
+}
+/* ========================================
+   END NEW
+   ======================================== */
+/* 
+========================================
+Header
+========================================
+*/
+.main-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap;
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 2.5rem;
+    position: sticky;
+    top: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--dark-text);
+    text-decoration: none;
+}
+
+.logo-icon {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+}
+
+.logo-text {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 2.25rem;
+    margin-left: auto;
+    padding-right: 2rem;
+}
+
+.main-nav a {
+    color: var(--dark-text);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.main-nav a:hover {
+    color: var(--primary-color);
+}
+
+.main-nav a:hover::after {
+    width: 100%;
+}
+
+/* Button styles */
+.btn {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 50px; /* Pill shape */
+    text-decoration: none;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn-large {
+    padding: 15px 40px;
+    font-size: 1.1em;
+}
+
+/* 
+========================================
+Hero Section
+========================================
+*/
+.hero {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), url('https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?q=80&w=2070&auto=format&fit=crop');
+    transition: background-image 1s ease-in-out;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+    padding: 130px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.sub-heading {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.hero h1 {
+    color: #fff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* 
+========================================
+Circle Section
+========================================
+*/
+.circle{
+    padding-top: 50px;
+}
+.category-circles {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.circle-item {
+    flex-basis: 200px; /* same as your .stat-item */
+    text-align: center;
+}
+
+.circle-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5em;
+    margin: 0 auto 15px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.circle-item:hover .circle-icon {
+    transform: scale(1.1);
+}
+
+.circle-item span {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--dark-text);
+}
+
+
+/* 
+========================================
+How It Works Section
+========================================
+*/
+.how-it-works {
+    padding: var(--section-padding);
+    background-color: #fff;
+}
+
+.how-it-works .section-intro {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 50px auto;
+}
+
+.steps-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+.step-card {
+    flex: 1;
+    min-width: 280px;
+    text-align: center;
+    padding: 30px;
+}
+
+.step-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--primary-color);
+    color: #fff;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    box-shadow: 0 0 0 10px rgba(40, 167, 69, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step-card:hover .step-icon {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 15px rgba(40, 167, 69, 0.15);
+}
+
+/* 
+========================================
+Success Stories Section
+========================================
+*/
+.success-stories {
+    padding: var(--section-padding);
+    background-color: var(--light-bg);
+}
+
+.stories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.story-card {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.story-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.story-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.story-content {
+    padding: 25px;
+}
+
+.story-category {
+    font-size: 0.8em;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.story-card p {
+    font-size: 0.9em;
+    margin-bottom: 20px;
+}
+
+.story-card a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.story-card a:hover {
+    text-decoration: underline;
+}
+
+/* 
+========================================
+Footer
+========================================
+*/
+footer {
+    background-color: var(--dark-text);
+    color: #ccc;
+    padding: 60px 0 20px 0;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-about, .footer-links {
+    flex: 1;
+    min-width: 220px;
+}
+
+.footer-about h4 {
+    color: #fff;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.footer-about p {
+    font-size: 0.9em;
+    margin-bottom: 20px;
+}
+
+.social-icons a {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-right: 15px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--primary-color);
+}
+
+.footer-links h4 {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links ul li a {
+    color: #ccc;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: block;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+    color: #fff;
+    padding-left: 5px;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #444;
+    padding-top: 20px;
+    font-size: 0.9em;
+}
+
+.footer-bottom a {
+    color: #ccc;
+    text-decoration: none;
+}
+.footer-bottom a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* 
+========================================
+Responsive Design
+========================================
+*/
+@media (max-width: 992px) {
+    .main-header {
+        padding: 1rem 1.5rem;
+    }
+    .main-nav {
+        gap: 1.5rem;
+        padding-right: 1rem;
+    }
+    h1 { font-size: 2.5em; }
+    h2 { font-size: 2em; }
+}
+
+@media (max-width: 768px) {
+    .main-header {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+    }
+    .main-nav {
+        margin-left: 0;
+        padding-right: 0;
+        width: 100%;
+        justify-content: center;
+    }
+    .header-action {
+        margin-top: 0.5rem;
+    }
+    .hero { padding: 80px 0; }
+    
+    .steps-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-nav {
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    .main-nav a { font-size: 0.8rem; }
+    
+    .hero h1 { font-size: 2em; }
+    .btn-large {
+        padding: 12px 30px;
+        font-size: 1em;
+    }
+    
+    .category-circles {
+        gap: 10px;
+    }
+    .circle-item img {
+        width: 70px;
+        height: 70px;
+    }
+    .circle-item span { font-size: 0.9em; }
+
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .social-icons { margin-bottom: 20px; }
+}
