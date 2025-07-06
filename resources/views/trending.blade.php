@@ -25,12 +25,12 @@
             <h2 class="logo-text">Nyano Haath</h2>
         </a>
         <nav class="main-nav">
-            <!-- NEW: Search Button/Input -->
+            <!-- Search Button/Input -->
             <div class="search-container">
                 <input type="text" class="search-input" placeholder="Search campaigns...">
                 <a href="#" class="search-icon"><i class="fas fa-search"></i></a>
             </div>
-            <!-- END NEW -->
+
             <a href="#">Home</a>
             <a href="#campaigns">Campaigns</a>
             <a href="#how-it-works">How It Works</a>
@@ -57,27 +57,24 @@
                     <p style="text-align: center;">From personal emergencies to community projects, find your cause.</p>
                 </div>
                <div class="category-circles">
-    <div class="circle-item">
-        <div class="circle-icon"><i class="fas fa-heart-pulse"></i></div>
-        <span>Medical</span>
-    </div>
-    <div class="circle-item">
-        <div class="circle-icon"><i class="fas fa-bolt"></i></div>
-        <span>Emergency</span>
-    </div>
-    <div class="circle-item">
-        <div class="circle-icon"><i class="fas fa-paw"></i></div>
-        <span>Animal</span>
-    </div>
-    <div class="circle-item">
-        <div class="circle-icon"><i class="fas fa-arrow-right"></i></div>
-        <span>More</span>
-    </div>
-</div>
-
-    </div>
-</div>
-
+                  <div class="circle-item">
+                     <div class="circle-icon"><i class="fas fa-heart-pulse"></i></div>
+                     <span>Medical</span>
+                  </div>
+                  <div class="circle-item">
+                     <div class="circle-icon"><i class="fas fa-bolt"></i></div>
+                       <span>Emergency</span>
+                  </div>
+                  <div class="circle-item">
+                     <div class="circle-icon"><i class="fas fa-paw"></i></div>
+                     <span>Animal</span>
+                  </div>
+                   <div class="circle-item">
+                     <div class="circle-icon"><i class="fas fa-arrow-right"></i></div>
+                     <span>More</span>
+                   </div>
+             </div>
+        
             </div>
         </section>
 
@@ -105,7 +102,9 @@
                         <p>Easily accept donations and thank your donors. Withdraw funds directly to your bank.</p>
                     </div>
                 </div>
+                <div class="campaign-btn"><a href="#" class="btn btn-primary btn-large">Start Campaign</a></div>
             </div>
+               
         </section>
         
         <!-- Success Stories Section -->
@@ -188,11 +187,11 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2024 Nyano Haath. All Rights Reserved. | <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a></p>
+            <p>© 2025 Nyano Haath. All Rights Reserved. | <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a></p>
         </div>
     </footer>
 
-    <!-- JS for Animations and NEW Search Toggle -->
+    <!-- JS for Animations and Search Toggle -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // Scroll Animation Logic

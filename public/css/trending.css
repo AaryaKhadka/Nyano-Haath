@@ -56,7 +56,7 @@ h3 { font-size: 1.5em; margin-bottom: 15px; }
 }
 
 /* ========================================
-   NEW: Search Styles
+  Search Styles
    ======================================== */
 .search-container {
     position: relative;
@@ -106,9 +106,7 @@ h3 { font-size: 1.5em; margin-bottom: 15px; }
 .search-container.active .search-icon {
     color: var(--primary-color);
 }
-/* ========================================
-   END NEW
-   ======================================== */
+
 /* 
 ========================================
 Header
@@ -326,6 +324,11 @@ How It Works Section
     min-width: 280px;
     text-align: center;
     padding: 30px;
+}
+.campaign-btn{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
 }
 
 .step-icon {
