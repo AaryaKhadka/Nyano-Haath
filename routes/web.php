@@ -24,3 +24,17 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+use App\Http\Controllers\AdminAuthController;
+
+Route::prefix('admin')->group(function () {
+    Route::get('/adminLogin', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('/adminLogin', [AdminAuthController::class, 'login'])->name('admin.login.submit');
+    Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+
+    Route::get('/dashboard', function () {
+        return view('admin.adminDashboard');
+    })->middleware('auth:admin')->name('admin.dashboard');
+});
+
+
