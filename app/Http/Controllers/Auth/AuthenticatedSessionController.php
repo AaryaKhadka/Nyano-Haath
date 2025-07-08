@@ -25,11 +25,8 @@ class AuthenticatedSessionController extends Controller
    public function store(LoginRequest $request): RedirectResponse
 {
     $request->authenticate();
-
     $request->session()->regenerate();
-
-    // Always redirect to index page (home route)
-    return redirect()->route('home');
+    return redirect()->route('dashboard');
 }
 
     /**
