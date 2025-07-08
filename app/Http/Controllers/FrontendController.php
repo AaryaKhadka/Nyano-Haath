@@ -8,7 +8,7 @@ class FrontendController extends Controller
 {
     
     public function trending(){
-        return view('trending');
+        return view('pages.trending');
     }
 
     public function login(){
