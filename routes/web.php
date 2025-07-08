@@ -28,3 +28,15 @@ require __DIR__.'/auth.php';
 Route::get('/admin/dashboard', function () {
     return view('dashboard.adminDash');
 })->name('admin.dashboard');
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
+Route::post('/logout-redirect', function (Request $request) {
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect()->route('home');  // Redirect to index here
+})->name('logout.redirect');
+

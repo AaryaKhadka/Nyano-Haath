@@ -1,13 +1,114 @@
+/* Reset and basic */
 body, html {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
-    background: #f5f6fa;
+    background: #f7f7f7;
 }
 
+/* Header styling */
+.main-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    color: #28a745;
+    text-decoration: none;
+}
+.logo-icon {
+    font-size: 1.8rem;
+    margin-right: 0.5rem;
+}
+.logo-text {
+    margin: 0;
+}
+
+/* Nav links + profile dropdown */
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Nav links */
+.main-nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.3rem 0.5rem;
+    transition: color 0.3s;
+}
+.main-nav a:hover {
+    color: #28a745;
+}
+
+/* Profile dropdown container inside nav */
+.header-action {
+    margin-left: 1rem;
+    position: relative;
+}
+
+/* Profile button */
+.profile-btn {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Dropdown menu */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 120%;
+    background-color: white;
+    min-width: 140px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    z-index: 1000;
+}
+
+/* Show dropdown */
+.dropdown-content.show {
+    display: block;
+}
+
+/* Logout button */
+.logout-btn {
+    background: none;
+    border: none;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    cursor: pointer;
+    font-weight: 600;
+    color: #333;
+    transition: background-color 0.2s;
+}
+.logout-btn:hover {
+    background-color: #28a745;
+    color: white;
+}
+
+/* Dashboard container: sidebar + main content */
 .dashboard-container {
     display: flex;
-    height: 100vh;
+    height: calc(100vh - 70px); /* adjust based on header height */
 }
 
 /* Sidebar */
@@ -15,104 +116,30 @@ body, html {
     width: 250px;
     background-color: #28a745;
     color: white;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
+    padding: 1.5rem;
+    box-sizing: border-box;
 }
 
-.sidebar .logo {
-    font-weight: 700;
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    text-align: center;
-}
-
+/* Sidebar nav links */
 .sidebar nav ul {
     list-style: none;
-    padding-left: 0;
+    padding: 0;
 }
-
-.sidebar nav ul li {
-    margin: 1rem 0;
-}
-
 .sidebar nav ul li a {
     color: white;
     text-decoration: none;
+    display: block;
+    padding: 0.5rem 0;
     font-weight: 600;
-    transition: color 0.3s ease;
 }
-
 .sidebar nav ul li a:hover {
-    color: #d4edda;
+    text-decoration: underline;
 }
 
 /* Main content */
 .main-content {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Header */
-header {
-    background: white;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-/* Profile Dropdown */
-.profile-dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-#profileBtn {
-    background: transparent;
-    border: none;
-    font-weight: 600;
-    cursor: pointer;
-    font-size: 1rem;
-}
-
-#profileBtn:focus {
-    outline: none;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    right: 0;
-    background-color: white;
-    min-width: 120px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    z-index: 1;
-    border-radius: 4px;
-}
-
-.dropdown-content.show {
-    display: block;
-}
-
-.logout-btn {
-    background: none;
-    border: none;
-    width: 100%;
-    padding: 0.5rem 1rem;
-    text-align: left;
-    cursor: pointer;
-    font-weight: 600;
-    color: #dc3545;
-}
-
-.logout-btn:hover {
-    background-color: #f8d7da;
-}
-
-/* Content */
-.content {
     padding: 2rem;
+    background: #fff;
+    overflow-y: auto;
 }

@@ -10,49 +10,68 @@
 </head>
 <body>
 
-<div class="dashboard-container">
-    <aside class="sidebar">
-        <div class="logo">Nyano Haath Admin</div>
-        <nav>
-            <ul>
-                <li><a href="#">Role Management</a></li>
-                <!-- Add more sidebar links as needed -->
-            </ul>
-        </nav>
-    </aside>
+    <!-- Move header here, outside dashboard container -->
+    <header class="main-header">
+        <a href="#" class="logo">
+            <div class="logo-icon"><i class="fas fa-hand-holding-heart"></i></div>
+            <h2 class="logo-text">Nyano Haath</h2>
+        </a>
 
-    <main class="main-content">
-        <header>
-            <div class="profile-dropdown">
-                <button id="profileBtn">Admin <i class="fas fa-caret-down"></i></button>
-                <div id="dropdownMenu" class="dropdown-content">
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="logout-btn">Logout</button>
-                    </form>
+        <nav class="main-nav">
+            <a href="#">Home</a>
+            <a href="#campaigns">Campaigns</a>
+            
+            <!-- Removed gap by putting profile inside nav -->
+            <div class="header-action">
+                <div class="profile-dropdown" style="position: relative;">
+                    <button id="profileBtn" class="profile-btn" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user-circle"></i> Profile <i class="fas fa-caret-down"></i>
+                    </button>
+                    <div id="dropdownMenu" class="dropdown-content" role="menu" aria-labelledby="profileBtn">
+                        <form method="POST" action="{{ route('logout.redirect') }}">
+                            @csrf
+                            <button type="submit" class="logout-btn">Logout</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </header>
+        </nav>
+    </header>
 
-        <section class="content">
-            <h1>Welcome to Admin Dashboard</h1>
-            <p>Manage roles and more from here.</p>
-        </section>
-    </main>
-</div>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo">Nyano Haath Admin</div>
+            <nav>
+                <ul>
+                    <li><a href="#">Role Management</a></li>
+                    <li><a href="#">Campaign Management</a></li>
+                    <!-- Add more sidebar links as needed -->
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <section class="content">
+                <h1>Welcome to Admin Dashboard</h1>
+                <p>Manage roles and more from here.</p>
+            </section>
+        </main>
+    </div>
 
 <script>
     const profileBtn = document.getElementById('profileBtn');
     const dropdownMenu = document.getElementById('dropdownMenu');
 
     profileBtn.addEventListener('click', () => {
-        dropdownMenu.classList.toggle('show');
+        const isShown = dropdownMenu.classList.toggle('show');
+        profileBtn.setAttribute('aria-expanded', isShown);
     });
 
     window.onclick = function(event) {
-        if (!event.target.matches('#profileBtn')) {
+        if (!event.target.closest('#profileBtn')) {
             if (dropdownMenu.classList.contains('show')) {
                 dropdownMenu.classList.remove('show');
+                profileBtn.setAttribute('aria-expanded', 'false');
             }
         }
     }
