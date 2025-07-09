@@ -221,6 +221,7 @@ input {
 
 .container-forgot{
     
+    min-height: 380px;
     position: fixed;
     top: 40%;
     left: 50%;

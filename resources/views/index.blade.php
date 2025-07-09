@@ -34,7 +34,7 @@
             <a href="#">Home</a>
             <a href="#campaigns">Campaigns</a>
             <a href="#how-it-works">How It Works</a>
-            <a href="#about">About</a>
+            <a href="{{ route('aboutus') }}">About</a>
         </nav>
         <div class="header-action">
             <a href="{{ route('login')}}" class="btn btn-primary">Login</a>
@@ -105,6 +105,10 @@
                         <p>Easily accept donations and thank your donors. Withdraw funds directly to your bank.</p>
                     </div>
                 </div>
+                    <div class="campaign-btn">
+                        <a href="{{ url('login') }}" class="btn btn-primary btn-large">Start a Fundraiser</a>
+                    </div>
+
             </div>
         </section>
         
