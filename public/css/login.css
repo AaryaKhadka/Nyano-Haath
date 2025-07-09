@@ -80,7 +80,7 @@ span{
 }
 
 .nyano-overlay {
-    background: linear-gradient(to right, #FF4B2B, #FF416C);
+    background: linear-gradient(to right, #28a745, #218838);
     color: #FFFFFF;
     position: relative;
     left: -100%;
@@ -166,8 +166,8 @@ form input {
 
 button {
     border-radius: 20px;
-    border: 1px solid #FF4B2B;
-    background-color: #FF4B2B;
+    border: 1px solid #28a745;
+    background-color: #28a745;
     color: #FFFFFF;
     font-size: 14px;
     font-weight: bold;

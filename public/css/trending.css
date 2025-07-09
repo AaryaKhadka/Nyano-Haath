@@ -133,11 +133,20 @@ Header
     color: var(--dark-text);
     text-decoration: none;
 }
-
-.logo-icon {
-    color: var(--primary-color);
-    font-size: 1.5rem;
+  .logo-icon {
+    width: 60px;
+    height: 60px;      
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+.logo-icon img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+}
+
 
 .logo-text {
     font-size: 1.25rem;
