@@ -23,7 +23,7 @@
             <h2 class="logo-text">Nyano Haath</h2>
         </a>
         <nav class="main-nav">
-            <a href="#">Home</a>
+            <a href="{{ route('home') }}">Home</a>
             <a href="#campaigns">Campaigns</a>
             <a href="#how-it-works">How It Works</a>
            <a href="{{ route('aboutus') }}">About</a>

@@ -20,7 +20,7 @@
 
     <!-- Header -->
     <header class="main-header">
-        <a href="#" class="logo">
+        <a href="{{ route('home') }}" class="logo">
             <div class="logo-icon"><i class="fas fa-hand-holding-heart"></i></div>
             <h2 class="logo-text">Nyano Haath</h2>
         </a>
@@ -31,7 +31,7 @@
                 <a href="#" class="search-icon"><i class="fas fa-search"></i></a>
             </div>
             <!-- END NEW -->
-            <a href="#">Home</a>
+            <a href="{{ route('home') }}">Home</a>
             <a href="#campaigns">Campaigns</a>
             <a href="#how-it-works">How It Works</a>
             <a href="{{ route('aboutus') }}">About</a>
