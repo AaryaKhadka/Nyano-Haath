@@ -1,6 +1,6 @@
 <header class="main-header">
-        <a href="#" class="logo">
-            <div class="logo-icon"><i class="fas fa-hand-holding-heart"></i></div>
+        <a href="{{ route('trending')}}" class="logo">
+            <div class="logo-icon"><img src="{{ asset('image/naynologo.jpg')}}" alt="Nyano Haat Logo"></div>
             <h2 class="logo-text">Nyano Haath</h2>
         </a>
         <nav class="main-nav">
