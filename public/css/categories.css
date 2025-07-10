@@ -1,0 +1,42 @@
+.stats {
+    background-color: var(--light-bg);
+    padding: var(--section-padding);
+
+    a{
+         color: var(--primary-color);
+         text-decoration: none;
+         font-weight: 600;
+         font-size: 1.2rem;
+         display: flex;
+         justify-content: end;
+    }
+}
+
+.stats-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.stat-item {
+    text-align: center;
+    flex-basis: 250px;
+    padding: 20px;
+}
+
+.stat-item i {
+    font-size: 2.5em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.stat-item:hover i {
+    transform: scale(1.2) rotate(10deg);
+}
+
+.stat-item h3 {
+    font-size: 1.6em; /* Reduced font size for better readability */
+    margin-bottom: 5px;
+}
