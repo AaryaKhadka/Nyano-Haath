@@ -18,4 +18,9 @@ class FrontendController extends Controller
     public function login(){
         return view('auth.login');
     }
+    public function campaignpage(){
+        return view('campaignpage');
+    }
 }
+
+

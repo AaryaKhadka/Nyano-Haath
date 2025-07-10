@@ -1,0 +1,639 @@
+/* ==========================================================================
+   Table of Contents
+   ==========================================================================
+   1. General Setup & Variables
+   2. Main Layout
+   3. Header Component
+   4. Sidebar Components
+   5. Card & Slider Components
+   6. Tab Navigation & Content Feed
+   7. Buttons
+   8. Responsive Design
+   ========================================================================== */
+
+/* ==========================================================================
+   1. General Setup & Variables
+   ========================================================================== */
+:root {
+    --primary-green: #28a745;
+    --light-green-bg: #e6f7f2;
+    --border-color: #e9ecef;
+    --text-color: #333;
+    --text-light: #6c757d;
+    --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --header-height: 70px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff;
+    color: var(--text-color);
+    padding-top: var(--header-height);
+}
+
+/* ==========================================================================
+   2. Main Layout
+   ========================================================================== */
+.page-grid {
+    display: grid;
+    grid-template-columns: 100px 1fr 320px;
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    align-items: start;
+}
+
+.main-content {
+    min-width: 0;
+}
+
+/* ==========================================================================
+   3. Header Component
+   ========================================================================== */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    background-color: #fff;
+    border-bottom: 1px solid var(--border-color);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.main-header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo img {
+    height: 40px;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.language-selector {
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.language-selector .fa-chevron-down {
+    font-size: 0.7rem;
+    margin-left: 5px;
+}
+
+/* ==========================================================================
+   4. Sidebar Components
+   ========================================================================== */
+.sidebar-left {
+    position: sticky;
+    top: calc(var(--header-height) + 1.5rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.sidebar-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    text-decoration: none;
+    color: var(--text-light);
+    transition: all 0.3s ease;
+}
+
+.sidebar-icon i {
+    font-size: 1.5rem;
+    color: var(--primary-green);
+    transition: color 0.3s ease;
+}
+
+.sidebar-icon span {
+    display: none;
+}
+
+.sidebar-icon.active {
+    background-color: var(--primary-green);
+    border-color: var(--primary-green);
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
+}
+
+.sidebar-icon.active i,
+.sidebar-icon:hover i {
+    color: #fff;
+}
+
+.sidebar-icon:hover {
+    background-color: var(--primary-green);
+    border-color: var(--primary-green);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
+}
+
+.sidebar-right {
+    position: sticky;
+    top: calc(var(--header-height) + 1.5rem);
+}
+
+/* ==========================================================================
+   5. Card & Slider Components
+   ========================================================================== */
+.featured-slider-header h2 {
+    font-size: 1.8rem;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.featured-slider-header .fa-star {
+    color: var(--primary-green);
+}
+
+/* --- Featured Success Slider --- */
+.slider {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.slider-view {
+    overflow: hidden;
+    position: relative;
+}
+
+.slider-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slider-btn {
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.slider-btn:hover {
+    background-color: var(--primary-green);
+    color: #fff;
+}
+
+.slider-btn.prev {
+    left: 20px;
+}
+
+.slider-btn.next {
+    right: 20px;
+}
+
+/* --- Featured Slider Item --- */
+.slide {
+    flex: 0 0 100%;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    overflow: hidden;
+    min-height: 400px;
+}
+
+.slide-image {
+    flex: 0 0 45%;
+    position: relative;
+}
+
+.slide-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slide-banner {
+    position: absolute;
+    top: 20px;
+    left: -8px;
+    background-color: var(--primary-green);
+    color: #fff;
+    padding: 10px 25px;
+    font-weight: bold;
+    font-size: 1rem;
+    clip-path: polygon(0% 0%, 100% 0%, 90% 50%, 100% 100%, 0% 100%);
+}
+
+.slide-content {
+    padding: 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.slide-content h3 {
+    font-size: 1.7rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+
+.slide-meta {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.slide-body {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.slide-readmore {
+    color: var(--primary-green);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.slide-stats {
+    padding-top: 1rem;
+    margin-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    gap: 1.5rem;
+    color: var(--text-light);
+    align-items: center;
+    font-weight: bold;
+}
+
+.slide-stats .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.slide-stats .stat-item i {
+    font-size: 1.4rem;
+}
+
+.slide-stats .stat-item .fa-pen-nib {
+    color: #28a745;
+}
+
+.slide-stats .stat-item .fa-file-excel {
+    color: #ffc107;
+}
+
+.slide-stats .stat-item .fa-folder-open {
+    color: #fd7e14;
+}
+
+/* --- Trends Card (Right Sidebar) --- */
+.trends {
+    background-color: var(--light-green-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+.trends h3 {
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.trends .fa-arrow-trend-up {
+    color: var(--primary-green);
+}
+
+.trends-list {
+    list-style: none;
+}
+
+.trends-list li {
+    margin-bottom: 1rem;
+}
+
+.trends-list a {
+    text-decoration: none;
+    color: #0056b3;
+    font-weight: 600;
+    font-size: 1.1rem;
+    display: block;
+}
+
+.trends-list span {
+    color: var(--text-light);
+    font-size: 0.8rem;
+}
+
+.trends-show-more {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--primary-green);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.trends-show-more i {
+    margin-left: 5px;
+}
+
+/* ==========================================================================
+   6. Tab Navigation & Content Feed
+   ========================================================================== */
+.feed {
+    margin-top: 3rem;
+}
+
+.feed-header-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: var(--header-height);
+    background-color: #fff;
+    z-index: 900;
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
+}
+
+.feed-header {
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.feed-header .fa-people-group {
+    color: var(--primary-green);
+}
+
+.feed-tabs {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.feed-tab {
+    padding: 10px 5px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-light);
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.feed-tab:hover {
+    color: var(--text-color);
+}
+
+.feed-tab.active {
+    color: var(--primary-green);
+    border-bottom-color: var(--primary-green);
+}
+
+.feed-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.feed-panel {
+    display: none;
+    padding-top: 1.5rem;
+}
+
+.feed-panel.active {
+    display: block;
+}
+
+.card.hidden-card {
+    display: none;
+}
+
+/* --- General Feed Card Style --- */
+.card {
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+.card-image {
+    height: 350px;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.card:hover .card-image img {
+    transform: scale(1.05);
+}
+
+.card-body {
+    padding: 1.5rem 2rem;
+}
+
+.card-body h3 {
+    font-size: 1.6rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+}
+
+.card-meta {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+        
+/* ==========================================================================
+   7. Buttons
+   ========================================================================== */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-signin {
+    background-color: var(--primary-green);
+    color: white;
+}
+
+.btn-signin:hover {
+    background-color: #218838;
+}
+
+.btn-register {
+    background-color: white;
+    color: var(--primary-green);
+    border: 2px solid var(--primary-green);
+}
+
+.btn-register:hover {
+    background-color: var(--light-green-bg);
+}
+        
+.filter-btn {
+    padding: 8px 20px;
+    border-radius: 20px;
+    border: 1px solid var(--primary-green);
+    background-color: #fff;
+    color: var(--primary-green);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background-color: var(--primary-green);
+    color: #fff;
+}
+        
+.load-more-container {
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.btn-load-more {
+    background-color: var(--primary-green);
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-load-more:hover {
+    background-color: #218838;
+}
+
+/* ==========================================================================
+   8. Responsive Design
+   ========================================================================== */
+@media (max-width: 1200px) {
+    .page-grid {
+        grid-template-columns: 80px 1fr 280px;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .page-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .sidebar-left,
+    .sidebar-right {
+        position: static;
+        height: auto;
+        width: 100%;
+        margin-bottom: 1.5rem;
+    }
+
+    .sidebar-left {
+        flex-direction: row;
+        justify-content: space-around;
+        background-color: #f8f9fa;
+        padding: 0.5rem;
+        border-radius: 12px;
+    }
+
+    .sidebar-right {
+        order: 3;
+    }
+
+    .slide {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .slide-image {
+        flex: 0 0 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-right .language-selector,
+    .nav-right .btn-register {
+        display: none;
+    }
+
+    .main-header {
+        padding: 0 1rem;
+    }
+
+    .slide-content h3 {
+        font-size: 1.3rem;
+    }
+
+    .card-body {
+        padding: 1rem 1.5rem;
+    }
+
+    .card-body h3 {
+        font-size: 1.3rem;
+    }
+}
+
+
+
+
+

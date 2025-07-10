@@ -12,3 +12,4 @@ Route::get('/login', [FrontendController::class, 'login'])->name('login');
 // Route::get('/register', [FrontendController::class, 'register'])->name('register');
 Route::get('/aboutus', [FrontendController::class, 'aboutus'])->name('aboutus');
 
+Route::get('/campaignpage', [FrontendController::class, 'campaignpage'])->name('campaignpage');
