@@ -7,70 +7,161 @@
 
     <!-- Link your CSS here -->
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
-    <header class="dashboard-header">
-        <h1>Welcome, {{ auth()->user()->name }}</h1>
-        <nav>
-            <a href="{{ route('home') }}">Home</a>
-            <a href="{{ route('campaigns.create') }}">Add Campaign</a>
-            <a href="{{ route('logout.redirect') }}" 
-               onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-               Logout
-            </a>
-            <form id="logout-form" action="{{ route('logout.redirect') }}" method="POST" style="display:none;">
-                @csrf
-            </form>
-        </nav>
+<div class="dashboard-container">
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-hand-holding-heart"></i>
+            <h2>Nyano Haath</h2>
+        </div>
+
+        <!-- User Dropdown -->
+        <div class="user-menu-wrapper" tabindex="0">
+            <button id="userMenuButton" class="user-icon-btn" aria-haspopup="true" aria-expanded="false" title="User Menu">
+                <i class="fas fa-user-circle fa-xl"></i>
+            </button>
+
+            <div id="userDropdown" class="user-dropdown" role="menu" aria-labelledby="userMenuButton" hidden>
+                <a href="{{ route('profile.edit') }}" role="menuitem" class="dropdown-item">
+                    <i class="fas fa-user-edit"></i> Update Profile
+                </a>
+                <a href="#" role="menuitem" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </div>
+
+        <form id="logout-form" action="{{ route('logout.redirect') }}" method="POST" style="display:none;">
+            @csrf
+        </form>
     </header>
 
-    <main class="dashboard-main">
-        <h2>Your Campaigns</h2>
+    <div class="main-layout">
+        <aside class="sidebar">
+            <nav>
+                <ul class="nav-list">
+                    <li class="nav-item active">
+                        <a href="{{ route('dashboard') }}">
+                            <i class="fas fa-house"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('campaigns.create') }}">
+                            <i class="fas fa-bullhorn"></i>
+                            <span>Add Campaign</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">
+                            <i class="fas fa-wallet"></i>
+                            <span>Withdraw</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">
+                            <i class="fas fa-question-circle"></i>
+                            <span>FAQ</span>
+                        </a>
+                    </li>
+                    <li class="nav-item logout-item">
+                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
 
-        @if(session('success'))
-            <div class="alert-success">{{ session('success') }}</div>
-        @endif
+        <main class="content-area">
+            <h1>Welcome, {{ auth()->user()->name }}</h1>
 
-        @if($campaigns->count() > 0)
-            <table>
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Goal Amount</th>
-                        <th>Raised Amount</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach($campaigns as $campaign)
-                    <tr>
-                        <td>{{ $campaign->title }}</td>
-                        <td>Rs. {{ number_format($campaign->goal_amount, 2) }}</td>
-                        <td>Rs. {{ number_format($campaign->raised_amount, 2) }}</td>
-                        <td>{{ ucfirst($campaign->status) }}</td>
-                        <td>
-                            <a href="{{ route('campaigns.show', $campaign) }}" class="view-btn">View</a> |
-                            <a href="{{ route('campaigns.edit', $campaign) }}" class="edit-btn">Edit</a> |
-                            <form action="{{ route('campaigns.destroy', $campaign) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="delete-btn" onclick="return confirm('Are you sure?')">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-        @else
-            <p>You have no campaigns yet. <a href="{{ route('campaigns.create') }}">Create one now</a>.</p>
-        @endif
-    </main>
+            <section class="campaigns-section">
+                <h2>Your Campaigns</h2>
 
-    <footer class="dashboard-footer">
-        <p>© 2025 Nyano Haath. All rights reserved.</p>
-    </footer>
+                @if(session('success'))
+                    <div class="alert-success">{{ session('success') }}</div>
+                @endif
+
+                @if($campaigns->count() > 0)
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Goal Amount</th>
+                                <th>Raised Amount</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($campaigns as $campaign)
+                                <tr>
+                                    <td>{{ $campaign->title }}</td>
+                                    <td>Rs. {{ number_format($campaign->goal_amount, 2) }}</td>
+                                    <td>Rs. {{ number_format($campaign->raised_amount, 2) }}</td>
+                                    <td>{{ ucfirst($campaign->status) }}</td>
+                                    <td>
+                                        <a href="{{ route('campaigns.show', $campaign) }}" class="view-btn">View</a> |
+                                        <a href="{{ route('campaigns.edit', $campaign) }}" class="edit-btn">Edit</a> |
+                                        <form action="{{ route('campaigns.destroy', $campaign) }}" method="POST" style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="delete-btn" onclick="return confirm('Are you sure?')">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                @else
+                    <p>You have no campaigns yet. <a href="{{ route('campaigns.create') }}">Create one now</a>.</p>
+                @endif
+            </section>
+        </main>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const userMenuBtn = document.getElementById('userMenuButton');
+        const userDropdown = document.getElementById('userDropdown');
+
+        userMenuBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const isHidden = userDropdown.hasAttribute('hidden');
+            if (isHidden) {
+                userDropdown.removeAttribute('hidden');
+                userMenuBtn.setAttribute('aria-expanded', 'true');
+            } else {
+                userDropdown.setAttribute('hidden', '');
+                userMenuBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!userMenuBtn.contains(e.target) && !userDropdown.contains(e.target)) {
+                userDropdown.setAttribute('hidden', '');
+                userMenuBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                userDropdown.setAttribute('hidden', '');
+                userMenuBtn.setAttribute('aria-expanded', 'false');
+                userMenuBtn.focus();
+            }
+        });
+    });
+</script>
 
 </body>
 </html>
