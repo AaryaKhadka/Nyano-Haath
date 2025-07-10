@@ -103,11 +103,11 @@ body {
 }
 
 .orange-text {
-  color: #f97316;
+  color: #06ba0c;
 }
 
 .gradient-text {
-  background: linear-gradient(90deg, #f97316, #ea580c);
+  background: linear-gradient(90deg, #06d106, #06cf14);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text; /* Standard property */
@@ -161,7 +161,7 @@ body {
 }
 
 .nav-links a:hover {
-  color: #f97316;
+  color: #0ae12a;
 }
 
 /* Button */
@@ -170,7 +170,7 @@ body {
   padding: 0.75rem 2rem;
   font-weight: 600;
   color: white;
-  background-color: #f97316;
+  background-color: #09c209;
   text-decoration: none;
   border-radius: 9999px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -178,7 +178,7 @@ body {
 }
 
 .button-primary:hover {
-  background-color: #ea580c;
+  background-color: #05bb11;
   transform: translateY(-2px);
   box-shadow: 0 7px 10px rgba(0, 0, 0, 0.1);
 }
@@ -201,7 +201,7 @@ body {
   margin-bottom: 1rem;
   font-size: 2.25rem;
   font-weight: 700;
-  color: #fdba74;
+  color: #29d50a;
 }
 
 /* Stats Component */

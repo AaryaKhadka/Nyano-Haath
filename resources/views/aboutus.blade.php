@@ -1,28 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Nyano Haath (CSS Animation)</title>
-     <link rel="stylesheet" href="{{ asset('CSS/AboutUs.css') }}">
-</head>
-<body>
+@extends('layouts.app')
 
-    <!-- ========== HEADER ========== -->
-    <header class="header">
-        <nav class="container nav-bar">
-            <div class="logo">Nyano<span class="orange-text">Haath</span></div>
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#how-it-works">How It Works</a>
-                <a href="#team">Team</a>
-            </div>
-        </nav>
-    </header>
+@section('title', 'About Us')
 
-    <!-- ========== MAIN PAGE CONTENT ========== -->
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/AboutUs.css') }}">
+@endsection
+
+@section('content')
     <main>
-
         <!-- Section 1: Welcome Area -->
         <section id="about" class="section welcome-section">
             <div class="container text-center">
@@ -38,24 +23,24 @@
             </div>
         </section>
 
-        <!-- Section 2: The Story (Problem and Solution) -->
+        <!-- Section 2: The Story -->
         <section class="section">
             <div class="container grid two-columns">
                 <div class="animate">
                     <h2 class="title-medium">The Challenge</h2>
                     <p class="text-large">
-                        Many great causes struggle to raise money because donors worry if their help will truly reach the right people. This lack of a trusted system holds back a lot of kindness.
+                        Many great causes struggle to raise money because donors worry if their help will truly reach the right people.
                     </p>
                 </div>
                 <div class="card animate">
                     <h2 class="title-medium orange-text">Our Solution</h2>
                     <p class="text-large">
-                        Nyano Haath provides a safe and clear platform. We make sure every donation is tracked and every story is shared, so you can give with confidence and see your impact.
+                        Nyano Haath provides a safe and clear platform so you can give with confidence and see your impact.
                     </p>
                 </div>
             </div>
         </section>
-        
+
         <!-- Section 3: How It Works -->
         <section id="how-it-works" class="section section-light-gray">
             <div class="container text-center">
@@ -80,7 +65,7 @@
             </div>
         </section>
 
-        <!-- Section 5: Meet the Team -->
+        <!-- Section 4: Meet the Team -->
         <section id="team" class="section section-light-gray">
             <div class="container text-center">
                 <h2 class="title-medium animate">Meet the Student Founders</h2>
@@ -104,17 +89,5 @@
                 </div>
             </div>
         </section>
-        
     </main>
-
-    <!-- ========== FOOTER ========== -->
-    <footer class="footer">
-        <div class="container">
-            <p>© 2025 Nyano Haath. A Concept by Students of Apex College.</p>
-        </div>
-    </footer>
-
-    <!-- NO SCRIPT TAG NEEDED! -->
-
-</body>
-</html>
+@endsection
