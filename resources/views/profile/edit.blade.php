@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>User Profile - Nyano Haath</title>
 
+    <!-- Font Awesome CDN -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+
     <!-- Link your CSS here -->
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}" />
 </head>
@@ -13,27 +19,27 @@
 <div class="dashboard-container">
     <header class="header">
         <div class="logo">
-            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
-            </svg>
-            <h2>Nyano Haath</h2>
+            <!-- Replace your logo SVG with Font Awesome square (optional) -->
+            <i class="fas fa-hand-holding-heart"></i>
+            <span><b>Nyano Haath</b></span>
         </div>
         <div class="profile-dropdown-wrapper">
             <button class="profile-button" onclick="toggleDropdown()" title="Profile">
-                <!-- 👤 User icon -->
-                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 12c2.7 0 4.5-2 4.5-4.5S14.7 3 12 3 7.5 5 7.5 7.5 9.3 12 12 12zm0 1.5c-3 0-9 1.5-9 4.5V21h18v-3c0-3-6-4.5-9-4.5z"/>
-                </svg>
+                <!-- User icon using Font Awesome -->
+                <i class="fa-solid fa-user"></i>
             </button>
             <div id="dropdown-menu" class="dropdown-menu hidden">
-                <a href="{{ route('dashboard') }}">Home</a>
+                <a href="{{ route('dashboard') }}">
+                  <i class="fa-solid fa-house"></i> Home
+                </a>
                 <form id="logout-form" action="{{ route('logout.redirect') }}" method="POST">
                     @csrf
-                    <button type="submit">Logout</button>
+                    <button type="submit">
+                      <i class="fa-solid fa-right-from-bracket"></i> Logout
+                    </button>
                 </form>
             </div>
         </div>
-
 
         <form id="logout-form" action="{{ route('logout.redirect') }}" method="POST" style="display:none;">
             @csrf
@@ -46,31 +52,22 @@
                 <ul class="nav-list">
                     <li class="nav-item">
                         <a href="{{ route('dashboard') }}">
-                            <!-- dashboard icon SVG -->
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256">
-                                <path d="M216,96.42V208a16,16,0,0,1-16,16H160a16,16,0,0,1-16-16V160H112v48a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V96.42a16,16,0,0,1,5.17-11.78l80-75.48.11-.11a16,16,0,0,1,21.53,0l.11.11,80,75.48A16,16,0,0,1,216,96.42Z"></path>
-                            </svg>
+                            <!-- Dashboard icon -->
+                            <i class="fas fa-house"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('campaigns.create') }}">
-                            <!-- campaigns icon SVG -->
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256">
-                                <path d="M216,40H136V24a8,8,0,0,0-16,0V40H40A16,16,0,0,0,24,56V176a16,16,0,0,0,16,16H79.36L57.75,219a8,8,0,0,0,12.5,10l29.59-37h56.32l29.59,37a8,8,0,1,0,12.5-10l-21.61-27H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,136H40V56H216V176ZM104,144a8,8,0,0,1-16,0V120a8,8,0,0,1,16,0Zm32,0a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm32,0a8,8,0,0,1-16,0V88a8,8,0,0,1,16,0Z"></path>
-                            </svg>
+                            <!-- Campaigns icon -->
+                            <i class="fa-solid fa-bullhorn"></i>
                             <span>Add Campaign</span>
                         </a>
                     </li>
                     <li class="nav-item active">
                         <a href="{{ route('profile.edit') }}">
-                            <!-- user icon SVG -->
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
-                                 class="feather feather-user" viewBox="0 0 24 24" width="20" height="20">
-                                <path d="M20 21v-2a4 4 0 0 0-3-3.87"></path>
-                                <path d="M4 21v-2a4 4 0 0 1 3-3.87"></path>
-                                <circle cx="12" cy="7" r="4"></circle>
-                            </svg>
+                            <!-- User icon -->
+                            <i class="fa-solid fa-user"></i>
                             <span>Profile</span>
                         </a>
                     </li>
@@ -79,10 +76,8 @@
                             @csrf
                         </form>
                         <a href="#" onclick="event.preventDefault(); document.getElementById('sidebar-logout-form').submit();">
-                            <!-- logout icon SVG -->
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256">
-                                <path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path>
-                            </svg>
+                            <!-- Logout icon -->
+                            <i class="fa-solid fa-right-from-bracket"></i>
                             <span>Logout</span>
                         </a>
                     </li>
@@ -93,12 +88,7 @@
         <main class="content-area">
             <!-- Back Button -->
             <a href="{{ route('dashboard') }}" class="back-button">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
-                     class="feather feather-arrow-left" viewBox="0 0 24 24" width="20" height="20" style="margin-right: 6px;">
-                    <line x1="19" y1="12" x2="5" y2="12"></line>
-                    <polyline points="12 19 5 12 12 5"></polyline>
-                </svg>
-                Back
+                <i class="fa-solid fa-arrow-left" style="margin-right: 6px;"></i> Back
             </a>
 
             <h1>Profile Information</h1>
@@ -158,6 +148,7 @@
         </main>
     </div>
 </div>
+
 <script>
     function toggleDropdown() {
         document.getElementById("dropdown-menu").classList.toggle("hidden");

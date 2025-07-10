@@ -22,24 +22,38 @@ class CampaignController extends Controller
 
     // Store new campaign
     public function store(Request $request)
-    {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'goal_amount' => 'required|numeric',
-        ]);
+{
+    $validated = $request->validate([
+        'title' => 'required|string|max:255',
+        'description' => 'required|string',
+        'goal_amount' => 'required|numeric|min:1',
+        'country' => 'required|string|max:255',
+        'category' => 'required|string|max:255',
+        'campaign_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'verification_document' => 'required|file|mimes:pdf,jpg,jpeg,png|max:5120',
+    ]);
 
-        Campaign::create([
-            'user_id' => auth()->id(),
-            'title' => $request->title,
-            'description' => $request->description,
-            'goal_amount' => $request->goal_amount,
-            'raised_amount' => 0,
-            'status' => 'pending',
-        ]);
-
-        return redirect()->route('dashboard')->with('success', 'Campaign created successfully.');
+    // Handle image upload
+    if ($request->hasFile('campaign_image')) {
+        $imagePath = $request->file('campaign_image')->store('campaign_images', 'public');
+        $validated['campaign_image'] = $imagePath;
     }
+
+    // Handle verification document upload
+    if ($request->hasFile('verification_document')) {
+        $docPath = $request->file('verification_document')->store('verification_docs', 'public');
+        $validated['verification_document'] = $docPath;
+    }
+
+    $validated['user_id'] = auth()->id();
+    $validated['raised_amount'] = 0;
+    $validated['status'] = 'pending';
+
+    \App\Models\Campaign::create($validated);
+
+    return redirect()->route('dashboard')->with('success', 'Campaign created successfully!');
+}
+
 
     // Show edit form
     public function edit(Campaign $campaign)

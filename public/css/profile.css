@@ -53,9 +53,8 @@ body {
     gap: 0.75rem;
 }
 
-.logo svg {
-    width: 1.25rem;
-    height: 1.25rem;
+.logo i {
+    font-size: 1.25rem;
     color: var(--primary-text);
 }
 
@@ -74,12 +73,15 @@ body {
     height: 2.5rem;
     border-radius: 50%;
     cursor: pointer;
+    color: var(--primary-text);
+    font-size: 1.5rem;
+    transition: background-color 0.3s ease;
 }
 
-.profile-button svg {
-    width: 1.5rem;
-    height: 1.5rem;
-    color: var(--primary-text);
+.profile-button:hover,
+.profile-button:focus {
+    background-color: #d0ead2;
+    outline: none;
 }
 
 /* Layout */
@@ -121,9 +123,10 @@ body {
     background-color: var(--accent-bg);
 }
 
-.nav-item svg {
-    width: 1.3rem;
-    height: 1.3rem;
+.nav-item i {
+    font-size: 1.3rem;
+    min-width: 1.3rem; /* to align text vertically */
+    text-align: center;
 }
 
 /* Content Area */
@@ -245,6 +248,7 @@ hr {
     }
 }
 
+/* Back button */
 .back-button {
     display: inline-flex;
     align-items: center;
@@ -257,9 +261,15 @@ hr {
     transition: color 0.3s ease;
 }
 
+.back-button i {
+    margin-right: 6px;
+}
+
 .back-button:hover {
     color: #218838;
 }
+
+/* Profile Dropdown */
 .profile-dropdown-wrapper {
     position: relative;
 }
@@ -277,7 +287,7 @@ hr {
     flex-direction: column;
     gap: 0.5rem;
     z-index: 100;
-    min-width: 120px;
+    min-width: 140px;
 }
 
 .dropdown-menu a,
@@ -290,6 +300,10 @@ hr {
     color: #333;
     cursor: pointer;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
 }
 
 .dropdown-menu a:hover,
@@ -298,7 +312,12 @@ hr {
     text-decoration: none;
 }
 
+.dropdown-menu i {
+    font-size: 1.1rem;
+    min-width: 1.1rem;
+    text-align: center;
+}
+
 .hidden {
     display: none;
 }
-

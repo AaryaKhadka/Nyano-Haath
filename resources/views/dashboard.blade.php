@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
 </head>
 <body>
 
@@ -109,13 +109,15 @@
                                     <td>Rs. {{ number_format($campaign->raised_amount, 2) }}</td>
                                     <td>{{ ucfirst($campaign->status) }}</td>
                                     <td>
-                                        <a href="{{ route('campaigns.show', $campaign) }}" class="view-btn">View</a> |
-                                        <a href="{{ route('campaigns.edit', $campaign) }}" class="edit-btn">Edit</a> |
-                                        <form action="{{ route('campaigns.destroy', $campaign) }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="delete-btn" onclick="return confirm('Are you sure?')">Delete</button>
-                                        </form>
+                                        <div class="action-buttons">
+                                            <a href="{{ route('campaigns.show', $campaign) }}" class="view-btn">View</a>
+                                            <a href="{{ route('campaigns.edit', $campaign) }}" class="edit-btn">Edit</a>
+                                            <form action="{{ route('campaigns.destroy', $campaign) }}" method="POST" class="delete-form" onsubmit="return confirm('Are you sure?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="delete-btn">Delete</button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach

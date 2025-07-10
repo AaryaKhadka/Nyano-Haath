@@ -9,19 +9,25 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
-{
-    Schema::create('campaigns', function (Blueprint $table) {
-        $table->id();
-        $table->foreignId('user_id')->constrained()->onDelete('cascade');
-        $table->string('title');
-        $table->text('description');
-        $table->decimal('goal_amount', 10, 2);
-        $table->decimal('raised_amount', 10, 2)->default(0);
-        $table->enum('status', ['pending', 'active', 'closed'])->default('pending');
-        $table->timestamps();
-    });
-}
+    public function up(): void
+    {
+        Schema::create('campaigns', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('title');
+            $table->text('description');
+            $table->decimal('goal_amount', 10, 2);
+            $table->decimal('raised_amount', 10, 2)->default(0);
+            $table->enum('status', ['pending', 'active', 'closed'])->default('pending');
+            
+            $table->string('country')->nullable();                 // Made nullable
+            $table->string('category')->nullable();                // Made nullable
+            $table->string('campaign_image')->nullable();          // Made nullable
+            $table->string('verification_document')->nullable();   // Made nullable
+
+            $table->timestamps();
+        });
+    }
 
     /**
      * Reverse the migrations.

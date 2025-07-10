@@ -1,6 +1,6 @@
-/* dashboard.css */
+/* show.css */
 
-/* CSS Variables */
+/* CSS Variables - same as dashboard */
 :root {
     --page-bg: #f8f9f8;
     --container-bg: #ffffff;
@@ -9,9 +9,6 @@
     --accent-bg: #f0f5f0;
     --border-color: #e9e9e9;
     --font-main: 'Inter', sans-serif;
-    --success-bg: #d4edda;
-    --success-border: #c3e6cb;
-    --success-text: #155724;
 }
 
 /* Reset & global */
@@ -45,7 +42,7 @@ body {
     border: 1px solid var(--border-color);
 }
 
-/* Header */
+/* Header - consistent with dashboard */
 .header {
     display: flex;
     justify-content: space-between;
@@ -70,7 +67,7 @@ body {
     font-weight: 700;
 }
 
-/* User menu */
+/* User menu - same style */
 .user-menu-wrapper {
     position: relative;
     display: inline-block;
@@ -129,11 +126,6 @@ body {
     gap: 0.5rem;
 }
 
-.dropdown-item i {
-    font-size: 1rem;
-    color: var(--primary-text);
-}
-
 .dropdown-item:hover,
 .dropdown-item:focus {
     background-color: var(--accent-bg);
@@ -166,7 +158,7 @@ body {
     align-items: center;
     gap: 0.75rem;
     padding: 0.75rem 1rem;
-    border-radius: 9999px; /* pill shape */
+    border-radius: 9999px;
     text-decoration: none;
     color: var(--primary-text);
     font-size: 0.95rem;
@@ -199,112 +191,79 @@ body {
 /* Content area */
 .content-area {
     flex-grow: 1;
-    padding: 2rem;
-    background: #fff;
+    padding: 3rem 4rem;
+    background: var(--container-bg);
     border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
     min-height: 500px;
+    max-width: 750px;
+    margin: auto;
 }
 
 /* Headings */
 .content-area h1 {
     font-weight: 700;
+    margin-bottom: 2rem;
+    color: #19692c;
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+/* Campaign details */
+.campaign-details {
+    background: #fafafa;
+    padding: 2rem 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    max-width: 700px;
+    margin: 0 auto 2rem auto;
+    line-height: 1.6;
+    color: var(--primary-text);
+}
+
+.campaign-details > * + * {
+    margin-top: 1.5rem;
+}
+
+.campaign-details h2 {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    border-bottom: 2px solid #28a745;
+    padding-bottom: 0.25rem;
+}
+
+.campaign-details h3 {
+    margin: 0.5rem 0;
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 1.15rem;
+}
+
+.campaign-details p {
     margin-bottom: 1.5rem;
+    line-height: 1.5;
+    color: var(--secondary-text);
+    font-size: 1.1rem;
 }
 
-/* Campaigns Section */
-.campaigns-section h2 {
+/* View Image and Document link style */
+.view-image-link {
+    color: #28a745;
     font-weight: 600;
-    margin-bottom: 1rem;
-    color: #333;
-}
-
-/* Alert success */
-.alert-success {
-    background-color: var(--success-bg);
-    border: 1px solid var(--success-border);
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
-    color: var(--success-text);
-    margin-bottom: 1rem;
-    font-weight: 600;
-}
-
-/* Table */
-.content-area table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-}
-
-.content-area th, 
-.content-area td {
-    border: 1px solid var(--border-color);
-    padding: 0.75rem 1rem;
-    text-align: left;
-    font-size: 0.9rem;
-}
-
-.content-area th {
-    background-color: var(--accent-bg);
-    font-weight: 700;
-}
-
-.content-area tr:nth-child(even) {
-    background-color: #fafafa;
-}
-
-/* Action buttons container fix */
-.action-buttons {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-}
-
-.action-buttons a,
-.action-buttons form {
-    margin: 0; /* Remove default margins */
-}
-
-.delete-form {
-    margin: 0;
-}
-
-/* Action buttons */
-.view-btn, .edit-btn, .delete-btn {
-    padding: 0.3rem 0.6rem;
-    border-radius: 5px;
-    font-size: 0.85rem;
-    border: none;
-    cursor: pointer;
-    color: #fff;
     text-decoration: none;
-    display: inline-block;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: color 0.3s ease;
 }
 
-.view-btn {
-    background-color: #3498db;
-}
-
-.view-btn:hover {
-    background-color: #2980b9;
-}
-
-.edit-btn {
-    background-color: #f1c40f;
-    color: #333;
-}
-
-.edit-btn:hover {
-    background-color: #d4ac0d;
-}
-
-.delete-btn {
-    background-color: #e74c3c;
-}
-
-.delete-btn:hover {
-    background-color: #c0392b;
+.view-image-link:hover,
+.view-image-link:focus {
+    color: #19692c;
+    text-decoration: underline;
 }
 
 /* Responsive */
@@ -316,9 +275,19 @@ body {
         width: 100%;
         border-right: none;
         border-bottom: 1px solid var(--border-color);
+        padding: 1rem 1rem;
     }
     .content-area {
+        max-width: 100%;
         min-height: auto;
-        padding: 1rem;
+        padding: 2rem 1.5rem;
+    }
+    .campaign-details {
+        padding: 1.5rem 1.5rem;
+        box-shadow: none;
+        border-radius: 0;
+    }
+    .content-area h1 {
+        font-size: 2rem;
     }
 }
