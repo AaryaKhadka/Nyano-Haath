@@ -1,8 +1,10 @@
 <header class="main-header">
-        <a href="{{ route('trending')}}" class="logo">
-            <div class="logo-icon"><img src="{{ asset('image/naynologo.jpg')}}" alt="Nyano Haat Logo"></div>
-            <h2 class="logo-text">Nyano Haath</h2>
-        </a>
+      
+         <a href="{{ route('trending')}}" class="logo">
+            <img src="{{ asset('image/nyanologo.jpg')}}" alt="Nyano Haat Logo" >
+         </a> 
+      
+
         <nav class="main-nav">
             <!-- Search Button/Input -->
             <div class="search-container">

@@ -125,35 +125,21 @@ Header
     backdrop-filter: blur(8px);
     z-index: 1000;
 }
-
 .logo {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    color: var(--dark-text);
-    text-decoration: none;
-}
-  .logo-icon {
-    width: 60px;
-    height: 60px;      
-    display: flex;
-    align-items: center;
+    height: 40px;
+    width: auto;
     justify-content: center;
 }
 
-.logo-icon img {
-    width: 90px;
-    height: 90px;
+.logo img {
+    height: 150%;  
+    width: auto;
     object-fit: contain;
+    background-color: transparent;
 }
 
-
-.logo-text {
-    font-size: 1.25rem;
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -0.015em;
-}
 
 .main-nav {
     display: flex;
@@ -266,6 +252,9 @@ Circle Section
 */
 .circle{
     padding-top: 50px;
+    a{
+        text-decoration: none;
+    }
 }
 .category-circles {
     display: flex;
