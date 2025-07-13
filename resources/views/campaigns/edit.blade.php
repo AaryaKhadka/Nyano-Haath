@@ -110,6 +110,7 @@
             </form>
         </main>
     </div>
+    @include('layouts.footer')
 </div>
 
 <script>

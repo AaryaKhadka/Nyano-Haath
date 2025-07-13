@@ -20,10 +20,10 @@ return new class extends Migration
             $table->decimal('raised_amount', 10, 2)->default(0);
             $table->enum('status', ['pending', 'active', 'closed'])->default('pending');
             
-            $table->string('country')->nullable();                 // Made nullable
-            $table->string('category')->nullable();                // Made nullable
-            $table->string('campaign_image')->nullable();          // Made nullable
-            $table->string('verification_document')->nullable();   // Made nullable
+            $table->string('country')->nullable();                 
+            $table->string('category')->nullable();                
+            $table->string('campaign_image')->nullable();          
+            $table->string('verification_document')->nullable();   
 
             $table->timestamps();
         });

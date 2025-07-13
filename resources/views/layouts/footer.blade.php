@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+<footer id="about" class="fade-in-section">
+    <div class="container footer-container">
+        <div class="footer-about">
+            <h4>Nyano Haath</h4>
+            <p>A warm hand for those in need. We are Nepal's leading platform for bringing ideas to life and supporting communities.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="footer-links">
+            <h4>Fundraise for</h4>
+            <ul>
+                <li><a href="#">Medical</a></li>
+                <li><a href="#">Emergency</a></li>
+                <li><a href="#">Memorial</a></li>
+                <li><a href="#">Education</a></li>
+            </ul>
+        </div>
+        <div class="footer-links">
+            <h4>Learn More</h4>
+            <ul>
+                <li><a href="#">How it works</a></li>
+                <li><a href="#">Why Nyano Haath?</a></li>
+                <li><a href="#">Common questions</a></li>
+                <li><a href="#">Success stories</a></li>
+            </ul>
+        </div>
+        <div class="footer-links">
+            <h4>Resources</h4>
+            <ul>
+                <li><a href="#">Help center</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Press center</a></li>
+                <li><a href="#">Careers</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2024 Nyano Haath. All Rights Reserved. | <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a></p>
+    </div>
+</footer>
