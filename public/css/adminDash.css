@@ -108,7 +108,7 @@ body, html {
 .dashboard-container {
   flex-grow: 1;            /* Fill available vertical space */
   display: flex;
-  min-height: 0;           /* Allows children to shrink */
+  min-height: 600px;       /* ensure height larger than footer */
   overflow: hidden;        /* Prevents overflow outside container */
 
   max-width: 1200px;       /* same as footer */
@@ -118,7 +118,8 @@ body, html {
   background: white;
   border: 1px solid #ddd;
   border-radius: 0;     /* REMOVE all rounded corners */
-  min-height: 450px;       /* ensure height larger than footer */
+
+  align-items: stretch;  /* Make sidebar and main-content full height */
   box-sizing: border-box;
 }
 
@@ -130,14 +131,15 @@ body, html {
   padding: 1.5rem;
   box-sizing: border-box;
   overflow-y: auto;
-   border-bottom-left-radius: 0;
+  height: 100%;
+  align-self: stretch;
 }
 
 /* Sidebar nav */
 .sidebar nav ul {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin-top: 43px;
 }
 
 .sidebar nav ul li {
@@ -147,9 +149,12 @@ body, html {
 .sidebar nav ul li a {
   color: white;
   text-decoration: none;
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font-weight: 600;
   transition: text-decoration 0.2s;
+
 }
 
 .sidebar nav ul li a:hover {
@@ -165,6 +170,43 @@ body, html {
   min-height: 0;  /* Important for flexbox scroll */
 
   border-bottom-right-radius: 15px; /* round bottom right corner */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Dashboard stats - container for stat cards */
+.dashboard-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Each stat card */
+.stat-card {
+  flex: 1 1 calc(50% - 1.5rem); /* Two cards per row with gap */
+  background: #e9f5ec;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  box-shadow: 0 2px 6px rgba(40, 167, 69, 0.2);
+  color: #1f4620;
+}
+
+.stat-card h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.stat-card p {
+  margin: 0;
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+/* Content section */
+.content {
+  flex-grow: 1;
 }
 
 /* Scrollbar styling for better UX */
@@ -194,6 +236,8 @@ body, html {
     width: 100%;
     border-radius: 15px 15px 0 0;
     padding: 1rem 1rem;
+    height: auto;
+    align-self: auto;
   }
 
   .main-content {
@@ -204,5 +248,13 @@ body, html {
   .header {
     border-radius: 15px;
     padding: 1rem;
+  }
+
+  .dashboard-stats {
+    flex-direction: column;
+  }
+
+  .stat-card {
+    flex: 1 1 100%;
   }
 }

@@ -32,9 +32,6 @@
       </button>
 
       <div id="userDropdown" class="user-dropdown" role="menu" aria-labelledby="userMenuButton" hidden>
-        <a href="#" role="menuitem" class="dropdown-item">
-          <i class="fas fa-user-shield"></i> Manage Users
-        </a>
         <a href="#" role="menuitem" class="dropdown-item" onclick="event.preventDefault(); alert('Logout!');">
           <i class="fas fa-sign-out-alt"></i> Logout
         </a>
@@ -46,21 +43,36 @@
     <aside class="sidebar">
       <nav>
         <ul>
-          <li><a href="#">Role Management</a></li>
-          <li><a href="#">Campaign Management</a></li>
-          <!-- Add more sidebar links as needed -->
+          <li><a href="#"><i class="fas fa-user-shield"></i> Role Management</a></li>
+          <li><a href="#"><i class="fas fa-bullhorn"></i> Campaign Management</a></li>
         </ul>
       </nav>
     </aside>
 
     <main class="main-content">
-      <section class="content">
-        <h1>Welcome to Admin Dashboard</h1>
-        <p>Manage roles and more from here.</p>
+      <h1>Welcome to Admin Dashboard</h1>
+
+      <section class="dashboard-stats">
+        <div class="stat-card">
+          <h2>Total Campaign Creators</h2>
+          <p>150</p>
+        </div>
+        <div class="stat-card">
+          <h2>Total Amount Raised</h2>
+          <p>₹1,250,000</p>
+        </div>
+        <div class="stat-card">
+          <h2>Total Campaigns</h2>
+          <p>320</p>
+        </div>
+        <div class="stat-card">
+          <h2>Active Users</h2>
+          <p>450</p>
+        </div>
       </section>
     </main>
-    
   </div>
+
   @include('layouts.footer')
 
   <script>
