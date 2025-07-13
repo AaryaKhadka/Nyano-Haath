@@ -130,8 +130,7 @@ body, html {
   padding: 1.5rem;
   box-sizing: border-box;
   overflow-y: auto;
-
-  border-bottom-left-radius: 15px; /* round bottom left corner */
+   border-bottom-left-radius: 0;
 }
 
 /* Sidebar nav */
