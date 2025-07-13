@@ -60,4 +60,3 @@ Route::get('/aboutus', function () {
 require __DIR__.'/auth.php';
 
 Route::resource('campaigns', CampaignController::class)->except(['index']);
-

@@ -1,81 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Admin Dashboard - Nyano Haath</title>
-    <link rel="stylesheet" href="{{ asset('css/adminDash.css') }}" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Dashboard - Nyano Haath</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous"
+  />
+
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="{{ asset('css/adminDash.css') }}" />
 </head>
 <body>
 
-    <!-- Move header here, outside dashboard container -->
-    <header class="main-header">
-        <a href="#" class="logo">
-            <div class="logo-icon"><i class="fas fa-hand-holding-heart"></i></div>
-            <h2 class="logo-text">Nyano Haath</h2>
+  <header class="header">
+    <a href="#" class="logo">
+      <i class="fas fa-hand-holding-heart"></i>
+      <span>Nyano Haath Admin</span>
+    </a>
+
+    <div class="user-menu-wrapper" tabindex="0">
+      <button id="userMenuButton" class="user-icon-btn" aria-haspopup="true" aria-expanded="false" title="Admin Menu">
+        <i class="fas fa-user-circle fa-xl"></i>
+      </button>
+
+      <div id="userDropdown" class="user-dropdown" role="menu" aria-labelledby="userMenuButton" hidden>
+        <a href="#" role="menuitem" class="dropdown-item">
+          <i class="fas fa-user-shield"></i> Manage Users
         </a>
-
-        <nav class="main-nav">
-            <a href="#">Home</a>
-            <a href="#campaigns">Campaigns</a>
-            
-            <!-- Removed gap by putting profile inside nav -->
-            <div class="header-action">
-                <div class="profile-dropdown" style="position: relative;">
-                    <button id="profileBtn" class="profile-btn" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-user-circle"></i> Profile <i class="fas fa-caret-down"></i>
-                    </button>
-                    <div id="dropdownMenu" class="dropdown-content" role="menu" aria-labelledby="profileBtn">
-                        <form method="POST" action="{{ route('logout.redirect') }}">
-                            @csrf
-                            <button type="submit" class="logout-btn">Logout</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <div class="dashboard-container">
-        <aside class="sidebar">
-            <div class="logo">Nyano Haath Admin</div>
-            <nav>
-                <ul>
-                    <li><a href="#">Role Management</a></li>
-                    <li><a href="#">Campaign Management</a></li>
-                    <!-- Add more sidebar links as needed -->
-                </ul>
-            </nav>
-        </aside>
-
-        <main class="main-content">
-            <section class="content">
-                <h1>Welcome to Admin Dashboard</h1>
-                <p>Manage roles and more from here.</p>
-            </section>
-        </main>
+        <a href="#" role="menuitem" class="dropdown-item" onclick="event.preventDefault(); alert('Logout!');">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </a>
+      </div>
     </div>
+  </header>
 
-<script>
-    const profileBtn = document.getElementById('profileBtn');
-    const dropdownMenu = document.getElementById('dropdownMenu');
+  <div class="dashboard-container">
+    <aside class="sidebar">
+      <nav>
+        <ul>
+          <li><a href="#">Role Management</a></li>
+          <li><a href="#">Campaign Management</a></li>
+          <!-- Add more sidebar links as needed -->
+        </ul>
+      </nav>
+    </aside>
 
-    profileBtn.addEventListener('click', () => {
-        const isShown = dropdownMenu.classList.toggle('show');
-        profileBtn.setAttribute('aria-expanded', isShown);
-    });
+    <main class="main-content">
+      <section class="content">
+        <h1>Welcome to Admin Dashboard</h1>
+        <p>Manage roles and more from here.</p>
+      </section>
+    </main>
+    
+  </div>
+  @include('layouts.footer')
 
-    window.onclick = function(event) {
-        if (!event.target.closest('#profileBtn')) {
-            if (dropdownMenu.classList.contains('show')) {
-                dropdownMenu.classList.remove('show');
-                profileBtn.setAttribute('aria-expanded', 'false');
-            }
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const userMenuBtn = document.getElementById('userMenuButton');
+      const userDropdown = document.getElementById('userDropdown');
+
+      userMenuBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const isHidden = userDropdown.hasAttribute('hidden');
+        if (isHidden) {
+          userDropdown.removeAttribute('hidden');
+          userMenuBtn.setAttribute('aria-expanded', 'true');
+        } else {
+          userDropdown.setAttribute('hidden', '');
+          userMenuBtn.setAttribute('aria-expanded', 'false');
         }
-    }
-</script>
+      });
+
+      document.addEventListener('click', function(e) {
+        if (!userMenuBtn.contains(e.target) && !userDropdown.contains(e.target)) {
+          userDropdown.setAttribute('hidden', '');
+          userMenuBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          userDropdown.setAttribute('hidden', '');
+          userMenuBtn.setAttribute('aria-expanded', 'false');
+          userMenuBtn.focus();
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>

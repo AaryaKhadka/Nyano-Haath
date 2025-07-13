@@ -18,8 +18,7 @@ return new class extends Migration
             $table->text('description');
             $table->decimal('goal_amount', 10, 2);
             $table->decimal('raised_amount', 10, 2)->default(0);
-            $table->enum('status', ['pending', 'active', 'closed'])->default('pending');
-            
+            $table->enum('status', ['pending', 'active', 'closed', 'rejected'])->default('pending');
             $table->string('country')->nullable();                 
             $table->string('category')->nullable();                
             $table->string('campaign_image')->nullable();          
