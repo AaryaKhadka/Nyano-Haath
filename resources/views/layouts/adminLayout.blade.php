@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Admin Dashboard - Nyano Haath</title>
+  <title>@yield('title', 'Admin Dashboard - Nyano Haath')</title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
@@ -17,6 +17,9 @@
 
   <!-- Link to external CSS -->
   <link rel="stylesheet" href="{{ asset('css/adminDash.css') }}" />
+
+  {{-- Important: Yield head section for page-specific CSS or scripts --}}
+  @yield('head')
 </head>
 <body>
 
@@ -44,7 +47,7 @@
     <aside class="sidebar">
       <nav>
         <ul>
-         <li><a href="{{ route('admin.roles.index') }}"><i class="fas fa-user-shield"></i> Role Management</a></li>
+          <li><a href="{{ route('admin.roles.index') }}"><i class="fas fa-user-shield"></i> Role Management</a></li>
           <li><a href="#"><i class="fas fa-bullhorn"></i> Campaign Management</a></li>
           <li><a href="#"><i class="fas fa-star"></i> Featured Campaigns</a></li>
           <li><a href="#"><i class="fas fa-wallet"></i> Platform Earnings</a></li>
@@ -53,30 +56,16 @@
     </aside>
 
     <main class="main-content">
-      <h1>Welcome to Admin Dashboard</h1>
-
-      <section class="dashboard-stats">
-        <div class="stat-card">
-          <h2>Total Fundraisers</h2>
-          <p>{{ $totalCreators }}</p>
-        </div>
-        <div class="stat-card">
-          <h2>Total Amount Raised</h2>
-          <p>₹{{ number_format($totalAmountRaised) }}</p>
-        </div>
-        <div class="stat-card">
-          <h2>Total Campaigns</h2>
-          <p>{{ $totalCampaigns }}</p>
-        </div>
-        <div class="stat-card">
-          <h2>Total Users</h2>
-          <p>{{ $activeUsers }}</p>
-        </div>
-      </section>
+      @yield('content')
     </main>
   </div>
 
   @include('layouts.footer')
+
+  {{-- Hidden logout form for POST request --}}
+  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+  </form>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {

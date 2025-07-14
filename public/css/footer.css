@@ -2,11 +2,10 @@ footer {
     background-color: #222;
     color: #ccc;
     padding: 60px 20px 20px 20px;
-    
-    max-width: 1200px;  /* limit max width */
-    margin: 0 auto;     /* center horizontally inside container */
+
+    width: 100%;
     box-sizing: border-box;
-    border-radius: 0 0 20px 20px; /* round bottom corners to match container */
+    border-radius: 0; /* Remove rounded bottom corners */
 }
 
 .footer-container {
@@ -19,7 +18,8 @@ footer {
     margin-bottom: 40px;
 }
 
-.footer-about, .footer-links {
+.footer-about,
+.footer-links {
     flex: 1;
     min-width: 220px;
 }

@@ -13,19 +13,16 @@ body, html {
 /* Header */
 .header {
   flex-shrink: 0;
-  height: 70px; /* Adjust if your header height differs */
+  height: 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
   background: white;
   border-bottom: 1px solid #ddd;
+  width: 100%;
   box-sizing: border-box;
-
-  max-width: 1200px;  /* match footer max width */
-  margin: 0 auto;     /* center horizontally */
-  width: 100%;        /* responsive */
-  border-radius: 15px 15px 0 0; /* round top corners */
+  border-radius: 0;
 }
 
 /* Logo */
@@ -104,22 +101,18 @@ body, html {
   outline: none;
 }
 
-/* Dashboard container: sidebar + main content */
+/* Dashboard container */
 .dashboard-container {
-  flex-grow: 1;            /* Fill available vertical space */
+  flex-grow: 1;
   display: flex;
-  min-height: 600px;       /* ensure height larger than footer */
-  overflow: hidden;        /* Prevents overflow outside container */
-
-  max-width: 1200px;       /* same as footer */
-  margin: 0 auto;          /* center horizontally */
-  width: 100%;             /* responsive */
-
+  min-height: 600px;
+  overflow: hidden;
+  width: 100%;
+  margin: 0;
   background: white;
   border: 1px solid #ddd;
-  border-radius: 0;     /* REMOVE all rounded corners */
-
-  align-items: stretch;  /* Make sidebar and main-content full height */
+  border-radius: 0;
+  align-items: stretch;
   box-sizing: border-box;
 }
 
@@ -154,7 +147,6 @@ body, html {
   gap: 0.5rem;
   font-weight: 600;
   transition: text-decoration 0.2s;
-
 }
 
 .sidebar nav ul li a:hover {
@@ -167,14 +159,12 @@ body, html {
   padding: 2rem;
   background: white;
   overflow-y: auto;
-  min-height: 0;  /* Important for flexbox scroll */
-
-  border-bottom-right-radius: 15px; /* round bottom right corner */
+  min-height: 0;
   display: flex;
   flex-direction: column;
 }
 
-/* Dashboard stats - container for stat cards */
+/* Dashboard stats */
 .dashboard-stats {
   display: flex;
   flex-wrap: wrap;
@@ -182,9 +172,9 @@ body, html {
   margin-bottom: 2rem;
 }
 
-/* Each stat card */
+/* Stat card */
 .stat-card {
-  flex: 1 1 calc(50% - 1.5rem); /* Two cards per row with gap */
+  flex: 1 1 calc(50% - 1.5rem);
   background: #e9f5ec;
   border-radius: 12px;
   padding: 1.5rem;
@@ -204,49 +194,42 @@ body, html {
   font-weight: 700;
 }
 
-/* Content section */
-.content {
-  flex-grow: 1;
-}
-
-/* Scrollbar styling for better UX */
+/* Scrollbars */
 .main-content::-webkit-scrollbar {
   width: 8px;
 }
-
 .main-content::-webkit-scrollbar-thumb {
   background-color: rgba(40, 167, 69, 0.6);
   border-radius: 4px;
 }
-
 .main-content::-webkit-scrollbar-track {
   background-color: #f7f7f7;
 }
 
-/* Responsive layout for dashboard container */
+/* Responsive */
 @media (max-width: 768px) {
   .dashboard-container {
     flex-direction: column;
     min-height: auto;
-    border-radius: 15px; /* round all corners on small screens */
-    border-top: 1px solid #ddd; /* add top border since header border is gone */
+    border-radius: 0;
+    border-top: 1px solid #ddd;
   }
 
   .sidebar {
     width: 100%;
-    border-radius: 15px 15px 0 0;
+    border-radius: 0;
     padding: 1rem 1rem;
     height: auto;
     align-self: auto;
   }
 
   .main-content {
-    border-radius: 0 0 15px 15px;
+    border-radius: 0;
     min-height: auto;
   }
 
   .header {
-    border-radius: 15px;
+    border-radius: 0;
     padding: 1rem;
   }
 
