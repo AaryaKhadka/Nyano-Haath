@@ -56,8 +56,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     // Campaign actions (approve, delete, feature, unfeature)
     Route::post('/campaigns/{campaign}/approve', [AdminController::class, 'approveCampaign'])->name('campaigns.approve');
     Route::delete('/campaigns/{campaign}/delete', [AdminController::class, 'deleteCampaign'])->name('campaigns.delete');
-    Route::post('/campaigns/{campaign}/feature', [AdminController::class, 'featureCampaign'])->name('campaigns.feature');
-    Route::post('/campaigns/{campaign}/unfeature', [AdminController::class, 'unfeatureCampaign'])->name('campaigns.unfeature');
+    Route::get('/campaigns/{campaign}', [AdminController::class, 'showCampaign'])->name('campaigns.show');
+    // Route::post('/campaigns/{campaign}/feature', [AdminController::class, 'featureCampaign'])->name('campaigns.feature');
+    // Route::post('/campaigns/{campaign}/unfeature', [AdminController::class, 'unfeatureCampaign'])->name('campaigns.unfeature');
 });
 
 // Logout and redirect

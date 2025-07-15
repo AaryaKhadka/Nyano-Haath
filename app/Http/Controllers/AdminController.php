@@ -89,4 +89,9 @@ class AdminController extends Controller
 
     //     return back()->with('success', 'Campaign unfeatured successfully.');
     // }
+
+    public function showCampaign(Campaign $campaign)
+{
+    return view('dashboard.adminCampaignView', compact('campaign'));
+}
 }

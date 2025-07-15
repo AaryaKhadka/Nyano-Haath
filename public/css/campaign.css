@@ -72,8 +72,16 @@
 .delete-btn:hover {
   background-color: #c82333;
 }
+.view-btn {
+  background-color: #17a2b8;
+  color: white;
+}
+.view-btn:hover {
+  background-color: #138496;
+}
 
-.feature-btn {
+
+/* .feature-btn {
   background-color: #007bff;
   color: white;
 }
@@ -89,7 +97,7 @@
 
 .unfeature-btn:hover {
   background-color: #5a6268;
-}
+} */
 
 /* Responsive for smaller screens */
 @media (max-width: 768px) {

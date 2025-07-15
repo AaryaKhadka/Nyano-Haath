@@ -1,8 +1,9 @@
+
 /* Reset basics */
 body, html {
   margin: 0;
   padding: 0;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   font-family: 'Poppins', sans-serif;
@@ -124,8 +125,7 @@ body, html {
   padding: 1.5rem;
   box-sizing: border-box;
   overflow-y: auto;
-  height: 100%;
-  align-self: stretch;
+  flex-shrink: 0;
 }
 
 /* Sidebar nav */
@@ -158,7 +158,7 @@ body, html {
   flex-grow: 1;
   padding: 2rem;
   background: white;
-  overflow-y: auto;
+  overflow: visible;
   min-height: 0;
   display: flex;
   flex-direction: column;
@@ -216,12 +216,14 @@ body, html {
   }
 
   .sidebar {
-    width: 100%;
-    border-radius: 0;
-    padding: 1rem 1rem;
-    height: auto;
-    align-self: auto;
-  }
+  width: 250px;
+  background-color: #28a745;
+  color: white;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  overflow: visible;
+  min-height: 100%;
+}
 
   .main-content {
     border-radius: 0;

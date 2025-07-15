@@ -22,7 +22,6 @@
           <th>Goal Amount</th>
           <th>Raised Amount</th>
           <th>Status</th>
-          <!-- Featured column removed -->
           <th>Actions</th>
         </tr>
       </thead>
@@ -34,8 +33,11 @@
             <td>Rs. {{ number_format($campaign->goal_amount) }}</td>
             <td>Rs. {{ number_format($campaign->raised_amount) }}</td>
             <td>{{ ucfirst($campaign->status) }}</td>
-            <!-- Featured column removed -->
             <td>
+              {{-- Always show View --}}
+              <a href="{{ route('admin.campaigns.show', $campaign->id) }}" class="btn view-btn">View</a>
+
+              {{-- Show Approve/Delete only for pending --}}
               @if($campaign->status === 'pending')
                 <form action="{{ route('admin.campaigns.approve', $campaign->id) }}" method="POST" style="display:inline;">
                   @csrf
@@ -48,7 +50,6 @@
                   <button type="submit" class="btn delete-btn">Delete</button>
                 </form>
               @endif
-              <!-- Featured buttons removed -->
             </td>
           </tr>
         @endforeach
