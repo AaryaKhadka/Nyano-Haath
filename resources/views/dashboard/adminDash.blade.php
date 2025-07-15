@@ -45,7 +45,7 @@
       <nav>
         <ul>
          <li><a href="{{ route('admin.roles.index') }}"><i class="fas fa-user-shield"></i> Role Management</a></li>
-          <li><a href="#"><i class="fas fa-bullhorn"></i> Campaign Management</a></li>
+          <li><a href="admin.campaigns.index"><i class="fas fa-bullhorn"></i> Campaign Management</a></li>
           <li><a href="#"><i class="fas fa-star"></i> Featured Campaigns</a></li>
           <li><a href="#"><i class="fas fa-wallet"></i> Platform Earnings</a></li>
         </ul>

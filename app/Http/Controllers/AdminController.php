@@ -43,4 +43,50 @@ class AdminController extends Controller
 
         return back()->with('success', 'User role updated successfully.');
     }
+
+    // Show all campaigns to admin
+    public function campaigns()
+    {
+        $campaigns = Campaign::with('user')->latest()->get();
+        return view('dashboard.campaign', compact('campaigns'));
+    }
+
+    // Approve a pending campaign
+    public function approveCampaign(Campaign $campaign)
+    {
+        $campaign->status = 'active';
+        $campaign->save();
+
+        return back()->with('success', 'Campaign approved successfully.');
+    }
+
+    // Delete a campaign (only if not approved)
+    public function deleteCampaign(Campaign $campaign)
+    {
+        if ($campaign->status === 'approved') {
+            return back()->with('error', 'Approved campaigns cannot be deleted.');
+        }
+
+        $campaign->delete();
+
+        return back()->with('success', 'Campaign deleted successfully.');
+    }
+
+    // // Mark campaign as featured
+    // public function featureCampaign(Campaign $campaign)
+    // {
+    //     $campaign->featured = true;
+    //     $campaign->save();
+
+    //     return back()->with('success', 'Campaign marked as featured.');
+    // }
+
+    // // Remove featured status from campaign
+    // public function unfeatureCampaign(Campaign $campaign)
+    // {
+    //     $campaign->featured = false;
+    //     $campaign->save();
+
+    //     return back()->with('success', 'Campaign unfeatured successfully.');
+    // }
 }

@@ -1,0 +1,106 @@
+/* adminCampaigns.css */
+
+.campaign-management {
+  padding: 20px 30px;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+}
+
+.campaign-management h1 {
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.alert.success {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 12px 20px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  border: 1px solid #c3e6cb;
+}
+
+.campaign-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.campaign-table th,
+.campaign-table td {
+  text-align: left;
+  padding: 12px 15px;
+  border-bottom: 1px solid #ddd;
+  vertical-align: middle;
+  font-size: 14px;
+}
+
+.campaign-table th {
+  background-color: #f8f8f8;
+  font-weight: 600;
+  color: #555;
+}
+
+.campaign-table tr:hover {
+  background-color: #f1f9f1;
+}
+
+.btn {
+  cursor: pointer;
+  font-size: 13px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  margin-right: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.approve-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.approve-btn:hover {
+  background-color: #218838;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}
+
+.feature-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.feature-btn:hover {
+  background-color: #0069d9;
+}
+
+.unfeature-btn {
+  background-color: #6c757d;
+  color: white;
+}
+
+.unfeature-btn:hover {
+  background-color: #5a6268;
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 768px) {
+  .campaign-table th,
+  .campaign-table td {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .btn {
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+}
