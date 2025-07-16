@@ -17,20 +17,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-
-    <!-- Header -->
     <header class="main-header">
-        <a href="{{ route('home') }}" class="logo">
-            <div class="logo-icon"><i class="fas fa-hand-holding-heart"></i></div>
-            <h2 class="logo-text">Nyano Haath</h2>
-        </a>
+
+         <a href="{{ route('home')}}" class="logo">
+            <img src="{{ asset('image/nyanologo.jpg')}}" alt="Nyano Haat Logo" >
+         </a> 
+      
+
         <nav class="main-nav">
-            <!-- NEW: Search Button/Input -->
+            <!-- Search Button/Input -->
             <div class="search-container">
                 <input type="text" class="search-input" placeholder="Search campaigns...">
                 <a href="#" class="search-icon"><i class="fas fa-search"></i></a>
             </div>
-            <!-- END NEW -->
+
             <a href="{{ route('home') }}">Home</a>
             <a href="#campaigns">Campaigns</a>
             <a href="#how-it-works">How It Works</a>
@@ -39,6 +39,7 @@
         <div class="header-action">
             <a href="{{ route('login')}}" class="btn btn-primary">Login</a>
         </div>
+
     </header>
 
     <main>

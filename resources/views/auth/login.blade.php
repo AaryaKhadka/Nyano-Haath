@@ -16,21 +16,25 @@
     <link rel="stylesheet" href="loginSign.css" />
 </head>
 <body>
-    <!-- Header -->
     <header class="main-header">
-        <a href="{{ route('home') }}" class="logo">
-            <div class="logo-icon"><i class="fas fa-hand-holding-heart"></i></div>
-            <h2 class="logo-text">Nyano Haath</h2>
-        </a>
+      
+         <a href="{{ route('home')}}" class="logo">
+            <img src="{{ asset('image/nyanologo.jpg')}}" alt="Nyano Haat Logo" >
+         </a> 
+      
+
         <nav class="main-nav">
+           
+
             <a href="{{ route('home') }}">Home</a>
             <a href="#campaigns">Campaigns</a>
             <a href="#how-it-works">How It Works</a>
-           <a href="{{ route('aboutus') }}">About</a>
+            <a href="{{ route('aboutus') }}">About</a>
         </nav>
         <div class="header-action">
-            <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
+            <a href="{{ route('login')}}" class="btn btn-primary">Login</a>
         </div>
+
     </header>
 
     <div class="container" id="container">

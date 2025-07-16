@@ -3,11 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Campaign;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        // Ensure the user is authenticated and is an admin
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            abort(403, 'Unauthorized access');
+        }
+    }
+
     // Show admin dashboard stats
     public function dashboard()
     {
@@ -72,26 +81,9 @@ class AdminController extends Controller
         return back()->with('success', 'Campaign deleted successfully.');
     }
 
-    // // Mark campaign as featured
-    // public function featureCampaign(Campaign $campaign)
-    // {
-    //     $campaign->featured = true;
-    //     $campaign->save();
-
-    //     return back()->with('success', 'Campaign marked as featured.');
-    // }
-
-    // // Remove featured status from campaign
-    // public function unfeatureCampaign(Campaign $campaign)
-    // {
-    //     $campaign->featured = false;
-    //     $campaign->save();
-
-    //     return back()->with('success', 'Campaign unfeatured successfully.');
-    // }
-
+    // View a single campaign
     public function showCampaign(Campaign $campaign)
-{
-    return view('dashboard.adminCampaignView', compact('campaign'));
-}
+    {
+        return view('dashboard.adminCampaignView', compact('campaign'));
+    }
 }

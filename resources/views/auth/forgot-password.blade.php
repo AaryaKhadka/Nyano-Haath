@@ -16,21 +16,29 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
 <body>
-    <!-- Header -->
-    <header class="main-header">
-        <a href="{{ route('home') }}" class="logo">
-            <div class="logo-icon"><i class="fas fa-hand-holding-heart"></i></div>
-            <h2 class="logo-text">Nyano Haath</h2>
-        </a>
+   <header class="main-header">
+      
+         <a href="{{ route('home')}}" class="logo">
+            <img src="{{ asset('image/nyanologo.jpg')}}" alt="Nyano Haat Logo" >
+         </a> 
+      
+
         <nav class="main-nav">
-            <a href="#">Home</a>
+            <!-- Search Button/Input -->
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search campaigns...">
+                <a href="#" class="search-icon"><i class="fas fa-search"></i></a>
+            </div>
+
+            <a href="{{ route('home') }}">Home</a>
             <a href="#campaigns">Campaigns</a>
             <a href="#how-it-works">How It Works</a>
-            <a href="#about">About</a>
+            <a href="{{ route('aboutus') }}">About</a>
         </nav>
         <div class="header-action">
-            <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
+            <a href="{{ route('login')}}" class="btn btn-primary">Login</a>
         </div>
+
     </header>
 
     <!-- Forgot Password Form Container -->
