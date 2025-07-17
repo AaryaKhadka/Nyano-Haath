@@ -25,10 +25,10 @@
 
 <div class="dashboard-container">
     <header class="header">
-        <div class="logo">
-            <i class="fa-solid fa-hand-holding-heart"></i>
-            <h2>Nyano Haath</h2>
-        </div>
+        <a href="{{ route('home')}}" class="logo">
+            <img src="{{ asset('image/nyanologo.jpg')}}" alt="Nyano Haat Logo" >
+        </a> 
+        
 
         <!-- User Dropdown -->
         <div class="user-menu-wrapper" tabindex="0">

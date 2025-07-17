@@ -15,10 +15,10 @@
 <div class="dashboard-container">
     <!-- Header -->
     <header class="header">
-        <div class="logo">
-            <i class="fas fa-hand-holding-heart"></i>
-            <h2>Nyano Haath</h2>
-        </div>
+        <a href="{{ route('home')}}" class="logo">
+            <img src="{{ asset('image/nyanologo.jpg')}}" alt="Nyano Haat Logo" >
+        </a> 
+        
         <div class="user-menu-wrapper" tabindex="0">
             <button id="userMenuButton" class="user-icon-btn">
                 <i class="fas fa-user-circle fa-xl"></i>

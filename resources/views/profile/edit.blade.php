@@ -18,11 +18,10 @@
 
 <div class="dashboard-container">
     <header class="header">
-        <div class="logo">
-            <!-- Replace your logo SVG with Font Awesome square (optional) -->
-            <i class="fas fa-hand-holding-heart"></i>
-            <span><b>Nyano Haath</b></span>
-        </div>
+        <a href="{{ route('home')}}" class="logo">
+            <img src="{{ asset('image/nyanologo.jpg')}}" alt="Nyano Haat Logo" >
+        </a> 
+        
         <div class="profile-dropdown-wrapper">
             <button class="profile-button" onclick="toggleDropdown()" title="Profile">
                 <!-- User icon using Font Awesome -->

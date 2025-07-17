@@ -21,10 +21,12 @@
 <body>
 
   <header class="header">
-    <a href="#" class="logo">
-      <i class="fas fa-hand-holding-heart"></i>
-      <span>Nyano Haath Admin</span>
-    </a>
+
+
+      <a href="{{ route('home')}}" class="logo">
+        <img src="{{ asset('image/nyanologo.jpg')}}" alt="Nyano Haat Logo" >
+      </a> 
+   
 
     <div class="user-menu-wrapper" tabindex="0">
       <button id="userMenuButton" class="user-icon-btn" aria-haspopup="true" aria-expanded="false" title="Admin Menu">
@@ -44,6 +46,7 @@
     <aside class="sidebar">
       <nav>
         <ul>
+          <li><a href="{{ route('admin.dashboard') }}"><i class="fas fa-house"></i> Dashboard</a></li>
           <li><a href="{{ route('admin.roles.index') }}"><i class="fas fa-user-shield"></i> Role Management</a></li>
           <li><a href="{{ route('admin.campaigns.index') }}"><i class="fas fa-bullhorn"></i> Campaign Management</a></li>
           <li><a href="#"><i class="fas fa-star"></i> Featured Campaigns</a></li>

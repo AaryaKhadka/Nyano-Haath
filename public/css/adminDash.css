@@ -116,6 +116,21 @@ body, html {
   align-items: stretch;
   box-sizing: border-box;
 }
+.logo {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    width: auto;
+    justify-content: center;
+}
+
+.logo img {
+    height: 150%;  
+    width: auto;
+    object-fit: contain;
+    /* background-color: transparent; */
+    mix-blend-mode: multiply;
+}
 
 /* Sidebar */
 .sidebar {
