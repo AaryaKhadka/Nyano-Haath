@@ -23,6 +23,10 @@ Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
 
+Route::get('/campaignpage', function () {
+    return view('campaignpage');
+})->name('campaign.public');
+
 // Authenticated user routes
 Route::middleware(['auth', 'verified'])->group(function () {
 
