@@ -29,7 +29,7 @@ body {
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
-    padding: 2rem;
+    /* padding: 2rem; */
 }
 
 /* Container */
@@ -37,13 +37,15 @@ body {
     width: 100%;
     max-width: 1400px;
     background-color: var(--container-bg);
-    border-radius: 20px;
+    /* border-radius: 20px; */
     overflow: hidden;
     display: flex;
     flex-direction: column;
     min-height: 80vh;
-    border: 1px solid var(--border-color);
+    /* border: 1px solid var(--border-color); */
 }
+
+
 
 /* Header */
 .header {
@@ -68,6 +70,27 @@ body {
 .logo h2 {
     font-size: 1.25rem;
     font-weight: 700;
+}
+
+/* Back button */
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    color: #28a745;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.back-button i {
+    margin-right: 6px;
+}
+
+.back-button:hover {
+    color: #218838;
 }
 
 /* User menu */
@@ -199,11 +222,13 @@ body {
 /* Content area */
 .content-area {
     flex-grow: 1;
-    padding: 2rem;
-    background: #fff;
+    padding: 3rem 4rem;
+    background: var(--container-bg);
     border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
     min-height: 500px;
+    max-width: 750px;
+    margin: auto;
 }
 
 /* Headings */

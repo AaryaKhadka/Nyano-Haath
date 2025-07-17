@@ -81,6 +81,10 @@
     </aside>
 
     <main class="content-area">
+        <a href="{{ route('dashboard') }}" class="back-button">
+            <i class="fa-solid fa-arrow-left"></i> Back
+        </a>
+
       <h1>{{ $campaign->title }}</h1>
 
       <section class="campaign-details">
