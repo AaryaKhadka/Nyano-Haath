@@ -18,6 +18,7 @@ class CampaignController extends Controller
     public function create()
     {
         return view('campaigns.create');
+        
     }
 
     // Store new campaign
@@ -116,7 +117,13 @@ public function publicIndex()
         ->orderBy('created_at', 'desc')
         ->paginate(10);
 
-    return view('campaignpage', compact('latestCampaigns'));
+    $successStories = Campaign::where('status', 'active')
+        ->whereColumn('raised_amount', '>=', 'goal_amount')
+        ->orderBy('updated_at', 'desc')
+        ->take(10)
+        ->get();
+
+    return view('campaignpage', compact('latestCampaigns', 'successStories'));
 }
 
 public function publicShow(Campaign $campaign)

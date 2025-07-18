@@ -111,7 +111,7 @@
                                     <td>{{ ucfirst($campaign->status) }}</td>
                                     <td>
                                         <div class="action-buttons">
-                                            <a href="{{ route('campaigns.show', $campaign) }}" class="view-btn">View</a>
+                                            <a href="{{ route('creators.view', $campaign) }}" class="view-btn">View</a>
                                             <a href="{{ route('campaigns.edit', $campaign) }}" class="edit-btn">Edit</a>
                                             <form action="{{ route('campaigns.destroy', $campaign) }}" method="POST" class="delete-form" onsubmit="return confirm('Are you sure?')">
                                                 @csrf

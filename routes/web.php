@@ -30,21 +30,24 @@ Route::get('/aboutus', function () {
 })->name('aboutus');
 
 // Public Campaign List
-Route::get('/campaigns', [CampaignController::class, 'publicIndex'])->name('campaign.public');
+Route::get('/explore', [CampaignController::class, 'publicIndex'])->name('feed');
 
-// ✅ Public Single Campaign View (Make sure this comes BEFORE auth resource routes)
-Route::get('/campaigns/{campaign}', [CampaignController::class, 'publicShow'])->name('campaign.show');
+// Public Single Campaign View (Make sure this comes BEFORE auth resource routes)
+Route::get('/explore/{campaign}', [CampaignController::class, 'publicShow'])->name('user.view');
 
 // ============================
-// AUTHENTICATED USER ROUTES
+// AUTHENTICATED & VERIFIED USER ROUTES
 // ============================
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth'])->group(function () {
 
     // User Dashboard (Campaigns they created)
     Route::get('/dashboard', [CampaignController::class, 'index'])->name('dashboard');
 
-    // ✅ Authenticated campaign routes — excluding 'index' and 'show' (to avoid conflict)
+    // Authenticated campaign routes — excluding 'index' and 'show' (to avoid conflict)
     Route::resource('campaigns', CampaignController::class)->except(['index', 'show']);
+
+    // Authenticated user campaign show with route name 'creators.view'
+    Route::get('/campaigns/{campaign}/view', [CampaignController::class, 'show'])->name('creators.view');
 
     // Profile Management
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -55,7 +58,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 // ============================
 // ADMIN ROUTES
 // ============================
-Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function () {
 
     // Admin Dashboard
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
@@ -68,8 +71,11 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/campaigns', [AdminController::class, 'campaigns'])->name('campaigns.index');
     Route::post('/campaigns/{campaign}/approve', [AdminController::class, 'approveCampaign'])->name('campaigns.approve');
     Route::delete('/campaigns/{campaign}/delete', [AdminController::class, 'deleteCampaign'])->name('campaigns.delete');
+
+    // Admin single campaign show with unique route name to avoid conflict
     Route::get('/campaigns/{campaign}', [AdminController::class, 'showCampaign'])->name('campaigns.show');
-    // Optional: feature/unfeature routes (commented out)
+
+    // Optional feature/unfeature (commented out)
     // Route::post('/campaigns/{campaign}/feature', [AdminController::class, 'featureCampaign'])->name('campaigns.feature');
     // Route::post('/campaigns/{campaign}/unfeature', [AdminController::class, 'unfeatureCampaign'])->name('campaigns.unfeature');
 });
@@ -91,6 +97,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/roles', [RoleController::class, 'index'])->name('admin.roles.index');
     Route::put('/admin/roles/{user}', [RoleController::class, 'update'])->name('admin.roles.update');
 });
+
+
 
 // ============================
 // AUTH ROUTES

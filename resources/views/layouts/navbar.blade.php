@@ -13,7 +13,7 @@
             </div>
 
             <a href="{{ route('home') }}">Home</a>
-            <a href="{{ route('campaign.public') }}">Campaigns</a>
+            <a href="{{ route('feed') }}">Campaigns</a>
             <a href="#how-it-works">How It Works</a>
             <a href="{{ route('aboutus') }}">About</a>
         </nav>
