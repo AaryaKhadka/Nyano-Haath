@@ -1,6 +1,6 @@
 @extends('layouts.custom')
 
-@section('title', 'About Us')
+@section('title', 'Campaigns')
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/campaignpage.css') }}">
@@ -208,19 +208,33 @@
                     <!-- ======================================================================
                        Latest Tab Content
                        ======================================================================= -->
-                    <div id="latest-content" class="content-section active">
-                        <article class="news-card"><div class="card-image-container"><img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2070&auto=format&fit=crop" alt="Public bus on a city road"></div><div class="card-text-content"><h3>Improve Public Transportation in Lalitpur</h3><p class="card-info">Lalitpur Metropolitan City | 15 Apr, 2025</p></div></article>
-                        <article class="news-card"><div class="card-image-container"><img src="https://images.unsplash.com/photo-1559384772-18651c14a279?q=80&w=2070&auto=format&fit=crop" alt="Rhinoceros in Chitwan National Park"></div><div class="card-text-content"><h3>Strengthen Anti-Poaching Patrols in Chitwan National Park</h3><p class="card-info">Department of National Parks and Wildlife Conservation | 12 Apr, 2025</p></div></article>
-                        <article class="news-card"><div class="card-image-container"><img src="https://images.unsplash.com/photo-1599855129482-10a568b2098b?q=80&w=2070&auto=format&fit=crop" alt="Garment worker at a sewing machine"></div><div class="card-text-content"><h3>Ensure Fair Wages for Garment Industry Workers</h3><p class="card-info">Ministry of Labour, Employment and Social Security | 10 Apr, 2025</p></div></article>
 
-                        <article class="news-card hidden"><div class="card-image-container"><img src="https://images.unsplash.com/photo-1608253846337-37c28aa33f3e?q=80&w=2070&auto=format&fit=crop" alt="Person in wheelchair using a ramp"></div><div class="card-text-content"><h3>Make All Public Buildings Wheelchair Accessible</h3><p class="card-info">Department of Urban Development and Building Construction | 08 Apr, 2025</p></div></article>
-                        <article class="news-card hidden"><div class="card-image-container"><img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=2070&auto=format&fit=crop" alt="Camping tent in the Himalayas"></div><div class="card-text-content"><h3>Regulate Trekking and Tourism for Sustainability</h3><p class="card-info">Nepal Tourism Board | 22 Mar, 2025</p></div></article>
-                        <article class="news-card hidden"><div class="card-image-container"><img src="https://images.unsplash.com/photo-1560707303-3486c85b584a?q=80&w=1964&auto=format=fit=crop" alt="Smog and air pollution over a city"></div><div class="card-text-content"><h3>Take Urgent Measures to Combat Air Pollution in Kathmandu Valley</h3><p class="card-info">Ministry of Forests and Environment | 18 Apr, 2025</p></div></article>
-                        <article class="news-card hidden"><div class="card-image-container"><img src="https://images.unsplash.com/photo-1579202673506-ca3ce28943ef?q=80&w=1974&auto=format=fit=crop" alt="Fresh organic vegetables at a market"></div><div class="card-text-content"><h3>Provide Subsidies for Organic Farming Initiatives</h3><p class="card-info">Ministry of Agriculture and Livestock Development | 20 Apr, 2025</p></div></article>
-                        <article class="news-card hidden"><div class="card-image-container"><img src="https://images.unsplash.com/photo-1629838043702-a1b725a95964?q=80&w=2070&auto=format&fit=crop" alt="Consumer looking at products on a shelf"></div><div class="card-text-content"><h3>Establish Stronger Consumer Rights Protection Agency</h3><p class="card-info">Ministry of Industry, Commerce and Supplies | 30 Apr, 2025</p></div></article>
-                        <article class="news-card hidden"><div class="card-image-container"><img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?q=80&w=2072&auto=format=fit=crop" alt="Painter working on a canvas"></div><div class="card-text-content"><h3>Create a National Fund to Support Local Artists and Musicians</h3><p class="card-info">Ministry of Culture, Tourism and Civil Aviation | 02 May, 2025</p></div></article>
-                        <div class="load-more-section"><button class="load-more-button">Load More</button></div>
-                    </div>
+                      @php $visibleCount = 3; @endphp
+                        <div id="latest-content" class="content-section active">
+                            @forelse ($latestCampaigns as $index => $campaign)
+                            <a href="{{ route('campaign.show', $campaign) }}" class="news-card-link">
+                                <article class="news-card {{ $index >= $visibleCount ? 'hidden' : '' }}">
+                                    <div class="card-image-container">
+                                        <img src="{{ asset('storage/' . $campaign->campaign_image) }}" alt="{{ $campaign->title }}">
+                                    </div>
+                                    <div class="card-text-content">
+                                        <h3>{{ $campaign->title }}</h3>
+                                        <p class="card-info">{{ $campaign->country }} | {{ $campaign->created_at->format('d M, Y') }}</p>
+                                    </div>
+                                </article>
+                            </a>
+                            @empty
+                            <p>No active campaigns available.</p>
+                            @endforelse
+
+                            @if ($latestCampaigns->count() > $visibleCount)
+                            <div class="load-more-section">
+                                <button class="load-more-button">Load More</button>
+                            </div>
+                            @endif
+                        </div>
+
+
 
                     <!-- ======================================================================
                        Success Stories Feed Tab Content

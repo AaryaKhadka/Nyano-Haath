@@ -107,4 +107,25 @@ public function show(Campaign $campaign)
     return view('campaigns.show', compact('campaign'));
 }
 
+
+//campaignpage 
+
+public function publicIndex()
+{
+    $latestCampaigns = Campaign::where('status', 'active')
+        ->orderBy('created_at', 'desc')
+        ->paginate(10);
+
+    return view('campaignpage', compact('latestCampaigns'));
+}
+
+public function publicShow(Campaign $campaign)
+{
+    if ($campaign->status !== 'active') {
+        abort(404); // prevent showing inactive campaigns
+    }
+
+    return view('campaignshow', compact('campaign'));
+}
+
 }

@@ -479,6 +479,15 @@ body {
     transform: scale(1.05);
 }
 
+.news-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+.news-card-link:hover {
+    text-decoration: none; /* prevent underline on hover */
+}
+
 .card-text-content {
     padding: 1.5rem 2rem;
 }
