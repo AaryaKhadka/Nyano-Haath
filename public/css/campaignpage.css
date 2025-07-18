@@ -1,25 +1,30 @@
+/* ==========================================================================
+   Table of Contents
+   ==========================================================================
+   1. General Setup & Variables
+   2. Main Layout
+   3. Header Component
+   4. Sidebar Components
+   5. Card & Slider Components
+   6. Tab Navigation & Content Feed
+   7. Buttons
+   8. Responsive Design
+   ========================================================================== */
 
+/* ==========================================================================
+   1. General Setup & Variables
+   ========================================================================== */
 :root {
-    /* Colors */
-    --color-primary: #28a745;
-    --color-background-light: #e6f7f2;
-    --color-border-light: #e9ecef;
-    --color-text-primary: #333333;
-    --color-text-secondary: #6c757d;
-
-    /* Shadows */
+    --primary-color: #28a745;
+    --background-light: #e6f7f2;
+    --border-light: #e9ecef;
+    --text-primary: #333;
+    --text-secondary: #6c757d;
     --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.08);
-
-    /* Layout */
-    --header-height: 70px;
-
-    /* Transitions */
-    --transition-default: all 0.3s ease;
+    --header-fixed-height: 70px;
 }
 
-*,
-*::before,
-*::after {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -32,157 +37,12 @@ html {
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #fff;
-    color: var(--color-text-primary);
-    
-    line-height: 1.5;
-}
-
-.main-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    white-space: nowrap;
-    border-bottom: 1px solid var(--border-color);
-    padding: 1rem 2.5rem;
-    position: sticky;
-    top: 0;
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(8px);
-    z-index: 1000;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    height: 40px;
-    width: auto;
-    justify-content: center;
-}
-
-.logo img {
-    height: 150%;  
-    width: auto;
-    object-fit: contain;
-    mix-blend-mode: multiply;
-}
-
-/* Navigation */
-.main-nav {
-    display: flex;
-    align-items: center;
-    gap: 2.25rem;
-    margin-left: auto;
-    padding-right: 2rem;
-}
-
-.main-nav a {
-    color: var(--dark-text);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    position: relative;
-    transition: color 0.3s ease;
-}
-
-.main-nav a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: var(--primary-color);
-    transition: width 0.3s ease;
-}
-
-.main-nav a:hover {
-    color: var(--primary-color);
-}
-
-.main-nav a:hover::after {
-    width: 100%;
-}
-
-/* Search Styles */
-.search-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.search-input {
-    width: 0;
-    padding: 6px 0;
-    border: none;
-    border-radius: 50px;
-    outline: none;
-    background-color: transparent;
-    color: var(--dark-text);
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.9rem;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s ease-in-out;
-}
-
-.search-icon {
-    padding: 5px; /* Adds a bit of clickable area */
-    color: var(--dark-text);
-    font-size: 1rem;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.search-icon:hover {
-    color: var(--primary-color);
-}
-
-.search-container.active .search-input {
-    width: 180px;
-    opacity: 1;
-    visibility: visible;
-    padding: 6px 15px;
-    border: 1px solid var(--border-color);
-    margin-right: 5px; /* Space between input and nav links */
-    background-color: #fff;
-}
-
-.search-container.active .search-icon {
-    color: var(--primary-color);
-}
-
-/* Button styles */
-.btn {
-    display: inline-block;
-    padding: 6px 16px;
-    border-radius: 50px; /* Pill shape */
-    text-decoration: none;
-    font-weight: 400;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-}
-
-.btn-primary {
-    background-color: var(--primary-color);
-    color: #fff;
-    border-color: var(--primary-color);
-}
-
-.btn-primary:hover {
-    background-color: var(--primary-hover);
-    border-color: var(--primary-hover);
-    transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
-
-.btn-large {
-    padding: 15px 40px;
-    font-size: 1.1em;
+    color: var(--text-primary);
+    /* padding-top: var(--header-fixed-height); */
 }
 
 /* ==========================================================================
-   2. Layout Structure
+   2. Main Layout
    ========================================================================== */
 .main-grid {
     display: grid;
@@ -195,31 +55,31 @@ body {
 }
 
 .main-content {
-    min-width: 0; /* Prevent overflow in flex/grid containers */
+    min-width: 0;
 }
 
 /* ==========================================================================
-   3. Header Styles
+   3. Header Component
    ========================================================================== */
 .header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: var(--header-height);
+    height: var(--header-fixed-height);
     background-color: #fff;
-    border-bottom: 1px solid var(--color-border-light);
+    border-bottom: 1px solid var(--border-light);
+    z-index: 1000;
     display: flex;
     align-items: center;
     padding: 0 2rem;
-    z-index: 1000;
 }
 
 .header-nav {
-    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
 
 .header-logo img {
@@ -235,21 +95,19 @@ body {
 .language-switcher {
     cursor: pointer;
     font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 5px;
 }
 
 .language-switcher .fa-chevron-down {
     font-size: 0.7rem;
+    margin-left: 5px;
 }
 
 /* ==========================================================================
-   4. Sidebar Styles
+   4. Sidebar Components
    ========================================================================== */
 .sidebar-left {
     position: sticky;
-    top: calc(var(--header-height) + 1.5rem);
+    top: calc(var(--header-fixed-height) + 1.5rem);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -265,16 +123,15 @@ body {
     height: 70px;
     border-radius: 50%;
     background-color: #fff;
-    border: 1px solid var(--color-border-light);
-    color: var(--color-text-secondary);
+    border: 1px solid var(--border-light);
     text-decoration: none;
-    transition: var(--transition-default);
-    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
 }
 
 .sidebar-button i {
     font-size: 1.5rem;
-    color: var(--color-primary);
+    color: var(--primary-color);
     transition: color 0.3s ease;
 }
 
@@ -282,10 +139,9 @@ body {
     display: none;
 }
 
-.sidebar-button.active,
-.sidebar-button:hover {
-    background-color: var(--color-primary);
-    border-color: var(--color-primary);
+.sidebar-button.active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
     box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
 }
 
@@ -294,19 +150,24 @@ body {
     color: #fff;
 }
 
+.sidebar-button:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
+}
+
 .sidebar-right {
     position: sticky;
-    top: calc(var(--header-height) + 1.5rem);
+    top: calc(var(--header-fixed-height) + 1.5rem);
 }
 
 /* ==========================================================================
-   5. Cards & Sliders
+   5. Card & Slider Components
    ========================================================================== */
-
-/* Slider Header */
 .slider-container-header h2 {
     font-size: 1.8rem;
-    color: var(--color-text-primary);
+    color: var(--text-primary);
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -314,10 +175,10 @@ body {
 }
 
 .slider-container-header .fa-star {
-    color: var(--color-primary);
+    color: var(--primary-color);
 }
 
-/* Slider Wrapper */
+/* --- Featured Success Slider --- */
 .main-slider {
     position: relative;
     margin-bottom: 2rem;
@@ -333,40 +194,39 @@ body {
     transition: transform 0.5s ease-in-out;
 }
 
-/* Slider Navigation Buttons */
 .slider-navigation {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    background-color: #fff;
+    border: 1px solid var(--border-light);
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #fff;
-    border: 1px solid var(--color-border-light);
     cursor: pointer;
     font-size: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     z-index: 10;
-    transition: var(--transition-default);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .slider-navigation:hover {
-    background-color: var(--color-primary);
+    background-color: var(--primary-color);
     color: #fff;
 }
 
-.prev-button {
+.slider-navigation.prev-button {
     left: 20px;
 }
 
-.next-button {
+.slider-navigation.next-button {
     right: 20px;
 }
 
-/* Slide Items */
+/* --- Featured Slider Item --- */
 .content-slide {
     flex: 0 0 100%;
     width: 100%;
@@ -393,7 +253,7 @@ body {
     position: absolute;
     top: 20px;
     left: -8px;
-    background-color: var(--color-primary);
+    background-color: var(--primary-color);
     color: #fff;
     padding: 10px 25px;
     font-weight: bold;
@@ -402,8 +262,8 @@ body {
 }
 
 .slide-details {
-    flex: 1;
     padding: 2rem;
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -416,30 +276,30 @@ body {
 }
 
 .slide-date {
-    color: var(--color-text-secondary);
+    color: var(--text-secondary);
     font-size: 0.9rem;
     margin-bottom: 1rem;
 }
 
 .slide-description {
-    font-size: 0.95rem;
     line-height: 1.6;
     margin-bottom: 1rem;
+    font-size: 0.95rem;
 }
 
 .read-more-link {
-    color: var(--color-primary);
+    color: var(--primary-color);
     font-weight: 600;
     text-decoration: none;
 }
 
 .slide-analytics {
-    margin-top: 1rem;
     padding-top: 1rem;
-    border-top: 1px solid var(--color-border-light);
+    margin-top: 1rem;
+    border-top: 1px solid var(--border-light);
     display: flex;
     gap: 1.5rem;
-    color: var(--color-text-secondary);
+    color: var(--text-secondary);
     align-items: center;
     font-weight: bold;
 }
@@ -454,9 +314,8 @@ body {
     font-size: 1.4rem;
 }
 
-/* Icon colors for analytics */
 .analytics-item .fa-pen-nib {
-    color: var(--color-primary);
+    color: #28a745;
 }
 
 .analytics-item .fa-file-excel {
@@ -467,23 +326,23 @@ body {
     color: #fd7e14;
 }
 
-/* Trending Topics Card */
+/* --- Trends Card (Right Sidebar) --- */
 .trending-topics {
-    background-color: var(--color-background-light);
+    background-color: var(--background-light);
     padding: 1.5rem;
     border-radius: 12px;
 }
 
 .trending-topics h3 {
+    margin-bottom: 1.5rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    margin-bottom: 1.5rem;
     font-size: 1.2rem;
 }
 
 .trending-topics .fa-arrow-trend-up {
-    color: var(--color-primary);
+    color: var(--primary-color);
 }
 
 .trending-list {
@@ -495,24 +354,24 @@ body {
 }
 
 .trending-list a {
+    text-decoration: none;
     color: #0056b3;
     font-weight: 600;
     font-size: 1.1rem;
-    text-decoration: none;
     display: block;
 }
 
 .trending-list span {
+    color: var(--text-secondary);
     font-size: 0.8rem;
-    color: var(--color-text-secondary);
 }
 
 .show-more-trends {
-    margin-top: 1rem;
-    font-weight: 600;
-    color: var(--color-primary);
-    text-decoration: none;
     display: inline-block;
+    margin-top: 1rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
 }
 
 .show-more-trends i {
@@ -520,58 +379,60 @@ body {
 }
 
 /* ==========================================================================
-   6. Tab Navigation & Feed Content
+   6. Tab Navigation & Content Feed
    ========================================================================== */
 .news-feed {
     margin-top: 3rem;
 }
 
 .news-feed-header-sticky {
+    position: -webkit-sticky;
     position: sticky;
-    top: var(--header-height);
+    top: var(--header-fixed-height);
     background-color: #fff;
     z-index: 900;
-    padding: 1.5rem 0 1rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
 }
 
 .news-feed-title {
+    margin-bottom: 1.5rem;
     font-size: 1.8rem;
-    color: var(--color-text-primary);
+    color: var(--text-primary);
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    margin-bottom: 1.5rem;
 }
 
 .news-feed-title .fa-people-group {
-    color: var(--color-primary);
+    color: var(--primary-color);
 }
 
 .feed-navigation {
     display: flex;
     gap: 1.5rem;
     margin-bottom: 1.5rem;
-    border-bottom: 1px solid var(--color-border-light);
+    border-bottom: 1px solid var(--border-light);
 }
 
 .nav-tab {
     padding: 10px 5px;
-    font-weight: 600;
     font-size: 1.1rem;
-    color: var(--color-text-secondary);
-    cursor: pointer;
-    border-bottom: 3px solid transparent;
+    font-weight: 600;
+    color: var(--text-secondary);
     text-decoration: none;
-    transition: var(--transition-default);
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .nav-tab:hover {
-    color: var(--color-text-primary);
+    color: var(--text-primary);
 }
 
 .nav-tab.active {
-    color: var(--color-primary);
-    border-bottom-color: var(--color-primary);
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
 }
 
 .category-filters {
@@ -589,19 +450,17 @@ body {
     display: block;
 }
 
-/* Hide cards */
 .news-card.hidden {
     display: none;
 }
 
-/* Feed Cards */
+/* --- General Feed Card Style --- */
 .news-card {
     background-color: #fff;
     border-radius: 16px;
     box-shadow: var(--shadow-light);
     margin-bottom: 2rem;
     overflow: hidden;
-    transition: transform 0.3s ease;
 }
 
 .card-image-container {
@@ -626,13 +485,13 @@ body {
 
 .card-text-content h3 {
     font-size: 1.6rem;
-    margin-bottom: 0.5rem;
     line-height: 1.4;
+    margin-bottom: 0.5rem;
 }
 
 .card-info {
     font-size: 0.9rem;
-    color: var(--color-text-secondary);
+    color: var(--text-secondary);
     margin-bottom: 1rem;
 }
 
@@ -640,17 +499,17 @@ body {
    7. Buttons
    ========================================================================== */
 .button {
-    cursor: pointer;
+    padding: 10px 20px;
     border: none;
     border-radius: 25px;
     font-weight: 600;
-    padding: 10px 20px;
-    transition: var(--transition-default);
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .signin-button {
-    background-color: var(--color-primary);
-    color: #fff;
+    background-color: var(--primary-color);
+    color: white;
 }
 
 .signin-button:hover {
@@ -658,39 +517,40 @@ body {
 }
 
 .register-button {
-    background-color: #fff;
-    border: 2px solid var(--color-primary);
-    color: var(--color-primary);
+    background-color: white;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
 }
 
 .register-button:hover {
-    background-color: var(--color-background-light);
+    background-color: var(--background-light);
 }
 
 .category-button {
     padding: 8px 20px;
     border-radius: 20px;
-    border: 1px solid var(--color-primary);
+    border: 1px solid var(--primary-color);
     background-color: #fff;
-    color: var(--color-primary);
+    color: var(--primary-color);
     font-weight: 500;
     cursor: pointer;
-    transition: var(--transition-default);
+    transition: all 0.3s ease;
 }
 
 .category-button:hover,
 .category-button.active {
-    background-color: var(--color-primary);
+    background-color: var(--primary-color);
     color: #fff;
 }
 
 .load-more-section {
     text-align: center;
-    margin: 1rem 0 2rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
 }
 
 .load-more-button {
-    background-color: var(--color-primary);
+    background-color: var(--primary-color);
     color: #fff;
     padding: 12px 30px;
     border-radius: 30px;
@@ -704,92 +564,8 @@ body {
     background-color: #218838;
 }
 
-/* footer */
-footer {
-    background-color: #222;
-    color: #ccc;
-    padding: 60px 20px 20px 20px;
-
-    width: 100%;
-    box-sizing: border-box;
-    border-radius: 0; /* Remove rounded bottom corners */
-}
-
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 40px;
-    margin-bottom: 40px;
-}
-
-.footer-about,
-.footer-links {
-    flex: 1;
-    min-width: 220px;
-}
-
-.footer-about h4,
-.footer-links h4 {
-    color: #fff;
-    margin-bottom: 20px;
-}
-
-.footer-about p {
-    font-size: 0.9em;
-    margin-bottom: 20px;
-}
-
-.social-icons a {
-    color: #fff;
-    font-size: 1.5rem;
-    margin-right: 15px;
-    transition: color 0.3s ease;
-}
-
-.social-icons a:hover {
-    color: var(--primary-color);
-}
-
-.footer-links ul {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-links ul li a {
-    color: #ccc;
-    text-decoration: none;
-    margin-bottom: 10px;
-    display: block;
-    transition: color 0.3s ease, padding-left 0.3s ease;
-}
-
-.footer-links ul li a:hover {
-    color: #fff;
-    padding-left: 5px;
-}
-
-.footer-bottom {
-    text-align: center;
-    border-top: 1px solid #444;
-    padding-top: 20px;
-    font-size: 0.9em;
-}
-
-.footer-bottom a {
-    color: #ccc;
-    text-decoration: none;
-}
-
-.footer-bottom a:hover {
-    color: #fff;
-    text-decoration: underline;
-}
-
 /* ==========================================================================
-   8. Responsive Breakpoints
+   8. Responsive Design
    ========================================================================== */
 @media (max-width: 1200px) {
     .main-grid {
@@ -854,10 +630,5 @@ footer {
 
     .card-text-content h3 {
         font-size: 1.3rem;
-    }
-
-     .footer-container {
-        flex-direction: column;
-        gap: 20px;
     }
 }

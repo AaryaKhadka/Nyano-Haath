@@ -1,462 +1,304 @@
-:root {
-    --primary-color: #28a745; /* Warm green */
-    --primary-hover: #218838;
-    --dark-text: #1c1b0d;
-    --secondary-text: #555;
-    --light-bg: #fdfdfc;
-    --border-color: #f4f3e6;
-    --section-padding: 80px 0;
-    --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-}
+/* ========================================
+   1. GLOBAL & ROOT STYLES
+   ======================================== */
 
-/* Reset */
-*, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    color: var(--secondary-text);
-    background-color: #fff;
-    line-height: 1.6;
-
-    /* Flex to push footer down */
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  margin: 0;
+  font-family: 'Inter', sans-serif, system-ui;
+  line-height: 1.6;
+  color: #1f2937;
+  background-color: #f8fafc;
 }
 
-main {
-    flex: 1; /* fill remaining vertical space */
-}
+/* ========================================
+   2. LAYOUT HELPERS
+   ======================================== */
 
-html {
-    scroll-behavior: smooth;
-}
-
-/* Container */
 .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
-/* Headings */
-h1, h2, h3, h4 {
-    color: var(--dark-text);
-    font-weight: 700;
-}
-
-h1 {
-    font-size: 3em;
-    margin-bottom: 20px;
-    line-height: 1.2;
-}
-
-h2 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-h3 {
-    font-size: 1.5em;
-    margin-bottom: 15px;
-}
-
-/* Animations */
-/* Disabled fade-in hiding for footer and other fade-in sections */
-.fade-in-section {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-}
-
-/* Header */
-.main-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid var(--border-color);
-    padding: 1rem 2.5rem;
-    position: sticky;
-    top: 0;
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(8px);
-    z-index: 1000;
-    white-space: nowrap;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    height: 40px;
-    width: auto;
-    justify-content: center;
-}
-
-.logo img {
-    height: 150%;  
-    width: auto;
-    object-fit: contain;
-    background-color: transparent;
-}
-
-.main-nav {
-    display: flex;
-    align-items: center;
-    gap: 2.25rem;
-    margin-left: auto;
-    padding-right: 2rem;
-}
-
-.main-nav a {
-    color: var(--dark-text);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    position: relative;
-    transition: color 0.3s ease;
-}
-
-.main-nav a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: var(--primary-color);
-    transition: width 0.3s ease;
-}
-
-.main-nav a:hover, .main-nav a.active {
-    color: var(--primary-color);
-}
-
-.main-nav a:hover::after, .main-nav a.active::after {
-    width: 100%;
-}
-
-.header-action .btn-primary {
-    background-color: var(--primary-color);
-    color: #fff;
-    border: 2px solid var(--primary-color);
-    padding: 6px 16px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 400;
-    transition: all 0.3s ease;
-}
-
-.header-action .btn-primary:hover {
-    background-color: var(--primary-hover);
-    border-color: var(--primary-hover);
-    transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
-
-/* Search styles */
-.search-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.search-input {
-    width: 0;
-    padding: 6px 0;
-    border: none;
-    border-radius: 50px;
-    outline: none;
-    background-color: transparent;
-    color: var(--dark-text);
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.9rem;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s ease-in-out;
-}
-
-.search-icon {
-    padding: 5px;
-    color: var(--dark-text);
-    font-size: 1rem;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.search-icon:hover {
-    color: var(--primary-color);
-}
-
-.search-container.active .search-input {
-    width: 180px;
-    opacity: 1;
-    visibility: visible;
-    padding: 6px 15px;
-    border: 1px solid var(--border-color);
-    margin-right: 5px;
-    background-color: #fff;
-}
-
-.search-container.active .search-icon {
-    color: var(--primary-color);
-}
-
-/* Main Sections */
 .section {
-    padding: var(--section-padding);
+  padding-top: 6rem;
+  padding-bottom: 6rem;
 }
 
-.welcome-section .title-large {
-    font-weight: 700;
-    font-size: 3em;
-    margin-bottom: 20px;
+.welcome-section {
+  padding-top: 8rem;
+  padding-bottom: 6rem;
 }
 
-.gradient-text {
-    background: linear-gradient(45deg, #28a745, #218838);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text; /* standard property */
-    color: transparent;    /* fallback color */
-}
-.subtitle {
-    font-size: 1.25rem;
-    margin-bottom: 30px;
-    color: var(--secondary-text);
+.section-light-gray {
+  background-color: #f9fafb;
 }
 
-.button-primary {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 15px 40px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1em;
-    transition: background-color 0.3s ease;
-}
-
-.button-primary:hover {
-    background-color: var(--primary-hover);
-}
-
-/* Grid Helpers */
 .grid {
-    display: grid;
-    gap: 40px;
+  display: grid;
+  gap: 3rem;
 }
 
-.two-columns {
+/* Responsive Grid Columns */
+@media (min-width: 768px) {
+  .two-columns {
     grid-template-columns: repeat(2, 1fr);
-    align-items: center;
-}
-
-.three-columns {
+  }
+  .three-columns {
     grid-template-columns: repeat(3, 1fr);
-    align-items: stretch;
-}
-
-.four-columns {
+  }
+  .four-columns {
     grid-template-columns: repeat(4, 1fr);
-    align-items: stretch;
+  }
 }
 
-/* Cards */
-.card {
-    background: #fff;
-    padding: 30px;
-    box-shadow: var(--card-shadow);
-    border-radius: 10px;
-    color: var(--dark-text);
+/* ========================================
+   3. TYPOGRAPHY
+   ======================================== */
+
+.title-large {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+@media (min-width: 768px) {
+  .title-large {
+    font-size: 3.75rem;
+  }
+}
+
+.title-medium {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.title-small {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.subtitle {
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.125rem;
+  color: #4b5563;
+}
+
+.text-large {
+  font-size: 1.125rem;
+  color: #4b5563;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .orange-text {
-    color: #f97316;
+  color: #06ba0c;
 }
 
-/* Step Cards */
+.gradient-text {
+  background: linear-gradient(90deg, #06d106, #06cf14);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* Standard property */
+  text-emphasis-color: transparent; /* Standard property */
+}
+
+
+/* ========================================
+   4. COMPONENTS
+   ======================================== */
+
+/* Header & Navigation */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.nav-links {
+  display: none; /* Mobile first */
+}
+@media (min-width: 768px) {
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+  }
+}
+
+.nav-links a {
+  color: #4b5563;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #0ae12a;
+}
+
+/* Button */
+.button-primary {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  color: white;
+  background-color: #09c209;
+  text-decoration: none;
+  border-radius: 9999px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
+
+.button-primary:hover {
+  background-color: #05bb11;
+  transform: translateY(-2px);
+  box-shadow: 0 7px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Card */
+.card {
+  padding: 2rem;
+  background-color: white;
+  border: 1px solid #f3f4f6;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Step Card Variant */
 .step-card {
-    background: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: var(--card-shadow);
-    text-align: center;
-    transition: box-shadow 0.3s ease;
-}
-
-.step-card:hover {
-    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.2);
+  padding: 2rem;
 }
 
 .step-number {
-    font-size: 2.5em;
-    font-weight: 700;
-    color: var(--primary-color);
-    margin-bottom: 15px;
+  margin-bottom: 1rem;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #29d50a;
 }
 
-/* Team Cards */
-.team-card {
-    text-align: center;
+/* Stats Component */
+.stat-number {
+  font-size: 3rem;
+  font-weight: 700;
 }
 
+.stat-label {
+  margin-top: 0.5rem;
+  font-size: 1.25rem;
+  color: #4b5563;
+}
+
+/* Team Component */
 .team-photo {
-    border-radius: 50%;
-    width: 130px;
-    height: 130px;
-    object-fit: cover;
-    margin-bottom: 15px;
+  width: 8rem;
+  height: 8rem;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: cover;
+  border-radius: 9999px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .team-name {
-    font-weight: 600;
-    font-size: 1.1em;
-    color: var(--dark-text);
+  margin-top: 1rem;
+  font-size: 1.25rem;
+  font-weight: 700;
 }
 
-/* Section Light Background */
-.section-light-gray {
-    background-color: var(--light-bg);
+/* Footer */
+.footer {
+  padding: 2rem 0;
+  text-align: center;
+  color: #d1d5db;
+  background-color: #1f2937;
 }
 
-/* Footer styles */
-footer {
-    background-color: #222;
-    color: #ccc;
-    padding: 60px 20px 20px 20px;
+/* ========================================
+   5. CSS SCROLL-DRIVEN ANIMATION
+   ======================================== */
 
-    width: 100%;
-    box-sizing: border-box;
-    border-radius: 0; /* Remove rounded bottom corners */
+/* 1. Define animation keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 40px;
-    margin-bottom: 40px;
+/* 2. Apply animation to target elements */
+.animate {
+  /* Link animation to the keyframes */
+  animation: fadeIn linear;
+
+  /* Link the animation timeline to the scroll position */
+  animation-timeline: view();
+  
+  /* Define WHEN the animation runs as the element scrolls */
+  /* Starts when the element enters 10% into view, ends at 50% */
+  animation-range-start: entry 10%;
+  animation-range-end: entry 50%;
+  
+  /* Keep element in its final state (visible) after animating */
+  animation-fill-mode: both;
 }
 
-.footer-about,
-.footer-links {
-    flex: 1;
-    min-width: 220px;
+/* 3. Optional: Stagger animations for children in a grid */
+.grid .animate:nth-child(2) {
+  animation-range-start: entry 15%;
+  animation-range-end: entry 55%;
 }
 
-.footer-about h4,
-.footer-links h4 {
-    color: #fff;
-    margin-bottom: 20px;
+.grid .animate:nth-child(3) {
+  animation-range-start: entry 20%;
+  animation-range-end: entry 60%;
 }
 
-.footer-about p {
-    font-size: 0.9em;
-    margin-bottom: 20px;
+.grid .animate:nth-child(4) {
+  animation-range-start: entry 25%;
+  animation-range-end: entry 65%;
 }
 
-.social-icons a {
-    color: #fff;
-    font-size: 1.5rem;
-    margin-right: 15px;
-    transition: color 0.3s ease;
+
+/* ========================================
+   6. UTILITY CLASSES
+   ======================================== */
+
+.mt-10 {
+  margin-top: 2.5rem;
 }
 
-.social-icons a:hover {
-    color: var(--primary-color);
-}
-
-.footer-links ul {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-links ul li a {
-    color: #ccc;
-    text-decoration: none;
-    margin-bottom: 10px;
-    display: block;
-    transition: color 0.3s ease, padding-left 0.3s ease;
-}
-
-.footer-links ul li a:hover {
-    color: #fff;
-    padding-left: 5px;
-}
-
-.footer-bottom {
-    text-align: center;
-    border-top: 1px solid #444;
-    padding-top: 20px;
-    font-size: 0.9em;
-}
-
-.footer-bottom a {
-    color: #ccc;
-    text-decoration: none;
-}
-
-.footer-bottom a:hover {
-    color: #fff;
-    text-decoration: underline;
-}
-
-/* Responsive */
-
-@media (max-width: 992px) {
-    .main-header {
-        padding: 1rem 1.5rem;
-    }
-    .main-nav {
-        gap: 1.5rem;
-        padding-right: 1rem;
-    }
-    h1 {
-        font-size: 2.2em;
-    }
-
-    h2 {
-        font-size: 2em;
-    }
-
-    .two-columns {
-        grid-template-columns: 1fr;
-    }
-
-    .three-columns,
-    .four-columns {
-        grid-template-columns: 1fr;
-    }
-
-    .search-container.active .search-input {
-        width: 140px;
-    }
-
-    .button-primary {
-        padding: 12px 30px;
-        font-size: 1em;
-    }
-
-    .step-number {
-        font-size: 2em;
-    }
-
-    .team-photo {
-        width: 100px;
-        height: 100px;
-    }
+.mt-12 {
+  margin-top: 3rem;
 }
