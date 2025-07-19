@@ -121,22 +121,25 @@ public function show(Campaign $campaign)
 
 public function publicIndex()
 {
-    $latestCampaigns = Campaign::where('status', ['active', 'featured'])
+    // Latest campaigns where status is NOT 'pending'
+    $latestCampaigns = Campaign::where('status', '!=', 'pending')
         ->orderBy('created_at', 'desc')
         ->paginate(10);
 
-    $successStories = Campaign::where('status', 'active')
+    // Success stories where status is NOT 'pending' and raised_amount >= goal_amount
+    $successCampaigns = Campaign::where('status', '!=', 'pending')
         ->whereColumn('raised_amount', '>=', 'goal_amount')
         ->orderBy('updated_at', 'desc')
         ->take(10)
         ->get();
 
+    // Featured campaigns remain filtered on status = 'featured'
     $featuredCampaigns = Campaign::where('status', 'featured')
-    ->orderBy('updated_at', 'desc')
-    ->take(5)
-    ->get();
+        ->orderBy('updated_at', 'desc')
+        ->take(5)
+        ->get();
 
-    return view('campaignpage', compact('latestCampaigns', 'successStories','featuredCampaigns'));
+    return view('campaignpage', compact('latestCampaigns', 'successCampaigns', 'featuredCampaigns'));
 }
 
 public function publicShow(Campaign $campaign)
