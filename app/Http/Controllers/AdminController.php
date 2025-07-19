@@ -86,4 +86,32 @@ class AdminController extends Controller
     {
         return view('dashboard.adminCampaignView', compact('campaign'));
     }
+
+    // Feature a campaign
+public function featureCampaign(Campaign $campaign)
+{
+    if ($campaign->status !== 'active') {
+        return back()->with('error', 'Only active campaigns can be featured.');
+    }
+
+    $campaign->status = 'featured';
+    $campaign->save();
+
+    return back()->with('success', 'Campaign has been featured successfully.');
+}
+
+// Unfeature a campaign
+public function unfeatureCampaign(Campaign $campaign)
+{
+    if ($campaign->status !== 'featured') {
+        return back()->with('error', 'Only featured campaigns can be unfeatured.');
+    }
+
+    $campaign->status = 'active';
+    $campaign->save();
+
+    return back()->with('success', 'Campaign has been unfeatured successfully.');
+}
+
+
 }

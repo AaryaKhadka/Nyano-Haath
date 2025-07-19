@@ -76,8 +76,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
     Route::get('/campaigns/{campaign}', [AdminController::class, 'showCampaign'])->name('campaigns.show');
 
     // Optional feature/unfeature (commented out)
-    // Route::post('/campaigns/{campaign}/feature', [AdminController::class, 'featureCampaign'])->name('campaigns.feature');
-    // Route::post('/campaigns/{campaign}/unfeature', [AdminController::class, 'unfeatureCampaign'])->name('campaigns.unfeature');
+    Route::post('/campaigns/{campaign}/feature', [AdminController::class, 'featureCampaign'])->name('campaigns.feature');
+    Route::post('/campaigns/{campaign}/unfeature', [AdminController::class, 'unfeatureCampaign'])->name('campaigns.unfeature');
 });
 
 // ============================

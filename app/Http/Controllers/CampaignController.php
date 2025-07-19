@@ -69,21 +69,29 @@ class CampaignController extends Controller
 
     // Update campaign
     public function update(Request $request, Campaign $campaign)
-    {
-        if ($campaign->user_id != auth()->id()) {
-            abort(403);
-        }
-
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'goal_amount' => 'required|numeric',
-        ]);
-
-        $campaign->update($request->only(['title', 'description', 'goal_amount']));
-
-        return redirect()->route('dashboard')->with('success', 'Campaign updated successfully.');
+{
+    if ($campaign->user_id != auth()->id()) {
+        abort(403);
     }
+
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'description' => 'required|string',
+        'goal_amount' => 'required|numeric',
+    ]);
+
+    $campaign->title = $request->title;
+    $campaign->description = $request->description;
+    $campaign->goal_amount = $request->goal_amount;
+
+    // 👇 Revert to pending status for re-approval
+    $campaign->status = 'pending';
+
+    $campaign->save();
+
+    return redirect()->route('dashboard')->with('success', 'Campaign updated and sent for re-approval.');
+}
+
 
     // Delete campaign
     public function destroy(Campaign $campaign)
@@ -113,7 +121,7 @@ public function show(Campaign $campaign)
 
 public function publicIndex()
 {
-    $latestCampaigns = Campaign::where('status', 'active')
+    $latestCampaigns = Campaign::where('status', ['active', 'featured'])
         ->orderBy('created_at', 'desc')
         ->paginate(10);
 
@@ -123,7 +131,12 @@ public function publicIndex()
         ->take(10)
         ->get();
 
-    return view('campaignpage', compact('latestCampaigns', 'successStories'));
+    $featuredCampaigns = Campaign::where('status', 'featured')
+    ->orderBy('updated_at', 'desc')
+    ->take(5)
+    ->get();
+
+    return view('campaignpage', compact('latestCampaigns', 'successStories','featuredCampaigns'));
 }
 
 public function publicShow(Campaign $campaign)
