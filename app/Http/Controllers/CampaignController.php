@@ -144,10 +144,6 @@ public function publicIndex()
 
 public function publicShow(Campaign $campaign)
 {
-    if ($campaign->status !== 'active') {
-        abort(404); // prevent showing inactive campaigns
-    }
-
     return view('campaignshow', compact('campaign'));
 }
 
