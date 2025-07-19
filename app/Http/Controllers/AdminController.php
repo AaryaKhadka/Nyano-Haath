@@ -69,17 +69,21 @@ class AdminController extends Controller
         return back()->with('success', 'Campaign approved successfully.');
     }
 
-    // Delete a campaign (only if not approved)
-    public function deleteCampaign(Campaign $campaign)
-    {
-        if ($campaign->status === 'approved') {
-            return back()->with('error', 'Approved campaigns cannot be deleted.');
-        }
-
-        $campaign->delete();
-
-        return back()->with('success', 'Campaign deleted successfully.');
+    public function rejectCampaign(Campaign $campaign)
+{
+    if ($campaign->status !== 'pending') {
+        return redirect()->route('admin.campaigns.index')->with('error', 'Cannot reject this campaign.');
     }
+
+    $campaign->status = 'rejected';
+    $campaign->save();
+
+    return redirect()->route('admin.campaigns.index')->with('success', 'Campaign rejected successfully.');
+}
+
+
+
+    
 
     // View a single campaign
     public function showCampaign(Campaign $campaign)

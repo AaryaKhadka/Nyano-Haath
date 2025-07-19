@@ -16,6 +16,12 @@
     : 0;
 @endphp
 
+@php
+    $campaignUrl = route('user.view', $campaign->id);
+    $encodedUrl = urlencode($campaignUrl);
+    $encodedTitle = urlencode($campaign->title);
+@endphp
+
 <div class="campaign-detail">
 
     <a href="{{ url()->previous() }}" class="back-button">
@@ -55,9 +61,61 @@
             <a href="#" class="btn share-button">
                 <i class="fas fa-share-alt"></i> Share
             </a>
+
+            <div id="share-menu" class="share-menu" style="display: none;">
+                <p class="share-message">
+                    Help <strong>{{ $campaign->user->name }}</strong> share their story
+                </p>
+                <div class="share-links">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ $encodedUrl }}" target="_blank" rel="noopener" title="Share on Facebook" class="share-link facebook">
+                        <i class="fab fa-facebook"></i> Facebook
+                    </a>
+                    <a href="https://twitter.com/intent/tweet?text={{ $encodedTitle }}&url={{ $encodedUrl }}" target="_blank" rel="noopener" title="Share on X" class="share-link twitter">
+                        <i class="fab fa-twitter"></i> X (Twitter)
+                    </a>
+                    
+                    <button id="copy-url-btn" title="Copy URL to Clipboard" class="share-link copy-link">
+                        <i class="fas fa-link"></i> Copy Link
+                    </button>
+                </div>
+            </div>
+
+
         </div>
 
     </div>
 
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const shareBtn = document.querySelector('.share-button');
+    const shareMenu = document.getElementById('share-menu');
+    const copyBtn = document.getElementById('copy-url-btn');
+
+    shareBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (shareMenu.style.display === 'none' || !shareMenu.style.display) {
+            shareMenu.style.display = 'flex';
+        } else {
+            shareMenu.style.display = 'none';
+        }
+    });
+
+    copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText('{{ $campaignUrl }}')
+            .then(() => alert('URL copied to clipboard!'))
+            .catch(() => alert('Failed to copy URL'));
+    });
+
+    // Optional: Hide share menu if clicked outside
+    document.addEventListener('click', (e) => {
+        if (!shareMenu.contains(e.target) && !shareBtn.contains(e.target)) {
+            shareMenu.style.display = 'none';
+        }
+    });
+});
+
+</script>
+
 @endsection

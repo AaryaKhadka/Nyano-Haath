@@ -32,8 +32,10 @@
   border-bottom: 1px solid #ddd;
   vertical-align: middle;
   font-size: 14px;
-  white-space: nowrap; /* Prevent buttons from wrapping to new line */
+  white-space: normal; /* allow wrapping */
 }
+
+
 
 .campaign-table th {
   background-color: #f8f8f8;
@@ -89,6 +91,7 @@
 }
 
 .reject-btn {
+  margin-top: 0.25rem;
   background-color: #dc3545; /* Same as delete */
 }
 

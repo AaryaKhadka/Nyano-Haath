@@ -13,7 +13,7 @@ class Campaign extends Model
         'goal_amount',
         'raised_amount',
         'status',
-        'country',
+        'district',
         'category',
         'campaign_image',
         'verification_document',

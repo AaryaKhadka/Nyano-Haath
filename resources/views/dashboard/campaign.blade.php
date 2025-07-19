@@ -44,7 +44,12 @@
                   <button type="submit" class="btn approve-btn">Approve</button>
                 </form>
 
-                <button class="btn reject-btn" onclick="openRejectModal({{ $campaign->id }})">Reject</button>
+                <form action="{{ route('admin.campaigns.reject', $campaign->id) }}" method="POST" style="display:inline;">
+                  @csrf
+                  <button type="submit" class="btn reject-btn" onclick="return confirm('Are you sure you want to reject this campaign?');">
+                    Reject
+                  </button>
+                </form>
               @endif
 
               <!-- Feature button (if active) -->
@@ -70,7 +75,7 @@
   </div>
 
   <!-- Reject Modal -->
-  <div id="rejectModal" class="modal" style="display:none;">
+  <!-- <div id="rejectModal" class="modal" style="display:none;">
     <div class="modal-content">
       <span class="close-btn" onclick="closeRejectModal()">&times;</span>
       <h2>Reject Campaign</h2>
@@ -106,5 +111,5 @@
         closeRejectModal();
       }
     }
-  </script>
+  </script> -->
 @endsection

@@ -70,12 +70,12 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
     // Admin Campaign Management
     Route::get('/campaigns', [AdminController::class, 'campaigns'])->name('campaigns.index');
     Route::post('/campaigns/{campaign}/approve', [AdminController::class, 'approveCampaign'])->name('campaigns.approve');
-    Route::delete('/campaigns/{campaign}/delete', [AdminController::class, 'deleteCampaign'])->name('campaigns.delete');
+    Route::post('/campaigns/{campaign}/reject', [AdminController::class, 'rejectCampaign'])->name('campaigns.reject');
 
     // Admin single campaign show with unique route name to avoid conflict
     Route::get('/campaigns/{campaign}', [AdminController::class, 'showCampaign'])->name('campaigns.show');
 
-    // Optional feature/unfeature (commented out)
+    // feature/unfeature 
     Route::post('/campaigns/{campaign}/feature', [AdminController::class, 'featureCampaign'])->name('campaigns.feature');
     Route::post('/campaigns/{campaign}/unfeature', [AdminController::class, 'unfeatureCampaign'])->name('campaigns.unfeature');
 });

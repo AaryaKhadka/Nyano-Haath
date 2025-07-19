@@ -144,7 +144,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="country">Country</label>
+                    <label for="country">District</label>
                     <input type="text" id="country" name="country" value="{{ old('country') }}" required />
                 </div>
 

@@ -120,6 +120,7 @@ body {
 }
 
 .action-buttons {
+    position: relative;
     margin-top: 1.5rem;
     display: flex;
     gap: 1rem;
@@ -158,6 +159,82 @@ body {
 .share-button:hover {
     background-color: #0069d9;
 }
+
+.share-menu {
+    position: absolute;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    width: 280px;  /* increased width */
+    top: 35px;  
+    right: 230px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    font-family: 'Inter', sans-serif;
+    color: #333;
+}
+
+.share-message {
+    font-size: 15px;
+    line-height: 1.4;
+    margin: 0;
+    font-weight: 500;
+    color: #222;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.share-message strong {
+    font-weight: 700;
+}
+
+.share-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.share-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #444;
+    font-weight: 600;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.share-link:hover {
+    background-color: #f5f5f5;
+    border-color: #ccc;
+}
+
+/* Social colors */
+.share-link.facebook { color: #3b5998; }
+.share-link.twitter { color: #1da1f2; }
+.share-link.instagram { color: #e4405f; }
+
+/* Copy Link button style */
+.share-link.copy-link { 
+    color: #666; 
+    border: 1px solid #ccc; 
+    background-color: #fafafa; 
+    justify-content: center;
+}
+
+/* Icons bigger and vertically centered */
+.share-link i {
+    font-size: 1.2rem;
+}
+
 
 /* Responsive */
 @media (max-width: 768px) {
