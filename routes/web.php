@@ -11,7 +11,10 @@ Route::get('/categories', [FrontendController::class, 'categories'])->name('cate
 
 
 Route::get('/', [FrontendController::class, 'trending'])->name('trending');
-Route::get('/categoriesInside', [FrontendController::class, 'categoriesInside'])->name('categoriesInside');
+
+// for the categories detail 
+Route::get('/category/{type}', [FrontendController::class, 'categoriesDetail'])->name('category.show');
+
 
 
 // Auth routes
