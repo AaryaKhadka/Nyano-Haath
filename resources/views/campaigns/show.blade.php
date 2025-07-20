@@ -91,7 +91,7 @@
           <h2>Description</h2>
           <p>{{ $campaign->description }}</p>
 
-          <h3>Country: {{ $campaign->country ?? 'N/A' }}</h3>
+          <h3>District: {{ $campaign->district ?? 'N/A' }}</h3>
           <h3>Category: {{ ucfirst(str_replace('_', ' ', $campaign->category)) ?? 'N/A' }}</h3>
 
           <h3>Goal Amount: Rs. {{ number_format($campaign->goal_amount, 2) }}</h3>

@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\DonationController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -97,6 +98,17 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/roles', [RoleController::class, 'index'])->name('admin.roles.index');
     Route::put('/admin/roles/{user}', [RoleController::class, 'update'])->name('admin.roles.update');
 });
+
+// Show donation form for a campaign
+Route::get('/campaign/{campaign}/donate', [DonationController::class, 'showForm'])->name('donation.form');
+
+Route::post('/campaign/{campaign}/donate', [DonationController::class, 'store'])->name('donation.store');
+
+Route::post('/khalti/verify', [DonationController::class, 'verifyKhalti'])->name('khalti.verify');
+Route::get('/payment/callback', [DonationController::class, 'paymentCallback'])->name('payment.callback');
+Route::post('/campaign/{campaign}/khalti/initiate', [DonationController::class, 'initiatePayment'])->name('khalti.initiate');
+
+
 
 
 

@@ -35,4 +35,12 @@ return [
         ],
     ],
 
+    'khalti' => [
+    'public_key' => env('KHALTI_PUBLIC_KEY'),
+    'secret_key' => env('KHALTI_SECRET_KEY'),
+    'sandbox_url' => 'https://dev.khalti.com/api/v2/epayment/initiate/',
+    'production_url' => 'https://khalti.com/api/v2/epayment/initiate/',
+],
+
+
 ];

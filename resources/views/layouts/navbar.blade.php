@@ -18,7 +18,7 @@
             <a href="{{ route('aboutus') }}">About</a>
         </nav>
         <div class="header-action">
-            <a href="{{ route('login')}}" class="btn btn-primary">Login</a>
+            <a href="{{ route('login')}}" class="btn btn-primary btn-login">Login</a>
         </div>
 
     </header>

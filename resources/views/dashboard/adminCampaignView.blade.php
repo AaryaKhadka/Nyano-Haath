@@ -20,7 +20,7 @@
     <p><strong>Goal:</strong> Rs. {{ number_format($campaign->goal_amount) }}</p>
     <p><strong>Raised:</strong> Rs. {{ number_format($campaign->raised_amount) }}</p>
     <p><strong>Status:</strong> {{ ucfirst($campaign->status) }}</p>
-    <p><strong>Country:</strong> {{ $campaign->country }}</p>
+    <p><strong>District:</strong> {{ $campaign->district }}</p>
     <p><strong>Category:</strong> {{ $campaign->category }}</p>
     <p><strong>Description:</strong><br>{{ $campaign->description }}</p>
 

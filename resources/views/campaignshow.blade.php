@@ -55,7 +55,7 @@
 
         <!-- Buttons -->
         <div class="action-buttons">
-            <a href="#" class="btn donate-button">
+            <a href="{{ route('donation.form', $campaign->id) }}" class="btn donate-button">
                 <i class="fas fa-hand-holding-heart"></i> Donate Now
             </a>
             <a href="#" class="btn share-button">

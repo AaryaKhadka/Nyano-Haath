@@ -18,7 +18,7 @@
                     We are a student-led project from Apex College, creating a simple, trusted platform to connect generous people with important causes across Nepal.
                 </p>
                 <div class="mt-10 animate">
-                    <a href="#" class="button-primary">Explore Causes</a>
+                    <a href="{{ route('feed') }}" class="button-primary">Explore Causes</a>
                 </div>
             </div>
         </section>

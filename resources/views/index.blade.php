@@ -232,7 +232,6 @@
         const hero = document.querySelector('.hero'); 
 
            const bgImages = [
-            "image/one-piece-mobile-1690x2366-10902.jpg",
              "image/naruto.jpg",
             "image/bleach.jpg"
             
