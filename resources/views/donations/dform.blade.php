@@ -26,8 +26,6 @@
         <form method="POST" action="{{ route('donation.store', $campaign->id) }}">
             @csrf
 
-            <input type="hidden" name="khalti_token" id="khalti_token" value="">
-            <input type="hidden" name="khalti_idx" id="khalti_idx" value="">
 
             <div class="form-group">
                 <label for="name">Full Name <span>*</span></label>
@@ -55,7 +53,7 @@
                 <p class="note">This will register your email and allow login to view donation history.</p>
             </div>
 
-            <button type="button" id="khalti-pay-btn" class="btn khalti-btn">Donate with Khalti</button>
+            <button type="submit" class="btn donate-btn">Donate</button>
         </form>
     </section>
 
@@ -63,6 +61,5 @@
 @endsection
 
 @section('scripts')
-<script src="https://khalti.com/static/khalti-checkout.js"></script>
 <script src="{{ asset('JS/paymentIntegration.js') }}"></script>
 @endsection

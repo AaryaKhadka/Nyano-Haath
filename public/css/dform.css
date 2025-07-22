@@ -154,8 +154,8 @@ form {
 }
 
 /* Buttons */
-.btn.khalti-btn {
-  background-color:#28a745;
+.btn.donate-btn {
+  background-color: #28a745;
   color: white;
   padding: 12px 20px;
   border: none;
@@ -167,7 +167,7 @@ form {
   transition: background-color 0.3s ease;
 }
 
-.btn.khalti-btn:hover {
+.btn.donate-btn:hover {
   background-color: #107600;
 }
 
