@@ -16,3 +16,5 @@ Route::get('/login', [FrontendController::class, 'login'])->name('login');
 Route::get('/aboutus', [FrontendController::class, 'aboutus'])->name('aboutus');
 
 Route::get('/campaignpage', [FrontendController::class, 'campaignpage'])->name('campaignpage');
+
+Route::get('/privacypolicy', [FrontendController::class, 'privacypolicy'])->name('privacypolicy');

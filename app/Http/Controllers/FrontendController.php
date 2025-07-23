@@ -21,6 +21,13 @@ class FrontendController extends Controller
     public function campaignpage(){
         return view('campaignpage');
     }
-}
 
+
+
+
+    public function privacypolicy(){
+        return view('privacypolicy');
+    }
+
+}
 
