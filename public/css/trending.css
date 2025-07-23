@@ -215,6 +215,89 @@ Header
     margin-top: 30px;
 }
 
+.header-action {
+    position: relative;
+    display: inline-block;
+}
+
+/* Profile button styles */
+.profile-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--secondary-text); /* #555 from your theme */
+    font-size: 1rem;
+    padding: 0;
+    transition: color 0.2s ease;
+}
+
+.profile-btn:hover,
+.profile-btn:focus {
+    color: var(--dark-text); /* #1c1b0d */
+    outline: none;
+}
+
+/* Dropdown content container */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: var(--light-bg); /* #fdfdfc */
+    min-width: 160px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 6px;
+    border: 1px solid var(--border-color); /* #f4f3e6 */
+    z-index: 1000;
+    padding: 0.5rem 0;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Dropdown links and buttons */
+.dropdown-content a,
+.dropdown-content button.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 0.95rem;
+    color: var(--secondary-text);
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+    text-align: left;
+}
+
+/* Hover effect */
+.dropdown-content a:hover,
+.dropdown-content button.logout-btn:hover {
+    background-color: var(--border-color);
+    color: var(--dark-text);
+}
+
+/* Remove default button styles from logout */
+.logout-btn {
+    font-family: inherit;
+}
+
+/* Icons inside dropdown items */
+.dropdown-content i {
+    font-size: 1.1rem;
+    color: #777;
+    transition: color 0.15s ease;
+}
+
+.dropdown-content a:hover i,
+.dropdown-content button.logout-btn:hover i {
+    color: var(--dark-text);
+}
+
 /* 
 ========================================
 Hero Section

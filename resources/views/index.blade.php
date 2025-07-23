@@ -37,8 +37,30 @@
             <a href="{{ route('aboutus') }}">About</a>
         </nav>
         <div class="header-action">
-            <a href="{{ route('login')}}" class="btn btn-primary">Login</a>
+    @auth
+        <div class="dropdown">
+            <button class="profile-btn">
+                <i class="fas fa-user-circle fa-2x"></i>
+            </button>
+            <div class="dropdown-content">
+                @php
+                    $dashboardRoute = Auth::user()->role === 'admin' ? route('admin.dashboard') : route('dashboard');
+                @endphp
+                <a href="{{ $dashboardRoute }}">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+                <form method="POST" action="{{ route('logout.redirect') }}">
+                    @csrf
+                    <button type="submit" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </form>
+            </div>
         </div>
+    @else
+        <a href="{{ route('login')}}" class="btn btn-primary">Login</a>
+    @endauth
+</div>
 
     </header>
 
@@ -70,10 +92,13 @@
         <div class="circle-icon"><i class="fas fa-paw"></i></div>
         <span>Animal</span>
     </div>
-    <div class="circle-item">
-        <div class="circle-icon"><i class="fas fa-arrow-right"></i></div>
-        <span>More</span>
-    </div>
+   <a href="{{ route('categories') }}">
+  <div class="circle-item">
+    <div class="circle-icon"><i class="fas fa-arrow-right"></i></div>
+    <span>More</span>
+  </div>
+</a>
+
 </div>
 
     </div>

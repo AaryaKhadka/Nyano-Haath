@@ -7,6 +7,7 @@ use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,6 +98,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/roles', [RoleController::class, 'index'])->name('admin.roles.index');
     Route::put('/admin/roles/{user}', [RoleController::class, 'update'])->name('admin.roles.update');
 });
+
+
+Route::get('/categories', [CategoryController::class, 'categories'])->name('categories');
+Route::get('/categories/{type}', [CategoryController::class, 'categoriesDetail'])->name('categories.detail');
 
 
 
