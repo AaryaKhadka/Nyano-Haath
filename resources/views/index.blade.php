@@ -69,7 +69,7 @@
         <section class="hero">
             <div class="hero-content container fade-in-section">
                 <h1>Your Cause Matters. <br> Let's Make a Difference.</h1>
-                <a href="#" class="btn btn-primary btn-large">Donate Now</a>
+                <a href="{{ route('feed') }}" class="btn btn-primary btn-large">Donate Now</a>
             </div>
       </section>
                <!-- Circle Section -->
@@ -210,7 +210,7 @@
             <div class="footer-links">
                 <h4>Resources</h4>
                 <ul>
-                    <li><a href="#">Help center</a></li>
+                    <li><a href="#">Contact Us</a></li>
                     <li><a href="#">Blog</a></li>
                     <li><a href="#">Press center</a></li>
                     <li><a href="#">Careers</a></li>

@@ -23,9 +23,14 @@
 
         <h1 class="donation-title">Support: {{ $campaign->user->name }}'s Story</h1>
 
-        <form method="POST" action="{{ route('donation.store', $campaign->id) }}">
+        {{-- NOTE: Move this meta tag to your layouts.custom head section if possible --}}
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        {{-- Form WITHOUT action or method to avoid default submission --}}
+        <form id="donation-form" autocomplete="off" data-campaign-id="{{ $campaign->id }}">
             @csrf
 
+            <input type="hidden" name="purchase_order_name" value="{{ $campaign->title }}">
 
             <div class="form-group">
                 <label for="name">Full Name <span>*</span></label>
@@ -39,7 +44,7 @@
 
             <div class="form-group">
                 <label for="amount">Donation Amount (NPR) <span>*</span></label>
-                <input type="number" id="amount" name="amount" min="1" step="1" required autocomplete="off" />
+                <input type="number" id="amount" name="amount" min="1" step="1" required />
             </div>
 
             <div class="form-group checkbox-group">
@@ -53,7 +58,7 @@
                 <p class="note">This will register your email and allow login to view donation history.</p>
             </div>
 
-            <button type="submit" class="btn donate-btn">Donate</button>
+            <button type="submit" class="btn donate-btn">Donate with Khalti</button>
         </form>
     </section>
 

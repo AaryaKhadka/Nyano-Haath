@@ -32,7 +32,7 @@
         <div class="footer-links">
             <h4>Resources</h4>
             <ul>
-                <li><a href="#">Help center</a></li>
+                <li><a href="#">Contact Us</a></li>
                 <li><a href="#">Blog</a></li>
                 <li><a href="#">Press center</a></li>
                 <li><a href="#">Careers</a></li>

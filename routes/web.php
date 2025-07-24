@@ -7,6 +7,7 @@ use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Controllers\DonationController;
 use App\Http\Controllers\CategoryController;
 
 /*
@@ -102,6 +103,16 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/categories', [CategoryController::class, 'categories'])->name('categories');
 Route::get('/categories/{type}', [CategoryController::class, 'categoriesDetail'])->name('categories.detail');
+
+Route::get('/donate/{campaign}', [DonationController::class, 'showDonationForm'])->name('donation.form');
+Route::post('/khalti/initiate-payment', [DonationController::class, 'initiatePayment'])->name('khalti.initiate');
+Route::get('/khalti/initiate-payment', function () {
+    abort(405, 'Method Not Allowed');
+});
+Route::get('/donate/verify', [DonationController::class, 'verifyPayment'])->name('donate.verify');
+
+
+
 
 
 

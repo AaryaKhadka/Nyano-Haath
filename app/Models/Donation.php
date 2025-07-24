@@ -12,6 +12,16 @@ class Donation extends Model
         'name',
         'email',
         'amount',
+        'status',
+        'product_name',
+        'pidx',
+        'initiate_response',
+        'verified_response',
+    ];
+
+    protected $casts = [
+        'initiate_response' => 'array',
+        'verified_response' => 'array',
     ];
 
     public function campaign()
