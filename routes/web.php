@@ -2,13 +2,12 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Http\Controllers\DonationController;
-use App\Http\Controllers\CategoryController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +33,7 @@ Route::get('/aboutus', function () {
 // Public Campaign List
 Route::get('/explore', [CampaignController::class, 'publicIndex'])->name('feed');
 
-// Public Single Campaign View (Make sure this comes BEFORE auth resource routes)
+// Public Single Campaign View
 Route::get('/explore/{campaign}', [CampaignController::class, 'publicShow'])->name('user.view');
 
 // ============================
@@ -45,7 +44,7 @@ Route::middleware(['auth'])->group(function () {
     // User Dashboard (Campaigns they created)
     Route::get('/dashboard', [CampaignController::class, 'index'])->name('dashboard');
 
-    // Authenticated campaign routes — excluding 'index' and 'show' (to avoid conflict)
+    // Authenticated campaign routes (excluding index & show)
     Route::resource('campaigns', CampaignController::class)->except(['index', 'show']);
 
     // Authenticated user campaign show with route name 'creators.view'
@@ -77,7 +76,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
     // Admin single campaign show with unique route name to avoid conflict
     Route::get('/campaigns/{campaign}', [AdminController::class, 'showCampaign'])->name('campaigns.show');
 
-    // feature/unfeature 
+    // Feature/unfeature campaigns
     Route::post('/campaigns/{campaign}/feature', [AdminController::class, 'featureCampaign'])->name('campaigns.feature');
     Route::post('/campaigns/{campaign}/unfeature', [AdminController::class, 'unfeatureCampaign'])->name('campaigns.unfeature');
 });
@@ -100,26 +99,14 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/admin/roles/{user}', [RoleController::class, 'update'])->name('admin.roles.update');
 });
 
-
+// ============================
+// Categories Routes
+// ============================
 Route::get('/categories', [CategoryController::class, 'categories'])->name('categories');
 Route::get('/categories/{type}', [CategoryController::class, 'categoriesDetail'])->name('categories.detail');
 
-Route::get('/donate/{campaign}', [DonationController::class, 'showDonationForm'])->name('donation.form');
-Route::post('/khalti/initiate-payment', [DonationController::class, 'initiatePayment'])->name('khalti.initiate');
-Route::get('/khalti/initiate-payment', function () {
-    abort(405, 'Method Not Allowed');
-});
-Route::get('/donate/verify', [DonationController::class, 'verifyPayment'])->name('donate.verify');
-
-
-
-
-
-
-
-
 
 // ============================
-// AUTH ROUTES
+// AUTH ROUTES (login, register, etc.)
 // ============================
 require __DIR__.'/auth.php';

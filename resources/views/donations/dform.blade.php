@@ -2,8 +2,12 @@
 
 @section('title', 'Donate to ' . $campaign->title)
 
+@section('head')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
+
 @section('styles')
-<link rel="stylesheet" href="{{ asset('css/dform.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dform.css') }}">
 @endsection
 
 @section('content')
@@ -12,7 +16,7 @@
     <aside class="campaign-info">
         <h2 class="campaign-title">{{ $campaign->title }}</h2>
         <img src="{{ asset('storage/' . $campaign->campaign_image) }}" alt="Campaign Image" class="campaign-image" />
-        <h3 class="description-label">Description :</h3>
+        <h3>Description :</h3>
         <p class="campaign-description">{{ $campaign->description }}</p>
     </aside>
 
@@ -23,23 +27,17 @@
 
         <h1 class="donation-title">Support: {{ $campaign->user->name }}'s Story</h1>
 
-        {{-- NOTE: Move this meta tag to your layouts.custom head section if possible --}}
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        {{-- Form WITHOUT action or method to avoid default submission --}}
-        <form id="donation-form" autocomplete="off" data-campaign-id="{{ $campaign->id }}">
+        <form id="donation-form" autocomplete="off" method="POST" action="{{ route('donation.process', $campaign) }}">
             @csrf
-
-            <input type="hidden" name="purchase_order_name" value="{{ $campaign->title }}">
 
             <div class="form-group">
                 <label for="name">Full Name <span>*</span></label>
-                <input type="text" id="name" name="name" required autocomplete="name" />
+                <input type="text" id="name" name="name" autocomplete="name" />
             </div>
 
             <div class="form-group">
                 <label for="email">Email Address <span>*</span></label>
-                <input type="email" id="email" name="email" required autocomplete="email" />
+                <input type="email" id="email" name="email" autocomplete="email" />
             </div>
 
             <div class="form-group">
@@ -66,5 +64,21 @@
 @endsection
 
 @section('scripts')
-<script src="{{ asset('JS/paymentIntegration.js') }}"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const anonymousCheckbox = document.getElementById('anonymous');
+    const passwordSection = document.getElementById('password-section');
+    if (!anonymousCheckbox || !passwordSection) return;
+
+    function toggle() {
+        passwordSection.style.display = anonymousCheckbox.checked ? 'none' : 'block';
+        // If anonymous, clear name/email fields validation requirement
+        document.getElementById('name').required = !anonymousCheckbox.checked;
+        document.getElementById('email').required = !anonymousCheckbox.checked;
+    }
+
+    toggle();
+    anonymousCheckbox.addEventListener('change', toggle);
+});
+</script>
 @endsection
