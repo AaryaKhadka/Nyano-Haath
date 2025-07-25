@@ -8,6 +8,7 @@ use App\Http\Controllers\RoleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DonationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -104,6 +105,17 @@ Route::middleware(['auth'])->group(function () {
 // ============================
 Route::get('/categories', [CategoryController::class, 'categories'])->name('categories');
 Route::get('/categories/{type}', [CategoryController::class, 'categoriesDetail'])->name('categories.detail');
+
+
+
+
+
+Route::get('/donate/{campaign}', [DonationController::class, 'showForm'])->name('donation.form');
+Route::post('/donate/{campaign}', [DonationController::class, 'initiatePayment'])->name('donation.process');
+Route::get('/donate/verify', [DonationController::class, 'verifyPayment'])->name('donation.verify');
+
+
+
 
 
 // ============================
