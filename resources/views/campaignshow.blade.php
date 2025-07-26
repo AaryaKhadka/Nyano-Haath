@@ -10,6 +10,9 @@
 
 @section('content')
 
+
+
+
 @php
    $percentage = $campaign->goal_amount > 0
     ? min(10000, number_format(($campaign->raised_amount / $campaign->goal_amount) * 100, 2, '.', ''))

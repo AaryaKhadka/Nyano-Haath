@@ -28,9 +28,9 @@ class DonationController extends Controller
         $purchaseOrderId = Str::uuid()->toString();
 
         $payload = [
-            "return_url" => route('donation.verify'), // Khalti redirect here after payment
+            "return_url" =>'http://127.0.0.1:8000/donate/verify', 
             "website_url" => config('app.url'),
-            "amount" => $validated['amount'] * 100,  // paisa
+            "amount" => $validated['amount'] * 100,  
             "purchase_order_id" => $purchaseOrderId,
             "purchase_order_name" => "Donation for " . $campaign->title,
             "customer_info" => [
@@ -74,47 +74,54 @@ class DonationController extends Controller
     }
 
     public function verifyPayment(Request $request)
-    {
-        $pidx = $request->query('pidx');
+{
+    $pidx = $request->query('pidx');
 
-        if (!$pidx) {
-            return redirect()->route('donation.form')->withErrors('Invalid payment response from Khalti.');
-        }
+    // Get campaign ID from session, fallback to 1 (or handle better)
+    $donationData = session('donation_data');
+    $campaignId = $donationData['campaign_id'] ?? 1;
 
-        $response = Http::withHeaders([
-            'Authorization' => 'Key ' . env('KHALTI_SECRET_KEY'),
-            'Content-Type' => 'application/json',
-        ])->withoutVerifying()
-          ->post(env('KHALTI_API_URL') . '/epayment/lookup/', ['pidx' => $pidx]);
+    if (!$pidx) {
+        return redirect()->route('donation.form', ['campaign' => $campaignId])
+                         ->withErrors('Invalid payment response from Khalti.');
+    }
 
-        if ($response->successful()) {
-            $data = $response->json();
+    $response = Http::withHeaders([
+        'Authorization' => 'Key ' . env('KHALTI_SECRET_KEY'),
+        'Content-Type' => 'application/json',
+    ])->withoutVerifying()
+      ->post(env('KHALTI_API_URL') . '/epayment/lookup/', ['pidx' => $pidx]);
 
-            if (($data['status'] ?? '') === 'Completed') {
-                $donationData = session('donation_data');
+    if ($response->successful()) {
+        $data = $response->json();
 
-                if (!$donationData || ($donationData['purchase_order_id'] ?? '') !== ($data['purchase_order_id'] ?? '')) {
-                    return redirect()->route('donation.form')->withErrors('Donation session mismatch.');
-                }
+        if (($data['status'] ?? '') === 'Completed') {
 
-                Donation::create([
-                    'campaign_id' => $donationData['campaign_id'],
-                    'name' => $donationData['name'],
-                    'email' => $donationData['email'],
-                    'phone' => $donationData['phone'],
-                    'amount' => $donationData['amount'],
-                    'anonymous' => false,
-                ]);
-
-                session()->forget('donation_data');
-
-                return view('donations.success', ['message' => 'Thank you for your donation!']);
+            if (!$donationData || ($donationData['purchase_order_id'] ?? '') !== ($data['purchase_order_id'] ?? '')) {
+                return redirect()->route('donation.form', ['campaign' => $campaignId])
+                                 ->withErrors('Donation session mismatch.');
             }
 
-            return view('donations.failed', ['status' => $data['status'] ?? 'Unknown']);
+            Donation::create([
+                'campaign_id' => $donationData['campaign_id'],
+                'name' => $donationData['name'],
+                'email' => $donationData['email'],
+                'phone' => $donationData['phone'],
+                'amount' => $donationData['amount'],
+                'anonymous' => false,
+            ]);
+
+            session()->forget('donation_data');
+
+            return view('donations.success', ['campaign_id' => $donationData['campaign_id']]);
         }
 
-        return redirect()->route('donation.form')->withErrors('Payment verification failed. Please contact support.');
+        return view('donations.failed', ['status' => $data['status'] ?? 'Unknown']);
     }
+
+    return redirect()->route('donation.form', ['campaign' => $campaignId])
+                     ->withErrors('Payment verification failed. Please contact support.');
+}
+
 }
 

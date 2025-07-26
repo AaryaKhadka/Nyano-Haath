@@ -107,18 +107,13 @@ Route::get('/categories', [CategoryController::class, 'categories'])->name('cate
 Route::get('/categories/{type}', [CategoryController::class, 'categoriesDetail'])->name('categories.detail');
 
 
-
-
+Route::get('/donate/verify', [DonationController::class, 'verifyPayment'])->name('donation.verify');
 
 Route::get('/donate/{campaign}', [DonationController::class, 'showForm'])->name('donation.form');
 Route::post('/donate/{campaign}', [DonationController::class, 'initiatePayment'])->name('donation.process');
-Route::get('/donate/verify', [DonationController::class, 'verifyPayment'])->name('donation.verify');
 
 
 
 
 
-// ============================
-// AUTH ROUTES (login, register, etc.)
-// ============================
-require __DIR__.'/auth.php';
+
