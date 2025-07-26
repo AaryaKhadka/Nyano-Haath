@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Campaign;
 use App\Models\Donation;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class DonationController extends Controller
 {
@@ -23,14 +25,35 @@ class DonationController extends Controller
             'email' => 'required|email',
             'phone' => 'nullable|string|max:20',
             'amount' => 'required|integer|min:10',
+            'password' => 'nullable|string|min:6'
         ]);
 
         $purchaseOrderId = Str::uuid()->toString();
 
+        // Create donation record with status Pending
+        $donation = Donation::create([
+            'campaign_id' => $campaign->id,
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'phone' => $validated['phone'] ?? null,
+            'amount' => $validated['amount'],
+            'anonymous' => false,
+            'purchase_order_id' => $purchaseOrderId,
+            'status' => 'Pending',
+        ]);
+
+        // Store password temporarily in session if provided
+        if (!empty($validated['password'])) {
+            session(['donation_password' => $validated['password']]);
+        }
+
+        // Store donation ID in session to reference after payment verification
+        session(['donation_id' => $donation->id]);
+
         $payload = [
-            "return_url" =>'http://127.0.0.1:8000/donate/verify', 
+            "return_url" => 'http://127.0.0.1:8000/donate/verify',
             "website_url" => config('app.url'),
-            "amount" => $validated['amount'] * 100,  
+            "amount" => $validated['amount'] * 100,
             "purchase_order_id" => $purchaseOrderId,
             "purchase_order_name" => "Donation for " . $campaign->title,
             "customer_info" => [
@@ -49,20 +72,9 @@ class DonationController extends Controller
         if ($response->successful()) {
             $data = $response->json();
 
-            session([
-                'donation_data' => [
-                    'campaign_id' => $campaign->id,
-                    'name' => $validated['name'],
-                    'email' => $validated['email'],
-                    'phone' => $validated['phone'] ?? null,
-                    'amount' => $validated['amount'],
-                    'purchase_order_id' => $purchaseOrderId,
-                ]
-            ]);
-
             return redirect($data['payment_url']);
         } else {
-            // Log full response to debug 400 errors
+            // Log full response for debugging errors on payment initiation
             Log::error('Khalti initiate payment failed', [
                 'status' => $response->status(),
                 'body' => $response->body(),
@@ -74,54 +86,77 @@ class DonationController extends Controller
     }
 
     public function verifyPayment(Request $request)
-{
-    $pidx = $request->query('pidx');
+    {
+        $pidx = $request->query('pidx');
+        $donationId = session('donation_id');
 
-    // Get campaign ID from session, fallback to 1 (or handle better)
-    $donationData = session('donation_data');
-    $campaignId = $donationData['campaign_id'] ?? 1;
-
-    if (!$pidx) {
-        return redirect()->route('donation.form', ['campaign' => $campaignId])
-                         ->withErrors('Invalid payment response from Khalti.');
-    }
-
-    $response = Http::withHeaders([
-        'Authorization' => 'Key ' . env('KHALTI_SECRET_KEY'),
-        'Content-Type' => 'application/json',
-    ])->withoutVerifying()
-      ->post(env('KHALTI_API_URL') . '/epayment/lookup/', ['pidx' => $pidx]);
-
-    if ($response->successful()) {
-        $data = $response->json();
-
-        if (($data['status'] ?? '') === 'Completed') {
-
-            if (!$donationData || ($donationData['purchase_order_id'] ?? '') !== ($data['purchase_order_id'] ?? '')) {
-                return redirect()->route('donation.form', ['campaign' => $campaignId])
-                                 ->withErrors('Donation session mismatch.');
-            }
-
-            Donation::create([
-                'campaign_id' => $donationData['campaign_id'],
-                'name' => $donationData['name'],
-                'email' => $donationData['email'],
-                'phone' => $donationData['phone'],
-                'amount' => $donationData['amount'],
-                'anonymous' => false,
-            ]);
-
-            session()->forget('donation_data');
-
-            return view('donations.success', ['campaign_id' => $donationData['campaign_id']]);
+        // Validate presence of pidx and donation ID session
+        if (!$pidx || !$donationId) {
+            return redirect()->route('donation.form', ['campaign' => 1]) // fallback campaign id
+                ->withErrors('Invalid payment response or session expired.');
         }
 
-        return view('donations.failed', ['status' => $data['status'] ?? 'Unknown']);
+        $donation = Donation::find($donationId);
+        if (!$donation) {
+            return redirect()->route('donation.form', ['campaign' => 1])
+                ->withErrors('Donation record not found.');
+        }
+
+        $response = Http::withHeaders([
+            'Authorization' => 'Key ' . env('KHALTI_SECRET_KEY'),
+            'Content-Type' => 'application/json',
+        ])->withoutVerifying()
+          ->post(env('KHALTI_API_URL') . '/epayment/lookup/', ['pidx' => $pidx]);
+
+        if ($response->successful()) {
+            $data = $response->json();
+
+            // Log the full response for debugging
+            Log::info('Khalti lookup response:', $data);
+
+            if (($data['status'] ?? '') === 'Completed') {
+
+                // Removed purchase_order_id check because Khalti lookup doesn't return it
+
+                // Update donation status to Completed
+                $donation->status = 'Completed';
+
+                // Retrieve password from session (not stored in donation record)
+                $password = session('donation_password');
+
+                // Create user if password was provided and user doesn't exist
+                if (!empty($password)) {
+                    $user = User::firstOrCreate(
+                        ['email' => $donation->email],
+                        [
+                            'name' => $donation->name,
+                            'password' => Hash::make($password),
+                            'role' => 'donor', // adjust if your roles differ
+                        ]
+                    );
+                    $donation->user_id = $user->id;
+
+                    // Remove password from session after use for security
+                    session()->forget('donation_password');
+                }
+
+                $donation->save();
+
+                // Update campaign's raised amount
+                $campaign = $donation->campaign;
+                $campaign->raised_amount += $donation->amount;
+                $campaign->save();
+
+                // Remove donation ID from session after successful verification
+                session()->forget('donation_id');
+
+                return view('donations.success', ['campaign' => $campaign]);
+            }
+
+            return view('donations.failed', ['status' => $data['status'] ?? 'Unknown']);
+        }
+
+        return redirect()->route('donation.form', ['campaign' => $donation->campaign_id])
+                         ->withErrors('Payment verification failed. Please contact support.');
     }
-
-    return redirect()->route('donation.form', ['campaign' => $campaignId])
-                     ->withErrors('Payment verification failed. Please contact support.');
 }
-
-}
-
