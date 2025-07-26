@@ -113,6 +113,9 @@ Route::get('/donate/{campaign}', [DonationController::class, 'showForm'])->name(
 Route::post('/donate/{campaign}', [DonationController::class, 'initiatePayment'])->name('donation.process');
 
 
+require __DIR__.'/auth.php';
+
+
 
 
 
