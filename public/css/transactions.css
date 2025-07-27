@@ -1,0 +1,335 @@
+/* withdraw.css */
+
+/* CSS Variables */
+:root {
+    --page-bg: #f8f9f8;
+    --container-bg: #ffffff;
+    --primary-text: #1f1f1f;
+    --secondary-text: #555;
+    --accent-bg: #f0f5f0;
+    --border-color: #e9e9e9;
+    --font-main: 'Inter', sans-serif;
+    --success-bg: #d4edda;
+    --success-border: #c3e6cb;
+    --success-text: #155724;
+}
+
+/* Reset & global */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--page-bg);
+    color: var(--primary-text);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+/* Container */
+.dashboard-container {
+    width: 100%;
+    max-width: 1400px;
+    background-color: var(--container-bg);
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    width: auto;
+}
+
+.logo img {
+    height: 150%;
+    width: auto;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+}
+
+/* User menu */
+.user-menu-wrapper {
+    position: relative;
+    display: inline-block;
+    outline: none;
+}
+
+.user-icon-btn {
+    background: var(--accent-bg);
+    border: none;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: var(--primary-text);
+    transition: background-color 0.2s ease;
+}
+
+.user-icon-btn:hover,
+.user-icon-btn:focus {
+    background-color: var(--border-color);
+    outline: none;
+}
+
+.user-dropdown {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 0.5rem);
+    background: var(--container-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    min-width: 180px;
+    z-index: 1000;
+    padding: 0.5rem 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-dropdown[hidden] {
+    display: none;
+}
+
+.dropdown-item {
+    padding: 0.5rem 1rem;
+    color: var(--primary-text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dropdown-item i {
+    font-size: 1rem;
+    color: var(--primary-text);
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: var(--accent-bg);
+    outline: none;
+}
+
+/* Main layout */
+.main-layout {
+    display: flex;
+    flex-grow: 1;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    padding: 2rem 1.5rem;
+    flex-shrink: 0;
+    border-right: 1px solid var(--border-color);
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nav-item a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    color: var(--primary-text);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.nav-item a:hover {
+    background-color: var(--accent-bg);
+}
+
+.nav-item.active a {
+    background-color: var(--accent-bg);
+    font-weight: 700;
+}
+
+.nav-item i {
+    font-size: 1.25rem;
+}
+
+.nav-list .logout-item a {
+    cursor: pointer;
+}
+
+.nav-list .logout-item a:hover {
+    background-color: var(--accent-bg);
+}
+
+/* Content area */
+.content-area {
+    flex-grow: 1;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    min-height: 550px;
+}
+
+/* Headings */
+.content-area h1 {
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.alert-success {
+    background-color: var(--success-bg);
+    border: 1px solid var(--success-border);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    color: var(--success-text);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+/* Available Amount box */
+.available-box {
+    background: var(--accent-bg);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.available-box h2 {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.available-box .note {
+    font-size: 0.9rem;
+    color: var(--secondary-text);
+}
+
+/* Withdraw Form */
+.withdraw-form-container {
+    margin-bottom: 2rem;
+}
+
+.withdraw-form-container h3 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.withdraw-form-container label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+}
+
+.withdraw-form-container input[type="number"] {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    transition: border-color 0.2s ease;
+}
+
+.withdraw-form-container input[type="number"]:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.withdraw-form-container .btn {
+    background-color: #3498db;
+    color: #fff;
+    font-weight: 700;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.withdraw-form-container .btn:hover {
+    background-color: #2980b9;
+}
+
+/* Withdrawal History */
+.history-section h3 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.history-table th, 
+.history-table td {
+    border: 1px solid var(--border-color);
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+.history-table th {
+    background-color: var(--accent-bg);
+    font-weight: 700;
+}
+
+.history-table tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+.no-data {
+    color: var(--secondary-text);
+    font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main-layout {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding: 1rem;
+    }
+    .content-area {
+        min-height: auto;
+        padding: 1rem;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .withdraw-form-container .btn {
+        width: 100%;
+    }
+}

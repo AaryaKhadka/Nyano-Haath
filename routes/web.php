@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DonationController;
+use App\Http\Controllers\WithdrawalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -115,6 +116,29 @@ Route::post('/donate/{campaign}', [DonationController::class, 'initiatePayment']
 
 //route for donor dashboard
 Route::get('/donor/dashboard', [DonationController::class, 'donorDashboard'])->name('donor.dashboard');
+
+Route::middleware(['auth'])->group(function () {
+    // Show withdraw page with amount, history, and withdraw form
+    Route::get('/withdraw', [WithdrawalController::class, 'index'])->name('withdraw.index');
+
+    // Submit withdraw request
+    Route::post('/withdraw/request', [WithdrawalController::class, 'store'])->name('withdraw.request');
+
+    // Show transaction history (donations + withdrawals)
+    Route::get('/transactions', [WithdrawalController::class, 'transactions'])->name('withdraw.transactions');
+});
+
+
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function () {
+    // other admin routes ...
+
+    // Admin Withdrawal Management using AdminController
+    Route::get('/withdrawals', [AdminController::class, 'withdrawals'])->name('withdrawals.index');
+    Route::post('/withdrawals/{withdrawal}/approve', [AdminController::class, 'approveWithdrawal'])->name('withdrawals.approve');
+    Route::post('/withdrawals/{withdrawal}/reject', [AdminController::class, 'rejectWithdrawal'])->name('withdrawals.reject');
+    Route::post('/withdrawals/{withdrawal}/release', [AdminController::class, 'releaseWithdrawal'])->name('withdrawals.release');
+});
+
 
 
 require __DIR__.'/auth.php';

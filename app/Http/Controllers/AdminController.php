@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Campaign;
+use App\Models\Withdrawal;
 
 class AdminController extends Controller
 {
@@ -116,6 +117,52 @@ public function unfeatureCampaign(Campaign $campaign)
 
     return back()->with('success', 'Campaign has been unfeatured successfully.');
 }
+
+public function withdrawals()
+{
+    $withdrawals = Withdrawal::with('user', 'campaign')
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+    return view('withdraw.adminW', compact('withdrawals'));
+}
+
+public function approveWithdrawal(Withdrawal $withdrawal)
+{
+    if ($withdrawal->status !== 'pending') {
+        return back()->with('error', 'Only pending withdrawals can be approved.');
+    }
+
+    $withdrawal->status = 'approved';
+    $withdrawal->save();
+
+    return back()->with('success', 'Withdrawal approved successfully.');
+}
+
+public function rejectWithdrawal(Withdrawal $withdrawal)
+{
+    if ($withdrawal->status !== 'pending') {
+        return back()->with('error', 'Only pending withdrawals can be rejected.');
+    }
+
+    $withdrawal->status = 'rejected';
+    $withdrawal->save();
+
+    return back()->with('success', 'Withdrawal rejected successfully.');
+}
+
+public function releaseWithdrawal(Withdrawal $withdrawal)
+{
+    if ($withdrawal->status !== 'approved') {
+        return back()->with('error', 'Only approved withdrawals can be marked as released.');
+    }
+
+    $withdrawal->status = 'released';
+    $withdrawal->save();
+
+    return back()->with('success', 'Withdrawal marked as released.');
+}
+
 
 
 }

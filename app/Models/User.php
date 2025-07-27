@@ -52,4 +52,9 @@ class User extends Authenticatable
     return $this->hasMany(Donation::class);
 }
 
+public function campaigns()
+{
+    return $this->hasMany(\App\Models\Campaign::class, 'user_id');
+}
+
 }

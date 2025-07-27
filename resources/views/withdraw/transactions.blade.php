@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>User Dashboard - Nyano Haath</title>
+    <title>Transaction History - Nyano Haath</title>
 
-    <!-- Link your CSS here -->
-    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ asset('css/transactions.css') }}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -16,12 +16,10 @@
 
 <div class="dashboard-container">
     <header class="header">
-
         <a href="{{ route('home')}}" class="logo">
-            <img src="{{ asset('image/nyanologo.jpg')}}" alt="Nyano Haat Logo" >
+            <img src="{{ asset('image/nyanologo.jpg')}}" alt="Nyano Haath Logo" >
         </a> 
         
-
         <!-- User Dropdown -->
         <div class="user-menu-wrapper" tabindex="0">
             <button id="userMenuButton" class="user-icon-btn" aria-haspopup="true" aria-expanded="false" title="User Menu">
@@ -48,92 +46,109 @@
 
     <div class="main-layout">
         <aside class="sidebar">
-    <nav>
-        <ul class="nav-list">
-            <li class="nav-item active">
-                <a href="{{ route('dashboard') }}">
-                    <i class="fas fa-house"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('campaigns.create') }}">
-                    <i class="fas fa-bullhorn"></i>
-                    <span>Add Campaign</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('withdraw.index') }}">
-                    <i class="fas fa-wallet"></i>
-                    <span>Withdraw</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('withdraw.transactions') }}">
-                    <i class="fas fa-list"></i>
-                    <span>Transaction History</span>
-                </a>
-            </li>
-            <li class="nav-item logout-item">
-                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span>Logout</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</aside>
-
+            <nav>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="{{ route('dashboard') }}">
+                            <i class="fas fa-house"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('campaigns.create') }}">
+                            <i class="fas fa-bullhorn"></i>
+                            <span>Add Campaign</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('withdraw.index') }}">
+                            <i class="fas fa-wallet"></i>
+                            <span>Withdraw</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="{{ route('withdraw.transactions') }}">
+                            <i class="fas fa-list"></i>
+                            <span>Transaction History</span>
+                        </a>
+                    </li>
+                    <li class="nav-item logout-item">
+                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
 
         <main class="content-area">
-            <h1>Welcome, {{ auth()->user()->name }}</h1>
+            <h1>Transaction History</h1>
 
-            <section class="campaigns-section">
-                <h2>Your Campaigns</h2>
+            <section class="donations-section">
+                <h2>Donations Received</h2>
+                @if($donations->count())
+                    <table class="history-table">
+                        <thead>
+    <tr>
+        <th>Date</th>
+        <th>Campaign</th>
+        <th>Donor</th>
+        <th>Amount (NPR)</th>
+        <th>Platform Fee (NPR)</th>
+        <th>Net Amount (NPR)</th>
+    </tr>
+</thead>
 
-                @if(session('success'))
-                    <div class="alert-success">{{ session('success') }}</div>
+                        <tbody>
+@foreach($donations as $donation)
+    <tr>
+        <td>{{ $donation->created_at->format('Y-m-d') }}</td>
+        <td>{{ $donation->campaign->title ?? 'N/A' }}</td>
+        <td>{{ $donation->donor_name ?? 'Anonymous' }}</td>
+        <td>{{ number_format($donation->amount, 2) }}</td>
+        <td>{{ number_format($donation->fee, 2) }}</td>
+        <td>{{ number_format($donation->netAmount, 2) }}</td>
+    </tr>
+@endforeach
+</tbody>
+
+                    </table>
+                @else
+                    <p class="no-data">No donations received yet.</p>
                 @endif
+            </section>
 
-                @if($campaigns->count() > 0)
-                    <table>
+            <section class="withdrawals-section" style="margin-top: 2rem;">
+                <h2>Withdrawal Requests</h2>
+                @if($withdrawals->count())
+                    <table class="history-table">
                         <thead>
                             <tr>
-                                <th>Title</th>
-                                <th>Goal Amount</th>
-                                <th>Raised Amount</th>
+                                <th>Date</th>
+                                <th>Campaign</th>
+                                <th>Amount (NPR)</th>
                                 <th>Status</th>
-                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($campaigns as $campaign)
+                            @foreach($withdrawals as $withdrawal)
                                 <tr>
-                                    <td>{{ $campaign->title }}</td>
-                                    <td>Rs. {{ number_format($campaign->goal_amount, 2) }}</td>
-                                    <td>Rs. {{ number_format($campaign->raised_amount, 2) }}</td>
-                                    <td>{{ ucfirst($campaign->status) }}</td>
-                                    <td>
-                                        <div class="action-buttons">
-                                            <a href="{{ route('creators.view', $campaign) }}" class="view-btn">View</a>
-                                            <a href="{{ route('campaigns.edit', $campaign) }}" class="edit-btn">Edit</a>
-                                            <form action="{{ route('campaigns.destroy', $campaign) }}" method="POST" class="delete-form" onsubmit="return confirm('Are you sure?')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="delete-btn">Delete</button>
-                                            </form>
-                                        </div>
-                                    </td>
+                                    <td>{{ $withdrawal->created_at->format('Y-m-d') }}</td>
+                                    <td>{{ $withdrawal->campaign->title ?? 'N/A' }}</td>
+                                    <td>{{ number_format($withdrawal->amount, 2) }}</td>
+                                    <td>{{ ucfirst($withdrawal->status) }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 @else
-                    <p>You have no campaigns yet. <a href="{{ route('campaigns.create') }}">Create one now</a>.</p>
+                    <p class="no-data">No withdrawal requests yet.</p>
                 @endif
             </section>
         </main>
     </div>
+
     @include('layouts.footer')
 </div>
 
@@ -170,8 +185,6 @@
         });
     });
 </script>
-
-
 
 </body>
 </html>

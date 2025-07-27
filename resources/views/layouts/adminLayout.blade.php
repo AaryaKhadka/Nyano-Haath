@@ -46,16 +46,18 @@
 
   <div class="dashboard-container">
     <aside class="sidebar">
-      <nav>
-        <ul>
-          <li><a href="{{ route('admin.dashboard') }}"><i class="fas fa-house"></i> Dashboard</a></li>
-          <li><a href="{{ route('admin.roles.index') }}"><i class="fas fa-user-shield"></i> Role Management</a></li>
-          <li><a href="{{ route('admin.campaigns.index') }}"><i class="fas fa-bullhorn"></i> Campaign Management</a></li>
-          <!-- <li><a href="#"><i class="fas fa-star"></i> Featured Campaigns</a></li> -->
-          <li><a href="#"><i class="fas fa-wallet"></i> Platform Earnings</a></li>
-        </ul>
-      </nav>
-    </aside>
+  <nav>
+    <ul>
+      <li><a href="{{ route('admin.dashboard') }}"><i class="fas fa-house"></i> Dashboard</a></li>
+      <li><a href="{{ route('admin.roles.index') }}"><i class="fas fa-user-shield"></i> Role Management</a></li>
+      <li><a href="{{ route('admin.campaigns.index') }}"><i class="fas fa-bullhorn"></i> Campaign Management</a></li>
+      <li><a href="#"><i class="fas fa-wallet"></i> Withdrawal Management</a></li>
+      <!-- <li><a href="#"><i class="fas fa-star"></i> Featured Campaigns</a></li> -->
+      <li><a href="#"><i class="fas fa-wallet"></i> Platform Earnings</a></li>
+    </ul>
+  </nav>
+</aside>
+
 
     <main class="main-content">
       @yield('content')
