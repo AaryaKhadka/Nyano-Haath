@@ -1,0 +1,292 @@
+/* dBoard.css */
+
+/* CSS Variables */
+:root {
+    --page-bg: #f8f9f8;
+    --container-bg: #ffffff;
+    --primary-text: #1f1f1f;
+    --secondary-text: #555;
+    --accent-bg: #f0f5f0;
+    --border-color: #e9e9e9;
+    --font-main: 'Inter', sans-serif;
+    --success-bg: #d4edda;
+    --success-border: #c3e6cb;
+    --success-text: #155724;
+}
+
+/* Reset & global */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--page-bg);
+    color: var(--primary-text);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    /* padding: 2rem; */
+}
+
+/* Container */
+.dashboard-container {
+    width: 100%;
+    max-width: 1400px;
+    background-color: var(--container-bg);
+    /* border-radius: 20px; */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh;
+    /* border: 1px solid var(--border-color); */
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    width: auto;
+    justify-content: center;
+}
+
+.logo img {
+    height: 150%;
+    width: auto;
+    object-fit: contain;
+    /* background-color: transparent; */
+    mix-blend-mode: multiply;
+}
+
+/* User menu */
+.user-menu-wrapper {
+    position: relative;
+    display: inline-block;
+    outline: none;
+}
+
+.user-icon-btn {
+    background: var(--accent-bg);
+    border: none;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: var(--primary-text);
+    transition: background-color 0.2s ease;
+}
+
+.user-icon-btn:hover,
+.user-icon-btn:focus {
+    background-color: var(--border-color);
+    outline: none;
+}
+
+.user-dropdown {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 0.5rem);
+    background: var(--container-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    min-width: 180px;
+    z-index: 1000;
+    padding: 0.5rem 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-dropdown[hidden] {
+    display: none;
+}
+
+.dropdown-item {
+    padding: 0.5rem 1rem;
+    color: var(--primary-text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dropdown-item i {
+    font-size: 1rem;
+    color: var(--primary-text);
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: var(--accent-bg);
+    outline: none;
+}
+
+/* Main layout */
+.main-layout {
+    display: flex;
+    flex-grow: 1;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    padding: 2rem 1.5rem;
+    flex-shrink: 0;
+    border-right: 1px solid var(--border-color);
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nav-item a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 9999px; /* pill shape */
+    text-decoration: none;
+    color: var(--primary-text);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.nav-item a:hover {
+    background-color: var(--accent-bg);
+}
+
+.nav-item.active a {
+    background-color: var(--accent-bg);
+    font-weight: 700;
+}
+
+.nav-item i {
+    font-size: 1.25rem;
+}
+
+/* Logout item */
+.nav-list .logout-item a {
+    cursor: pointer;
+}
+
+.nav-list .logout-item a:hover {
+    background-color: var(--accent-bg);
+}
+
+.stats-cards {
+    display: flex;
+    gap: 2rem; /* space between cards */
+    margin-bottom: 2rem;
+    flex-wrap: wrap; /* fallback on small screens */
+    justify-content: start; /* align left by default */
+}
+
+/* Adjust .card for two cards per row */
+.card {
+    background: white;
+    flex: 1 1 calc(50% - 1rem); /* take roughly half width minus gap */
+    padding: 1.5rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    text-align: center;
+    min-width: 250px; /* optional min width */
+    box-sizing: border-box;
+}
+
+.card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #0a9396;
+}
+
+.card p {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #005f73;
+}
+
+/* Content area */
+.content-area {
+    flex-grow: 1;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    min-height: 550px;
+}
+
+/* Headings */
+.content-area h1 {
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+/* Donation History Section */
+.donation-history h2 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+/* Table */
+.content-area table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.content-area th, 
+.content-area td {
+    border: 1px solid var(--border-color);
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.content-area th {
+    background-color: var(--accent-bg);
+    font-weight: 700;
+}
+
+.content-area tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main-layout {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+    .content-area {
+        min-height: auto;
+        padding: 1rem;
+    }
+}

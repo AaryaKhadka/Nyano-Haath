@@ -17,8 +17,37 @@
             <a href="#how-it-works">How It Works</a>
             <a href="{{ route('aboutus') }}">About</a>
         </nav>
-        <div class="header-action">
-            <a href="{{ route('login')}}" class="btn btn-primary btn-login">Login</a>
+     <div class="header-action">
+    @auth
+        <div class="dropdown">
+            <button class="profile-btn">
+                <i class="fas fa-user-circle fa-2x"></i>
+            </button>
+            <div class="dropdown-content">
+                @php
+                    if (Auth::user()->role === 'admin') {
+                        $dashboardRoute = route('admin.dashboard');
+                    } elseif (Auth::user()->role === 'donor') {
+                        $dashboardRoute = route('donor.dashboard');
+                    } else {
+                        // default to fundraiser dashboard or generic dashboard route
+                        $dashboardRoute = route('dashboard');
+                    }
+                @endphp
+                <a href="{{ $dashboardRoute }}">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+                <form method="POST" action="{{ route('logout.redirect') }}">
+                    @csrf
+                    <button type="submit" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </form>
+            </div>
         </div>
+    @else
+        <a href="{{ route('login')}}" class="btn btn-primary">Login</a>
+    @endauth
+</div>
 
     </header>

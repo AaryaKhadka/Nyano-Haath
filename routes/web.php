@@ -113,6 +113,10 @@ Route::get('/donate/{campaign}', [DonationController::class, 'showForm'])->name(
 Route::post('/donate/{campaign}', [DonationController::class, 'initiatePayment'])->name('donation.process');
 
 
+//route for donor dashboard
+Route::get('/donor/dashboard', [DonationController::class, 'donorDashboard'])->name('donor.dashboard');
+
+
 require __DIR__.'/auth.php';
 
 

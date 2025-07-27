@@ -36,7 +36,7 @@
             <a href="#how-it-works">How It Works</a>
             <a href="{{ route('aboutus') }}">About</a>
         </nav>
-        <div class="header-action">
+       <div class="header-action">
     @auth
         <div class="dropdown">
             <button class="profile-btn">
@@ -44,7 +44,14 @@
             </button>
             <div class="dropdown-content">
                 @php
-                    $dashboardRoute = Auth::user()->role === 'admin' ? route('admin.dashboard') : route('dashboard');
+                    if (Auth::user()->role === 'admin') {
+                        $dashboardRoute = route('admin.dashboard');
+                    } elseif (Auth::user()->role === 'donor') {
+                        $dashboardRoute = route('donor.dashboard');
+                    } else {
+                        // default to fundraiser dashboard or generic dashboard route
+                        $dashboardRoute = route('dashboard');
+                    }
                 @endphp
                 <a href="{{ $dashboardRoute }}">
                     <i class="fas fa-tachometer-alt"></i> Dashboard
@@ -61,6 +68,7 @@
         <a href="{{ route('login')}}" class="btn btn-primary">Login</a>
     @endauth
 </div>
+
 
     </header>
 

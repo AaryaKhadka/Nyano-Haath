@@ -159,4 +159,20 @@ class DonationController extends Controller
         return redirect()->route('donation.form', ['campaign' => $donation->campaign_id])
                          ->withErrors('Payment verification failed. Please contact support.');
     }
+
+public function donorDashboard()
+{
+    $user = auth()->user();
+
+    // Fetch all donations by this user with related campaigns
+    $donations = $user->donations()->with('campaign')->latest()->get();
+
+    // Count total donations and total amount donated
+    $totalDonations = $donations->count();
+    $totalAmount = $donations->sum('amount');
+
+    return view('donations.dBoard', compact('donations', 'totalDonations', 'totalAmount'));
+}
+
+
 }

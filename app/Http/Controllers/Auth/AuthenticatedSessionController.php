@@ -11,45 +11,35 @@ use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Display the login view.
-     */
     public function create(): View
     {
         return view('auth.login');
     }
 
-    /**
-     * Handle an incoming authentication request.
-     */
-  public function store(LoginRequest $request): RedirectResponse
-  {
+    public function store(LoginRequest $request): RedirectResponse
+{
     $request->authenticate();
     $request->session()->regenerate();
 
     $user = Auth::user();
 
-    if ($user->role === 'admin') {
-        return redirect()->route('admin.dashboard');
+    switch ($user->role) {
+        case 'admin':
+            return redirect()->route('admin.dashboard');
+        case 'donor':
+            return redirect()->route('donor.dashboard');  // Redirect donors here
+        
+        default:
+            return redirect()->route('dashboard');
     }
-
-    // donor or any other role
-    return redirect()->route('dashboard');
 }
 
-    /**
-     * Destroy an authenticated session.
-     */
-    
+
     public function destroy(Request $request): RedirectResponse
-{
-    Auth::guard('web')->logout();
-
-    $request->session()->invalidate();
-
-    $request->session()->regenerateToken();
-
-    // Redirect to public landing page (index)
-    return redirect()->route('home');
-}
+    {
+        Auth::guard('web')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('home');
+    }
 }
