@@ -45,7 +45,7 @@
                 <h1>Create Account</h1>
 
                 @if ($errors->any())
-                    <div style="color: red; margin-bottom: 10px;">
+                    <div >
                         <ul>
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
@@ -75,7 +75,7 @@
                 <h1>Login</h1>
 
                 @if ($errors->any())
-                    <div style="color: red; margin-bottom: 10px;">
+                    <div>
                         <ul>
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>

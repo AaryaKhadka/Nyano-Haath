@@ -281,6 +281,20 @@ Header
     color: var(--dark-text);
 }
 
+.category-circles a {
+    text-decoration: none; /* removes underline */
+    color: inherit;        /* inherits the text color from parent */
+    display: inline-block; /* so that padding/margin and sizing work well */
+}
+
+/* Optional: make sure the link doesn't have the blue outline on focus */
+.category-circles a:focus,
+.category-circles a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+
 /* Remove default button styles from logout */
 .logout-btn {
     font-family: inherit;
