@@ -218,7 +218,7 @@
             <div class="footer-links">
                 <h4>Resources</h4>
                 <ul>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="{{ route('contactus') }}">Contact Us</a></li>
                     <li><a href="#">Blog</a></li>
                     <li><a href="#">Press center</a></li>
                     <li><a href="#">Careers</a></li>
@@ -226,7 +226,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2024 Nyano Haath. All Rights Reserved. | <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a></p>
+            <p>© 2024 Nyano Haath. All Rights Reserved. | <a href="#">Terms of Service</a> | <a href="{{ route('privacy') }}">Privacy Policy</a></p>
         </div>
     </footer>
 

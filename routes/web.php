@@ -139,6 +139,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
     Route::post('/withdrawals/{withdrawal}/release', [AdminController::class, 'releaseWithdrawal'])->name('withdrawals.release');
 });
 
+Route::view('/privacy', 'privacy')->name('privacy');
+Route::view('/contactus', 'contactus')->name('contactus');
 
 
 require __DIR__.'/auth.php';

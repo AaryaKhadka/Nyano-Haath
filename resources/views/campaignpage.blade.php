@@ -46,11 +46,11 @@
                                     <p class="slide-date">{{ \Carbon\Carbon::parse($campaign->created_at)->format('d M, Y') }}</p>
                                     <p class="slide-description">{{ \Illuminate\Support\Str::limit($campaign->description, 160) }}</p>
                                     <a href="{{ route('user.view', $campaign) }}" class="read-more-link">Read More</a>
-                                    <div class="slide-analytics">
+                                    <!-- <div class="slide-analytics">
                                         <span class="analytics-item"><i class="fa-solid fa-pen-nib"></i> {{ $campaign->signatures_count }}</span>
                                         <span class="analytics-item"><i class="fa-solid fa-file-excel"></i> {{ $campaign->documents_count }}</span>
                                         <span class="analytics-item"><i class="fa-solid fa-folder-open"></i> {{ $campaign->folders_count }}</span>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             @endforeach
