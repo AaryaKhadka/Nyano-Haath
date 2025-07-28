@@ -44,9 +44,11 @@
                 <ul class="nav-list">
                     <li class="nav-item"><a href="{{ route('dashboard') }}"><i class="fas fa-house"></i><span>Dashboard</span></a></li>
                     <li class="nav-item"><a href="{{ route('campaigns.create') }}"><i class="fas fa-bullhorn"></i><span>Add Campaign</span></a></li>
-                    <li class="nav-item"><a href="#"><i class="fas fa-wallet"></i><span>Withdraw</span></a></li>
-                    <li class="nav-item"><a href="#"><i class="fas fa-question-circle"></i><span>FAQ</span></a></li>
-                    <li class="nav-item logout-item"><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
+                    <li class="nav-item"><a href="{{ route('withdraw.index') }}"><i class="fas fa-wallet"></i><span>Withdraw</span></a></li>
+<a href="{{ route('withdraw.transactions') }}">
+                            <i class="fas fa-list"></i>
+                            <span>Transaction History</span>
+                        </a>                    <li class="nav-item logout-item"><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
                 </ul>
             </nav>
         </aside>

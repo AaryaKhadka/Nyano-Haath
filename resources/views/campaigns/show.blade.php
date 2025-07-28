@@ -59,16 +59,16 @@
                   </a>
               </li>
               <li class="nav-item">
-                  <a href="#">
+                  <a href="{{ route('withdraw.index') }}">
                       <i class="fas fa-wallet"></i>
                       <span>Withdraw</span>
                   </a>
               </li>
               <li class="nav-item">
-                  <a href="#">
-                      <i class="fas fa-question-circle"></i>
-                      <span>FAQ</span>
-                  </a>
+                  <a href="{{ route('withdraw.transactions') }}">
+                            <i class="fas fa-list"></i>
+                            <span>Transaction History</span>
+                        </a>
               </li>
               <li class="nav-item logout-item">
                   <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

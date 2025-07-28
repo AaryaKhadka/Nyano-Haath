@@ -25,7 +25,7 @@
         <div class="profile-dropdown-wrapper">
             <button class="profile-button" onclick="toggleDropdown()" title="Profile">
                 <!-- User icon using Font Awesome -->
-                <i class="fa-solid fa-user"></i>
+                <i class="fas fa-user-circle fa-xl"></i>
             </button>
             <div id="dropdown-menu" class="dropdown-menu hidden">
                 <a href="{{ route('dashboard') }}">
@@ -146,6 +146,7 @@
             </form>
         </main>
     </div>
+    @include('layouts.footer')
 </div>
 
 <script>

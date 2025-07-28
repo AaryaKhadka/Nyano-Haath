@@ -30,9 +30,9 @@
                 <a href="{{ route('profile.edit') }}" role="menuitem" class="dropdown-item">
                     <i class="fas fa-user-edit"></i> Update Profile
                 </a>
-                <a href="#" role="menuitem" class="dropdown-item">
+                <!-- <a href="#" role="menuitem" class="dropdown-item">
                     <i class="fas fa-bell"></i> Notifications
-                </a>
+                </a> -->
                 <a href="#" role="menuitem" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </a>

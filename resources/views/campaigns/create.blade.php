@@ -86,15 +86,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#">
+                        <a href="{{ route('withdraw.index') }}">
                             <i class="fa-solid fa-wallet"></i>
                             <span>Withdraw</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#">
-                            <i class="fa-solid fa-circle-question"></i>
-                            <span>FAQ</span>
+                        <a href="{{ route('withdraw.transactions') }}">
+                            <i class="fas fa-list"></i>
+                            <span>Transaction History</span>
                         </a>
                     </li>
                     <li class="nav-item logout-item">

@@ -30,9 +30,9 @@
                 <a href="{{ route('profile.edit') }}" role="menuitem" class="dropdown-item">
                     <i class="fas fa-user-edit"></i> Update Profile
                 </a>
-                <a href="#" role="menuitem" class="dropdown-item">
+                <!-- <a href="#" role="menuitem" class="dropdown-item">
                     <i class="fas fa-bell"></i> Notifications
-                </a>
+                </a> -->
                 <a href="#" role="menuitem" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </a>
@@ -95,7 +95,7 @@
                 <h2>Available Amount: NPR {{ number_format($availableAmount, 2) }}</h2>
                 <p class="note">
                     If you want your story to be <strong>featured</strong>, contact us via the
-                    <a href="#">Contact Us</a> page.
+                    <a href="{{ route('contactus') }}">Contact Us</a> page.
                     Platform fee for featured campaigns is 8%.
                 </p>
             </div>
