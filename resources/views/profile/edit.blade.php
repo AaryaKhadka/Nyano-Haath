@@ -28,9 +28,10 @@
                 <i class="fas fa-user-circle fa-xl"></i>
             </button>
             <div id="dropdown-menu" class="dropdown-menu hidden">
-                <a href="{{ route('dashboard') }}">
-                  <i class="fa-solid fa-house"></i> Home
-                </a>
+                <a href="{{ Auth::user()->role === 'donor' ? route('donor.dashboard') : route('dashboard') }}">
+    <i class="fa-solid fa-house"></i> Home
+</a>
+
                 <form id="logout-form" action="{{ route('logout.redirect') }}" method="POST">
                     @csrf
                     <button type="submit">
@@ -47,42 +48,71 @@
 
     <div class="main-layout">
         <aside class="sidebar">
-            <nav>
-                <ul class="nav-list">
-                    <li class="nav-item">
-                        <a href="{{ route('dashboard') }}">
-                            <!-- Dashboard icon -->
-                            <i class="fas fa-house"></i>
-                            <span>Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('campaigns.create') }}">
-                            <!-- Campaigns icon -->
-                            <i class="fa-solid fa-bullhorn"></i>
-                            <span>Add Campaign</span>
-                        </a>
-                    </li>
-                    <li class="nav-item active">
-                        <a href="{{ route('profile.edit') }}">
-                            <!-- User icon -->
-                            <i class="fa-solid fa-user"></i>
-                            <span>Profile</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <form id="sidebar-logout-form" action="{{ route('logout.redirect') }}" method="POST" style="display:none;">
-                            @csrf
-                        </form>
-                        <a href="#" onclick="event.preventDefault(); document.getElementById('sidebar-logout-form').submit();">
-                            <!-- Logout icon -->
-                            <i class="fa-solid fa-right-from-bracket"></i>
-                            <span>Logout</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </aside>
+    <nav>
+        <ul class="nav-list">
+            @if(Auth::user()->role === 'donor')
+                <li class="nav-item active">
+                    <a href="{{ route('donor.dashboard') }}">
+                        <i class="fa-solid fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('feed') }}">
+                        <i class="fa-solid fa-hand-holding-heart"></i>
+                        <span>Make a Donation</span>
+                    </a>
+                </li>
+                <li class="nav-item logout-item">
+                    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            @elseif(Auth::user()->role === 'fundraiser')
+                <li class="nav-item active">
+                    <a href="{{ route('dashboard') }}">
+                        <i class="fas fa-house"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('campaigns.create') }}">
+                        <i class="fa-solid fa-bullhorn"></i>
+                        <span>Add Campaign</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('profile.edit') }}">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+                <li class="nav-item logout-item">
+                    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            @elseif(Auth::user()->role === 'admin')
+                <li class="nav-item active">
+                    <a href="{{ route('admin.dashboard') }}">
+                        <i class="fa-solid fa-tachometer-alt"></i>
+                        <span>Admin Dashboard</span>
+                    </a>
+                </li>
+                <!-- Add other admin links here -->
+                <li class="nav-item logout-item">
+                    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            @endif
+        </ul>
+    </nav>
+</aside>
+
 
         <main class="content-area">
             <!-- Back Button -->

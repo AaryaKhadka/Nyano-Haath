@@ -50,9 +50,9 @@
                 aria-labelledby="userMenuButton"
                 hidden
             >
-                <!-- <a href="{{ route('profile.edit') }}" role="menuitem" class="dropdown-item">
+                <a href="{{ route('profile.edit') }}" role="menuitem" class="dropdown-item">
                     <i class="fa-solid fa-user-pen"></i> Update Profile
-                </a> -->
+                </a>
                 <a
                     href="#"
                     role="menuitem"
