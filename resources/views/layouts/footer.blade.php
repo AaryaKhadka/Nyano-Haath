@@ -13,10 +13,10 @@
             <div class="footer-links">
                 <h4>Fundraise for</h4>
                 <ul>
-                    <li><a href="#">Medical</a></li>
-                    <li><a href="#">Emergency</a></li>
-                    <li><a href="#">Memorial</a></li>
-                    <li><a href="#">Education</a></li>
+                    <li><a href="{{ route('category.show', 'medical') }}">Medical</a></li>
+                    <li><a href="{{ route('category.show', 'emergency') }}">Emergency</a></li>
+                    <li><a href="{{ route('category.show', 'animal') }}">Animal</a></li>
+                    <li><a href="{{ route('category.show', 'education') }}">Education</a></li>
                 </ul>
             </div>
             <div class="footer-links">
