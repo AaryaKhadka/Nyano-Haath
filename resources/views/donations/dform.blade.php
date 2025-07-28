@@ -72,7 +72,7 @@
 
             <div class="form-group">
                 <label for="amount">Donation Amount (NPR) <span>*</span></label>
-                <input type="number" id="amount" name="amount" min="10" value="{{ old('amount') }}" required />
+                <input type="number" id="amount" name="amount" min="10" max="50000" value="{{ old('amount') }}" required />
                 <small>
                     @if ($errors->has('amount'))
                         <span class="field-error">{{ $errors->first('amount') }}</span>

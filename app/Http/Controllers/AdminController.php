@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Campaign;
 use App\Models\Withdrawal;
+use App\Models\Donation;
+
+
 
 class AdminController extends Controller
 {
@@ -163,6 +166,28 @@ public function releaseWithdrawal(Withdrawal $withdrawal)
     return back()->with('success', 'Withdrawal marked as released.');
 }
 
+
+public function platformEarnings()
+{
+    $donations = Donation::with('campaign')->get();
+
+    $activeEarnings = 0;
+    $featuredEarnings = 0;
+
+    foreach ($donations as $donation) {
+        if (!$donation->campaign) continue;
+
+        if ($donation->campaign->is_featured ?? false) {
+            $featuredEarnings += $donation->amount * 0.08;
+        } else {
+            $activeEarnings += $donation->amount * 0.03;
+        }
+    }
+
+    $totalEarnings = $activeEarnings + $featuredEarnings;
+
+    return view('dashboard.platformEarnings', compact('activeEarnings', 'featuredEarnings', 'totalEarnings'));
+}
 
 
 }

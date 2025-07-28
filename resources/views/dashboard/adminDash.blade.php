@@ -51,7 +51,7 @@
       <li><a href="{{ route('admin.campaigns.index') }}"><i class="fas fa-bullhorn"></i> Campaign Management</a></li>
       <li><a href="{{ route('admin.withdrawals.index') }}"><i class="fas fa-wallet"></i> Withdrawal Management</a></li>
       <!-- <li><a href="#"><i class="fas fa-star"></i> Featured Campaigns</a></li> -->
-      <li><a href="#"><i class="fas fa-wallet"></i> Platform Earnings</a></li>
+      <li><a href="{{ route('admin.earnings') }}"><i class="fas fa-wallet"></i> Platform Earnings</a></li>
     </ul>
   </nav>
 </aside>

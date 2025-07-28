@@ -214,4 +214,8 @@ Route::post('/donate/{campaign}', [DonationController::class, 'initiatePayment']
 Route::view('/privacy', 'privacy')->name('privacy');
 Route::view('/contactus', 'contactus')->name('contactus');
 
+
+Route::get('/admin/platform-earnings', [AdminController::class, 'platformEarnings'])->name('admin.earnings');
+
+
 require __DIR__.'/auth.php';
