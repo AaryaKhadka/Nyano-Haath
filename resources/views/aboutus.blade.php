@@ -42,7 +42,7 @@
         </section>
 
         <!-- Section 3: How It Works -->
-        <section id="how-it-works" class="section section-light-gray">
+        <section id="About-works" class="section section-light-gray">
             <div class="container text-center">
                 <h2 class="title-medium animate">Giving is Easy in 3 Steps</h2>
                 <div class="grid three-columns mt-12">

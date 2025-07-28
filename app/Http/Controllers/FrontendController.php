@@ -22,6 +22,10 @@ class FrontendController extends Controller
         return view('campaignpage');
     }
 
+    public function TermsAndCondition(){
+        return view('pages.TermsAndCondition');
+    }
+
 
 
 
