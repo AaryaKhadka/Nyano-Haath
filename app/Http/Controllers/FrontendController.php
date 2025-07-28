@@ -33,5 +33,20 @@ class FrontendController extends Controller
         return view('privacypolicy');
     }
 
-}
 
+    public function contactus(){
+        return view('pages.contactus');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+}

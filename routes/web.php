@@ -19,3 +19,27 @@ Route::get('/TermsAndCondition', [FrontendController::class, 'TermsAndCondition'
 Route::get('/campaignpage', [FrontendController::class, 'campaignpage'])->name('campaignpage');
 
 Route::get('/privacypolicy', [FrontendController::class, 'privacypolicy'])->name('privacypolicy');
+
+Route::get('/contactus', [FrontendController::class, 'contactus'])->name('contactus');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

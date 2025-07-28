@@ -288,14 +288,14 @@
             <aside class="contact-info">
                 <h3>Contact Information</h3>
                 
-                <div class="info-item">
+                <!-- <div class="info-item">
                     <i class="icon fas fa-map-marker-alt"></i>
                     <p>
                         <strong>Our Office</strong>
                         Mid Baneshwor, Kathmandu<br>
                         Bagmati, Nepal
                     </p>
-                </div>
+                </div> -->
 
                 <div class="info-item">
                     <i class="icon fas fa-envelope"></i>
@@ -326,14 +326,14 @@
         </div>
 
         <!-- Google Map Section -->
-        <div class="map-section">
+        <!-- <div class="map-section">
             <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.417277708918!2d85.33535931500588!3d27.7042594827931!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb199f75f0ef33%3A0x86361a35445d8361!2sMid-Baneshwor%2C%20Kathmandu%2044600!5e0!3m2!1sen!2snp!4v1663412345678" 
                 allowfullscreen="" 
                 loading="lazy" 
                 referrerpolicy="no-referrer-when-downgrade">
             </iframe>
-        </div>
+        </div> -->
     </div>
 
     <script>
