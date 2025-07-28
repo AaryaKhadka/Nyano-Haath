@@ -12,17 +12,6 @@
 
 @section('content')
 
-
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-               <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
 <div class="donation-page">
 
     <aside class="campaign-info">
@@ -39,6 +28,24 @@
 
         <h1 class="donation-title">Support: {{ $campaign->user->name }}'s Story</h1>
 
+        {{-- Show all errors except 'amount' --}}
+        @php
+            $generalErrors = collect($errors->all())->reject(function($error) use ($errors) {
+                return $errors->get('amount') && in_array($error, $errors->get('amount'));
+            });
+        @endphp
+
+        @if ($generalErrors->isNotEmpty())
+            <div class="form-error-alert">
+                <ul>
+                    @foreach ($generalErrors as $error)
+                       <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        {{-- Session error (if any) --}}
         @if(session('error'))
             <div class="alert alert-danger">
                 {{ session('error') }}
@@ -66,7 +73,13 @@
             <div class="form-group">
                 <label for="amount">Donation Amount (NPR) <span>*</span></label>
                 <input type="number" id="amount" name="amount" min="10" value="{{ old('amount') }}" required />
-                <small>Minimum donation is 10 NPR.</small>
+                <small>
+                    @if ($errors->has('amount'))
+                        <span class="field-error">{{ $errors->first('amount') }}</span>
+                    @else
+                        Minimum donation is 10 NPR.
+                    @endif
+                </small>
             </div>
 
             <div class="form-group checkbox-group">
@@ -85,6 +98,7 @@
     </section>
 
 </div>
+
 @endsection
 
 @section('scripts')

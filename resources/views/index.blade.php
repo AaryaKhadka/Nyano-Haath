@@ -146,41 +146,28 @@
             </div>
         </section>
         
-        <!-- Success Stories Section -->
-        <section class="success-stories fade-in-section">
-            <div class="container">
-                <h2>Inspiring Success Stories</h2>
-                <div class="stories-grid">
-                    <article class="story-card">
-                        <img src="{{ asset('image/naruto.jpg')}}" alt="School building">
-                        <div class="story-content">
-                            <span class="story-category">Education</span>
-                            <h3>Building a Brighter Future</h3>
-                            <p>Community comes together to rebuild a local school after it was damaged by floods.</p>
-                            <a href="#">Read More →</a>
-                        </div>
-                    </article>
-                    <article class="story-card">
-                        <img src="{{ asset('image/one-piece.jpg')}}" alt="A happy dog">
-                        <div class="story-content">
-                            <span class="story-category">Animal Welfare</span>
-                            <h3>A New Leash on Life</h3>
-                            <p>Funds raised for a new animal shelter that now houses over 50 rescued street dogs.</p>
-                             <a href="#">Read More →</a>
-                        </div>
-                    </article>
-                    <article class="story-card">
-                        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop" alt="Doctor checking patient">
-                        <div class="story-content">
-                             <span class="story-category">Medical</span>
-                            <h3>Hope for Hari's Heart</h3>
-                            <p>Thousands of donors helped fund a life-saving heart surgery for a young boy from a rural village.</p>
-                             <a href="#">Read More →</a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
+   <!-- Success Stories Section -->
+<section class="success-stories fade-in-section">
+    <div class="container">
+        <h2>Featured Stories</h2>
+        <div class="stories-grid">
+
+            @foreach ($featuredCampaigns->take(3) as $campaign)
+                <article class="story-card">
+                    <img src="{{ asset('storage/' . $campaign->campaign_image) }}" alt="{{ $campaign->title }}">
+                    <div class="story-content">
+                        <span class="story-category">{{ $campaign->category }}</span>
+                        <h3>{{ \Illuminate\Support\Str::limit($campaign->title, 40) }}</h3>
+                        <p>{{ \Illuminate\Support\Str::limit($campaign->description, 100) }}</p>
+                        <a href="{{ route('user.view', $campaign->id) }}">Read More →</a>
+                    </div>
+                </article>
+            @endforeach
+
+        </div>
+    </div>
+</section>
+
 
     </main>
 
@@ -265,8 +252,8 @@
         const hero = document.querySelector('.hero'); 
 
            const bgImages = [
-             "image/naruto.jpg",
-            "image/bleach.jpg"
+             "image/image1.jpg",
+            "image/image2.png"
             
            ];
 

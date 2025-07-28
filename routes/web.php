@@ -18,9 +18,8 @@ use App\Http\Controllers\WithdrawalController;
 */
 
 // Public Landing Page
-Route::get('/', function () {
-    return view('index');
-})->name('home');
+
+Route::get('/', [CampaignController::class, 'publicIndex'])->name('home');
 
 // Public Login Page
 Route::get('/login', function () {

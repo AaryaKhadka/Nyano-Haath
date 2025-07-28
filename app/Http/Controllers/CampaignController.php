@@ -119,28 +119,37 @@ public function show(Campaign $campaign)
 
 //campaignpage 
 
-public function publicIndex()
+public function publicIndex(Request $request)
 {
-    // Latest campaigns where status is NOT 'pending'
     $latestCampaigns = Campaign::where('status', '!=', 'pending')
         ->orderBy('created_at', 'desc')
         ->paginate(10);
 
-    // Success stories where status is NOT 'pending' and raised_amount >= goal_amount
     $successCampaigns = Campaign::where('status', '!=', 'pending')
         ->whereColumn('raised_amount', '>=', 'goal_amount')
         ->orderBy('updated_at', 'desc')
         ->take(10)
         ->get();
 
-    // Featured campaigns remain filtered on status = 'featured'
     $featuredCampaigns = Campaign::where('status', 'featured')
         ->orderBy('updated_at', 'desc')
         ->take(5)
         ->get();
 
-    return view('campaignpage', compact('latestCampaigns', 'successCampaigns', 'featuredCampaigns'));
+    // Detect which route was called
+    $currentRouteName = $request->route()->getName();
+
+    if ($currentRouteName === 'home') {
+        $viewName = 'index';
+    } elseif ($currentRouteName === 'feed') {
+        $viewName = 'campaignpage';
+    } else {
+        abort(404);
+    }
+
+    return view($viewName, compact('latestCampaigns', 'successCampaigns', 'featuredCampaigns'));
 }
+
 
 public function publicShow(Campaign $campaign)
 {

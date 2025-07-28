@@ -60,16 +60,24 @@
                     </div>
                 </div>
 
-            <!-- Main Feed Section with Sticky Header -->
-            <section class="news-feed">
-                <div class="news-feed-header-sticky">
-                    <div class="campaignTitle">
+                <!-- <div class="campaignTitle">
                         <h1 class="main-text">
                             <i class="fa-solid fa-hand-holding-heart" style="color: var(--primary-color); margin-right: 8px;"></i>
                             Support a Story
                         </h1>
                         <p class="sub-text">Be someone's Nyano Haath</p>
-                    </div>
+                    </div> -->
+
+            <!-- Main Feed Section with Sticky Header -->
+            <section class="news-feed">
+                <div class="news-feed-header-sticky">
+                    <!-- <div class="campaignTitle">
+                        <h1 class="main-text">
+                            <i class="fa-solid fa-hand-holding-heart" style="color: var(--primary-color); margin-right: 8px;"></i>
+                            Support a Story
+                        </h1>
+                        <p class="sub-text">Be someone's Nyano Haath</p>
+                    </div> -->
                     <nav class="feed-navigation">
                         <!-- <a class="nav-tab" data-tab="popular">Popular</a> -->
                         <a class="nav-tab active" data-tab="latest">Latest</a>

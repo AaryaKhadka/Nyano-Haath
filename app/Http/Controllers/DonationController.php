@@ -23,9 +23,9 @@ class DonationController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email',
-            'phone' => 'nullable|string|max:20',
+            'phone' => 'nullable|string|max:10',
             'amount' => 'required|integer|min:10',
-            'password' => 'nullable|string|min:6'
+            'password' => 'nullable|string|min:8'
         ]);
 
         $purchaseOrderId = Str::uuid()->toString();

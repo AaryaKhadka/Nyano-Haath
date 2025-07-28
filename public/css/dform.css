@@ -126,6 +126,28 @@ form {
   box-shadow: 0 0 6px #28a745aa;
 }
 
+.form-error-alert {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 1rem;
+    color: #dc3545; 
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.form-error-alert li {
+    margin-bottom: 0.3rem;
+}
+
+.field-error {
+    color: #dc3545; /* Bootstrap red */
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: 0.25rem;
+}
+
+
+
 /* Checkbox */
 .checkbox-group {
   flex-direction: row;
