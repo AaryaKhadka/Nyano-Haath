@@ -229,5 +229,8 @@ Route::get('/why', function () {
     return view('why');
 })->name('why');
 
+Route::get('/common', function () {
+    return view('common');
+})->name('common');
 
 require __DIR__.'/auth.php';

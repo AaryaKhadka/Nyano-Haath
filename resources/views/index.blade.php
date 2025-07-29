@@ -198,7 +198,7 @@
             <ul>
                 <li><a href="{{ route('how') }}">How it works</a></li>
                 <li><a href="{{ route('why') }}">Why Nyano Haath?</a></li>
-                <li><a href="#">Common questions</a></li>
+                <li><a href="{{ route('common') }}">Common questions</a></li>
                 <li><a href="{{route('feed')}}">Browse Campaigns</a></li>
             </ul>
         </div>
