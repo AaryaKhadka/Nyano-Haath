@@ -22,7 +22,7 @@
         <a href="#" class="btn btn-primary btn-large">Start a Fundraiser</a>
     </div>
 </main>
-     @include('layouts.fundraisingstep')
+     @include('layouts.donationstep')
 <!-- FAQ SECTION -->
 <section class="faq-section">
     <h2>Frequently Asked Questions</h2>

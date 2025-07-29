@@ -64,6 +64,7 @@
 .cat-howItWorks {
     background-color: var(--light-bg);
     padding: 4rem 2rem;
+    text-align: center;
 }
 
 .cat-stepsContainer {
@@ -71,7 +72,7 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     max-width: 1200px;
-    margin: 0 auto;
+    margin-top: 50px;
 }
 
 .cat-stepCard {

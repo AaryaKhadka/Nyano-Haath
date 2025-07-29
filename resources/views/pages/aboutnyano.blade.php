@@ -50,7 +50,7 @@
                     This small percentage covers essential costs like security, fraud prevention, campaign verification, and technology maintenance. This model allows us to offer a powerful fundraising tool with zero upfront costs to those in need.
                 </p>
   </section>
-   @include('layouts.fundraisingstep')
+   @include('layouts.donationstep')
    <section class="nh-cta">
     <h2>Ready to Make a Difference?</h2>
     <p>Your support can change a life. Start or support a campaign today.</p>
