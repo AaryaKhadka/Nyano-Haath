@@ -20,7 +20,9 @@ class FrontendController extends Controller
     public function aboutnyano(){
         return view('pages.aboutnyano');
     }
-
+public function how(){
+        return view('pages.how');
+    }
 
    public function categoriesDetail($type)
 {

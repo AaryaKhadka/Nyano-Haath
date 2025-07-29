@@ -19,6 +19,8 @@ Route::get('/category/{type}', [FrontendController::class, 'categoriesDetail'])-
 //for the about nyano page
 Route::get('/aboutnyano', [FrontendController::class, 'aboutnyano'])->name('aboutnyano');
 
+//for how it work
+Route::get('/how', [FrontendController::class, 'how'])->name('how');
+
 // Auth routes
 Route::get('/login', [FrontendController::class, 'login'])->name('login');
-// Route::get('/register', [FrontendController::class, 'register'])->name('register');
