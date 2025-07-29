@@ -23,8 +23,8 @@
         <div class="footer-links">
             <h4>Learn More</h4>
             <ul>
-                <li><a href="#">How it works</a></li>
-                <li><a href="#">Why Nyano Haath?</a></li>
+                <li><a href="{{ route('how') }}">How it works</a></li>
+                <li><a href="{{ route('why') }}">Why Nyano Haath?</a></li>
                 <li><a href="#">Common questions</a></li>
                 <li><a href="#">Success stories</a></li>
             </ul>
@@ -40,6 +40,6 @@
         </div>
     </div>
     <div class="footer-bottom">
-        <p>© 2024 Nyano Haath. All Rights Reserved. | <a href="#">Terms of Service</a> | <a href="{{ route('privacy') }}">Privacy Policy</a></p>
+        <p>© 2024 Nyano Haath. All Rights Reserved. | <a href="{{ route('terms') }}">Terms of Service</a> | <a href="{{ route('privacy') }}">Privacy Policy</a></p>
     </div>
 </footer>

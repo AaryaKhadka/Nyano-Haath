@@ -217,5 +217,17 @@ Route::view('/contactus', 'contactus')->name('contactus');
 
 Route::get('/admin/platform-earnings', [AdminController::class, 'platformEarnings'])->name('admin.earnings');
 
+Route::get('/terms', function () {
+    return view('terms');
+})->name('terms');
+
+Route::get('/how', function () {
+    return view('how');
+})->name('how');
+
+Route::get('/why', function () {
+    return view('why');
+})->name('why');
+
 
 require __DIR__.'/auth.php';

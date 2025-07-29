@@ -15,7 +15,7 @@
            Left Sidebar
            ========================================================================== -->
         <aside class="sidebar-left">
-            <a href="#" class="sidebar-button active"><i class="fa-solid fa-pen-to-square"></i><span>Start Petition</span></a>
+            <a href="{{ route('login') }}" class="sidebar-button active"><i class="fa-solid fa-pen-to-square"></i><span>Start Petition</span></a>
             <a href="#" class="sidebar-button"><i class="fa-solid fa-magnifying-glass"></i><span>Search</span></a>
             <a href="#" class="sidebar-button"><i class="fa-solid fa-bell"></i><span>Notifications</span></a>
             <a href="#" class="sidebar-button"><i class="fa-solid fa-gear"></i><span>Settings</span></a>

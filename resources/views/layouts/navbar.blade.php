@@ -14,7 +14,7 @@
 
             <a href="{{ route('home') }}">Home</a>
             <a href="{{ route('feed') }}">Campaigns</a>
-            <a href="#how-it-works">How It Works</a>
+            <a href="{{ route('how') }}">How It Works</a>
             <a href="{{ route('aboutus') }}">About</a>
         </nav>
      <div class="header-action">

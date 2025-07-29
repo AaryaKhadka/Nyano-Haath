@@ -33,7 +33,7 @@
 
             <a href="{{ route('home') }}">Home</a>
             <a href="{{ route('feed') }}">Campaigns</a>
-            <a href="#how-it-works">How It Works</a>
+            <a href="{{ route('how') }}">How It Works</a>
             <a href="{{ route('aboutus') }}">About</a>
         </nav>
        <div class="header-action">
@@ -196,8 +196,8 @@
             <div class="footer-links">
                 <h4>Learn More</h4>
                 <ul>
-                    <li><a href="#">How it works</a></li>
-                    <li><a href="#">Why Nyano Haath?</a></li>
+                    <li><a href="{{ route('how') }}">How it works</a></li>
+                    <li><a href="{{ route('why') }}">Why Nyano Haath?</a></li>
                     <li><a href="#">Common questions</a></li>
                     <li><a href="#">Success stories</a></li>
                 </ul>
@@ -213,7 +213,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2024 Nyano Haath. All Rights Reserved. | <a href="#">Terms of Service</a> | <a href="{{ route('privacy') }}">Privacy Policy</a></p>
+            <p>© 2024 Nyano Haath. All Rights Reserved. | <a href="{{ route('terms') }}">Terms & Conditions</a> | <a href="{{ route('privacy') }}">Privacy Policy</a></p>
         </div>
     </footer>
 
@@ -253,7 +253,8 @@
 
            const bgImages = [
              "image/image1.jpg",
-            "image/image2.png"
+            "image/img2.png",
+            "image/img3.png"
             
            ];
 
@@ -261,7 +262,7 @@
          setInterval(() => {
              hero.style.backgroundImage = `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)),  url('${bgImages[current]}`;
              current = (current + 1) % bgImages.length;
-            }, 2000);
+            }, 3000);
 
     </script>
 </body>

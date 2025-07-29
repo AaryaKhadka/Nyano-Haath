@@ -19,7 +19,7 @@
     <div class="textangled">
         <h1>{{ $title }}</h1>
         <p>{{ $description }}</p>
-        <a href="#" class="btn btn-primary btn-large">Start a Fundraiser</a>
+        <a href="{{ route('login') }}" class="btn btn-primary btn-large">Start a Fundraiser</a>
     </div>
 </main>
 
