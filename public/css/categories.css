@@ -1,12 +1,12 @@
+
+
 .stats {
     background-color: var(--light-bg);
     padding: var(--section-padding);
 
-    a{
-         color: var(--primary-color);
+       a{
+         color: var(--dark-text);
          text-decoration: none;
-         font-weight: 600;
-         font-size: 1.2rem;
          display: flex;
          justify-content: end;
     }
@@ -23,6 +23,11 @@
     text-align: center;
     flex-basis: 250px;
     padding: 20px;
+
+    h3 {
+    font-size: 1.6em;
+    margin-bottom: 5px;
+}
 }
 
 .stat-item i {
@@ -34,9 +39,4 @@
 
 .stat-item:hover i {
     transform: scale(1.2) rotate(10deg);
-}
-
-.stat-item h3 {
-    font-size: 1.6em; /* Reduced font size for better readability */
-    margin-bottom: 5px;
 }
