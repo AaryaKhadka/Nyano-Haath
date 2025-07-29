@@ -21,19 +21,19 @@
                 </div>
                <div class="category-circles">
                   <div class="circle-item">
-                     <div class="circle-icon"><i class="fas fa-heart-pulse"></i></div>
+                     <a href=""><div class="circle-icon"><i class="fas fa-heart-pulse"></i></div></a>
                      <span>Medical</span>
                   </div>
                   <div class="circle-item">
-                     <div class="circle-icon"><i class="fas fa-bolt"></i></div>
+                     <a href=""><div class="circle-icon"><i class="fas fa-bolt"></i></div></a>
                        <span>Emergency</span>
                   </div>
                   <div class="circle-item">
-                     <div class="circle-icon"><i class="fas fa-paw"></i></div>
+                     <a href="#"><div class="circle-icon"><i class="fas fa-paw"></i></div></a>
                      <span>Animal</span>
                   </div>
                    <div class="circle-item">
-                     <div class="circle-icon"><i class="fas fa-arrow-right"></i></div>
+                     <a href="{{ route('categories')}}"><div class="circle-icon"><i class="fas fa-arrow-right"></i></div></a>
                      <span>More</span>
                    </div>
              </div>
@@ -42,33 +42,7 @@
         </section>
 
         <!-- How It Works Section -->
-        <section id="how-it-works" class="how-it-works fade-in-section">
-            <div class="container">
-                <div class="section-intro">
-                    <h2>Fundraising in 3 Easy Steps</h2>
-                    <p>Get started in just a few minutes. We provide the tools to make your campaign a success.</p>
-                </div>
-                <div class="steps-container">
-                    <div class="step-card">
-                        <div class="step-icon"><i class="fas fa-rocket"></i></div>
-                        <h3>1. Start Your Campaign</h3>
-                        <p>Tell your story, set your goal, and add a compelling picture or video.</p>
-                    </div>
-                    <div class="step-card">
-                        <div class="step-icon"><i class="fas fa-share-alt"></i></div>
-                        <h3>2. Share With Friends</h3>
-                        <p>Spread the word through social media, email, and text to build momentum.</p>
-                    </div>
-                    <div class="step-card">
-                        <div class="step-icon"><i class="fas fa-wallet"></i></div>
-                        <h3>3. Manage Donations</h3>
-                        <p>Easily accept donations and thank your donors. Withdraw funds directly to your bank.</p>
-                    </div>
-                </div>
-                <div class="campaign-btn"><a href="#" class="btn btn-primary btn-large">Start Campaign</a></div>
-            </div>
-               
-        </section>
+        @include('layouts.fundraisingstep')
         
         <!-- Success Stories Section -->
         <section class="success-stories fade-in-section">
