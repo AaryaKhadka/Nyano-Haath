@@ -14,10 +14,10 @@
         <div class="footer-links">
             <h4>Fundraise for</h4>
             <ul>
-                <li><a href="#">Medical</a></li>
-                <li><a href="#">Emergency</a></li>
-                <li><a href="#">Memorial</a></li>
-                <li><a href="#">Education</a></li>
+                <li><a href="{{ route('categories.detail', 'medical') }}">Medical</a></li>
+                <li><a href="{{ route('categories.detail', 'emergency') }}">Emergency</a></li>
+                <li><a href="{{ route('categories.detail', 'animal') }}">Animal Welfare</a></li>
+                <li><a href="{{ route('categories.detail', 'education') }}">Education</a></li>
             </ul>
         </div>
         <div class="footer-links">
@@ -26,20 +26,20 @@
                 <li><a href="{{ route('how') }}">How it works</a></li>
                 <li><a href="{{ route('why') }}">Why Nyano Haath?</a></li>
                 <li><a href="#">Common questions</a></li>
-                <li><a href="#">Success stories</a></li>
+                <li><a href="{{route('feed')}}">Browse Campaigns</a></li>
             </ul>
         </div>
         <div class="footer-links">
             <h4>Resources</h4>
             <ul>
                 <li><a href="{{ route('contactus') }}">Contact Us</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Press center</a></li>
-                <li><a href="#">Careers</a></li>
+                <li><a href="{{ route('feed') }}">Blog</a></li>
+                <li><a href="{{ route('terms') }}">Terms of Service</a></li>
+                <li><a href="{{ route('privacy') }}">Privacy Policy</a></li>
             </ul>
         </div>
     </div>
     <div class="footer-bottom">
-        <p>© 2024 Nyano Haath. All Rights Reserved. | <a href="{{ route('terms') }}">Terms of Service</a> | <a href="{{ route('privacy') }}">Privacy Policy</a></p>
+        <p>© 2024 Nyano Haath. All Rights Reserved.</p>
     </div>
 </footer>

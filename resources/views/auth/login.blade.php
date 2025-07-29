@@ -113,6 +113,7 @@
             </div>
         </div>
     </div>
+    
 
     <script>
      const signUpButton = document.getElementById('signUp');
@@ -127,5 +128,6 @@
        container.classList.remove('right-panel-active');
       });
     </script>
+    
 </body>
 </html>

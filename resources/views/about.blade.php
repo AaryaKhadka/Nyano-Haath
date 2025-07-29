@@ -71,19 +71,19 @@
                 <h2 class="title-medium animate">Meet the Student Founders</h2>
                 <div class="grid four-columns mt-12">
                     <div class="team-card animate">
-                        <img class="team-photo" src="https://i.pravatar.cc/150?u=aarya" alt="Aarya Khadka">
+                        <img class="team-photo" src="image/girl.png" alt="Aarya Khadka">
                         <h4 class="team-name">Aarya Khadka</h4>
                     </div>
                     <div class="team-card animate">
-                        <img class="team-photo" src="https://i.pravatar.cc/150?u=prasanna" alt="Prasanna Malla">
+                        <img class="team-photo" src="image/prasanna.jpg" alt="Prasanna Malla">
                         <h4 class="team-name">Prasanna Malla</h4>
                     </div>
                     <div class="team-card animate">
-                        <img class="team-photo" src="https://i.pravatar.cc/150?u=saroj" alt="Saroj Shah">
+                        <img class="team-photo" src="image/boy3.png" alt="Saroj Shah">
                         <h4 class="team-name">Saroj Shah</h4>
                     </div>
                     <div class="team-card animate">
-                        <img class="team-photo" src="https://i.pravatar.cc/150?u=shisir" alt="Shisir Kafle">
+                        <img class="team-photo" src="image/boy2.png" alt="Shisir Kafle">
                         <h4 class="team-name">Shisir Kafle</h4>
                     </div>
                 </div>
