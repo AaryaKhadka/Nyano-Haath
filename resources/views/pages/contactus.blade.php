@@ -5,7 +5,6 @@
 @section('styles')
 <style>
     :root {
-        --primary-color: #7B61FF;
         --secondary-color: #F8C424;
         --text-color: #4A4A4A;
         --heading-color: #333;
@@ -237,14 +236,7 @@
             <aside class="info-box">
                 <h3>Contact Information</h3>
 
-                <div class="info">
-                    <i class="icon fas fa-map-marker-alt" style="color: var(--primary-color);"></i>
-                    <p>
-                        <strong>Our Office</strong>
-                        Mid Baneshwor, Kathmandu<br />
-                        Bagmati, Nepal
-                    </p>
-                </div>
+                
 
                 <div class="info">
                     <i class="icon fab fa-whatsapp"></i>
