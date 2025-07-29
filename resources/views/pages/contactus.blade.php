@@ -5,10 +5,10 @@
   @section('styles')
    
 
-    <style>
+   <style>
         :root {
-            --primary-color: #7B61FF; /* The vibrant purple from your theme */
-            --secondary-color: #F8C424; /* The bright yellow from your theme */
+            --primary-color: #7B61FF;
+            --secondary-color: #F8C424;
             --text-color: #4A4A4A;
             --heading-color: #333;
             --bg-color: #FDFDFB;
@@ -33,10 +33,9 @@
             background: var(--card-bg);
             border-radius: 12px;
             box-shadow: var(--shadow);
-            overflow: hidden; /* To contain the child elements */
+            overflow: hidden;
         }
 
-        /* --- Header Section --- */
         .header {
             text-align: center;
             padding: 3rem 1.5rem;
@@ -57,16 +56,14 @@
             margin: 1rem auto 0;
         }
 
-        /* --- Main Content Wrapper (2-column layout) --- */
         .contact-wrapper {
             display: flex;
             padding: 3rem;
             gap: 3rem;
         }
 
-        /* --- Left Side: Contact Form --- */
         .contact-form {
-            flex: 2; /* Takes up 2/3 of the space */
+            flex: 2;
         }
 
         .contact-form h2 {
@@ -92,9 +89,7 @@
             padding: 0.8rem 1rem;
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            font-family: var(--body-font);
             font-size: 1rem;
-            transition: border-color 0.3s, box-shadow 0.3s;
         }
 
         .form-group input:focus,
@@ -115,7 +110,7 @@
             padding: 1rem;
             border: none;
             border-radius: 8px;
-            background: linear-gradient(135deg, var(--primary-color), #A48BFF);
+            background: linear-gradient(135deg, #25D366, #128C7E);
             color: white;
             font-size: 1.1rem;
             font-weight: 600;
@@ -125,12 +120,11 @@
 
         .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(123, 97, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
         }
 
-        /* --- Right Side: Contact Info --- */
         .contact-info {
-            flex: 1; /* Takes up 1/3 of the space */
+            flex: 1;
             background-color: #f8f9fa;
             padding: 2rem;
             border-radius: 12px;
@@ -142,25 +136,25 @@
             margin-top: 0;
             margin-bottom: 2rem;
         }
-        
+
         .info-item {
             display: flex;
             align-items: flex-start;
             gap: 1rem;
             margin-bottom: 1.5rem;
         }
-        
+
         .info-item .icon {
-            font-size: 1.2rem;
-            color: var(--primary-color);
+            font-size: 1.5rem;
+            color: #25D366;
             margin-top: 4px;
         }
-        
+
         .info-item p {
             margin: 0;
             line-height: 1.6;
         }
-        
+
         .info-item strong {
             display: block;
             font-weight: 600;
@@ -171,11 +165,6 @@
             margin-top: 2rem;
             padding-top: 1.5rem;
             border-top: 1px solid var(--border-color);
-        }
-
-        .social-links h4 {
-            margin: 0 0 1rem 0;
-            font-weight: 600;
         }
 
         .social-icons {
@@ -203,39 +192,14 @@
             transform: scale(1.1);
         }
 
-        /* --- Google Map Section --- */
-        .map-section {
-            width: 100%;
-            height: 400px; /* Adjust height as needed */
-        }
-        .map-section iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-        
-        /* --- Success Message (hidden by default) --- */
-        #success-message {
-            display: none;
-            text-align: center;
-            padding: 3rem;
-            background-color: #e9f9ee;
-            border: 2px solid #5cb85c;
-            border-radius: 12px;
-        }
-        #success-message h2 {
-            color: #4CAF50;
-            margin-top: 0;
-        }
-
-        /* --- Responsive Design --- */
         @media (max-width: 992px) {
             .contact-wrapper {
                 flex-direction: column;
             }
         }
+
         @media (max-width: 768px) {
-             body {
+            body {
                 padding: 1rem;
             }
             .contact-wrapper {
@@ -247,66 +211,58 @@
 
 
 @section('content')
-
-    <div class="container">
+ <div class="container">
         <header class="header">
             <h1>Get in Touch</h1>
             <p>Whether you have a question, a suggestion, or just want to say hello—we’d love to hear from you.</p>
         </header>
 
         <div class="contact-wrapper">
-            <!-- Left Side: Contact Form -->
+            <!-- Left: Form -->
             <div class="contact-form">
-                <div id="success-message">
-                    <h2>Thank You!</h2>
-                    <p>Your message has been sent successfully. We will get back to you shortly.</p>
-                </div>
-                
                 <form id="contactForm">
                     <h2>Send Us a Message</h2>
                     <div class="form-group">
                         <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="text" id="name" name="name" required />
                     </div>
                     <div class="form-group">
                         <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" required>
+                        <input type="text" id="subject" name="subject" required />
                     </div>
                     <div class="form-group">
                         <label for="message">Your Message</label>
                         <textarea id="message" name="message" required></textarea>
                     </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
+                    <button type="submit" class="submit-btn">
+                        <i class="fab fa-whatsapp"></i> Send via WhatsApp
+                    </button>
                 </form>
             </div>
 
-            <!-- Right Side: Contact Information -->
+            <!-- Right: Info -->
             <aside class="contact-info">
                 <h3>Contact Information</h3>
-                
-                <!-- <div class="info-item">
-                    <i class="icon fas fa-map-marker-alt"></i>
-                    <p>
-                        <strong>Our Office</strong>
-                        Mid Baneshwor, Kathmandu<br>
-                        Bagmati, Nepal
-                    </p>
-                </div> -->
 
                 <div class="info-item">
-                    <i class="icon fas fa-envelope"></i>
+                    <i class="icon fas fa-map-marker-alt" style="color: var(--primary-color);"></i>
                     <p>
-                        <strong>Email Us</strong>
-                        contact@nyanohaath.com
+                        <strong>Our Office</strong>
+                        Mid Baneshwor, Kathmandu<br />
+                        Bagmati, Nepal
                     </p>
                 </div>
 
                 <div class="info-item">
-                    <i class="icon fas fa-phone-alt"></i>
+                    <i class="icon fab fa-whatsapp"></i>
+                    <p>
+                        <strong>WhatsApp</strong>
+                        +977 9765429741
+                    </p>
+                </div>
+
+                <div class="info-item">
+                    <i class="icon fas fa-phone-alt" style="color: var(--primary-color);"></i>
                     <p>
                         <strong>Call Us</strong>
                         +977 9812345678
@@ -316,44 +272,40 @@
                 <div class="social-links">
                     <h4>Connect With Us</h4>
                     <div class="social-icons">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </aside>
         </div>
-
-        <!-- Google Map Section -->
-        <!-- <div class="map-section">
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.417277708918!2d85.33535931500588!3d27.7042594827931!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb199f75f0ef33%3A0x86361a35445d8361!2sMid-Baneshwor%2C%20Kathmandu%2044600!5e0!3m2!1sen!2snp!4v1663412345678" 
-                allowfullscreen="" 
-                loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-        </div> -->
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const contactForm = document.getElementById('contactForm');
-            const successMessage = document.getElementById('success-message');
 
-            contactForm.addEventListener('submit', function(e) {
-                // Prevent the default form submission (page reload)
+            contactForm.addEventListener('submit', function (e) {
                 e.preventDefault();
 
-                // --- In a real application, you would send the form data to a server here ---
-                // For demonstration purposes, we will just show the success message.
-                
-                // Hide the form
-                contactForm.style.display = 'none';
-                
-                // Show the success message
-                successMessage.style.display = 'block';
+                const whatsappNumber = '9779765429741';
+                const name = document.getElementById('name').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+
+                const whatsappMessage = `Hello Nyano Haath,
+
+Name: ${name}
+Subject: ${subject}
+Message: ${message}`;
+
+                const encodedMessage = encodeURIComponent(whatsappMessage);
+                const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+                window.open(whatsappURL, '_blank');
             });
         });
     </script>
+
 @endsection
