@@ -11,11 +11,11 @@
         <!-- Section 1: Welcome Area -->
         <section id="about" class="section welcome-section">
             <div class="container text-center">
-                <h1 class="title-large animate">
-                    A <span class="gradient-text">Warm Hand</span> for Every Cause.
-                </h1>
+                <h2 class="title-large animate">
+                    A Warm Hand for Every Cause.
+                </h2>
                 <p class="subtitle animate">
-                    We are a student-led project from Apex College, creating a simple, trusted platform to connect generous people with important causes across Nepal.
+                    Nyano Haath, which translates to "warm hands," is a web-based fundraising platform dedicated to empowering individuals and organizations in Nepal. We provide a secure, transparent, and user-friendly space to raise funds for medical emergencies, educational needs, and community projects. Our mission is to bridge the gap between those in need and compassionate donors, fostering a culture of giving and support across the nation. By leveraging technology, we aim to make fundraising accessible to all, ensuring that every cause finds the helping hands it deserves
                 </p>
                 <div class="mt-10 animate">
                     <a href="#" class="button-primary">Explore Causes</a>
@@ -41,29 +41,7 @@
             </div>
         </section>
 
-        <!-- Section 3: How It Works -->
-        <section id="About-works" class="section section-light-gray">
-            <div class="container text-center">
-                <h2 class="title-medium animate">Giving is Easy in 3 Steps</h2>
-                <div class="grid three-columns mt-12">
-                    <div class="step-card animate">
-                        <div class="step-number">01</div>
-                        <h3 class="title-small">Create a Fundraiser</h3>
-                        <p>Quickly tell your story and set a goal for what you need.</p>
-                    </div>
-                    <div class="step-card animate">
-                        <div class="step-number">02</div>
-                        <h3 class="title-small">Share Your Story</h3>
-                        <p>Share the link with friends, family, and our community.</p>
-                    </div>
-                    <div class="step-card animate">
-                        <div class="step-number">03</div>
-                        <h3 class="title-small">Receive Donations</h3>
-                        <p>Collect support safely and share updates with your donors.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
 
         <!-- Section 4: Meet the Team -->
         <section id="team" class="section section-light-gray">
