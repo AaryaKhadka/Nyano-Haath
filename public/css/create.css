@@ -14,7 +14,7 @@
   --error-text: #842029;
   --btn-primary-bg: #28a745;
   --btn-primary-hover: #218838;
-  --btn-cancel-color: #666;
+  
 }
 
 /* Reset & globals */
@@ -328,17 +328,24 @@ body {
   background-color: var(--btn-primary-hover);
 }
 
+/* Cancel button styling */
 .btn-cancel {
-  color: var(--btn-cancel-color);
-  font-weight: 600;
-  text-decoration: underline;
-  cursor: pointer;
-  font-size: 1.05rem;
-  transition: color 0.3s ease;
+    background-color: #dc3545; /* red */
+    color: white;
+    padding: 0.6rem 1.5rem;
+    border-radius: 9999px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    border: none;
 }
 
 .btn-cancel:hover {
-  color: var(--primary-text);
+    background-color: #b02a37;
+    color: white;
 }
 
 /* Responsive */

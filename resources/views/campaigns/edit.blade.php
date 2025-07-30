@@ -94,12 +94,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="country">Country</label>
-                    <select id="country" name="country" required>
-                        <option value="Nepal" {{ old('country', $campaign->country) == 'Nepal' ? 'selected' : '' }}>Nepal</option>
-                        <option value="India" {{ old('country', $campaign->country) == 'India' ? 'selected' : '' }}>India</option>
-                        <option value="Others" {{ old('country', $campaign->country) == 'Others' ? 'selected' : '' }}>Others</option>
-                    </select>
+                    <label for="district">District</label>
+<input type="text" id="district" name="district" value="{{ old('district', $campaign->district) }}"
+" required />
+
                 </div>
 
                 <div class="form-group">

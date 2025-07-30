@@ -117,11 +117,14 @@
                                         <div class="action-buttons">
                                             <a href="{{ route('creators.view', $campaign) }}" class="view-btn">View</a>
                                             <a href="{{ route('campaigns.edit', $campaign) }}" class="edit-btn">Edit</a>
-                                            <form action="{{ route('campaigns.destroy', $campaign) }}" method="POST" class="delete-form" onsubmit="return confirm('Are you sure?')">
+                                            @if($campaign->status === 'pending')
+                                            <form action="{{ route('campaigns.destroy', $campaign) }}" method="POST" class="delete-form" onsubmit="return confirm('Are you sure you want to delete this campaign?')">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="delete-btn">Delete</button>
-                                            </form>
+                                                </form>
+                                                @endif
+
                                         </div>
                                     </td>
                                 </tr>

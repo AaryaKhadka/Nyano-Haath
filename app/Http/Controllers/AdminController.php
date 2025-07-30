@@ -177,9 +177,9 @@ public function platformEarnings()
     foreach ($donations as $donation) {
         if (!$donation->campaign) continue;
 
-        if ($donation->campaign->is_featured ?? false) {
+        if ($donation->campaign->status === 'featured') {
             $featuredEarnings += $donation->amount * 0.08;
-        } else {
+        } elseif ($donation->campaign->status === 'active') {
             $activeEarnings += $donation->amount * 0.03;
         }
     }
@@ -188,6 +188,7 @@ public function platformEarnings()
 
     return view('dashboard.platformEarnings', compact('activeEarnings', 'featuredEarnings', 'totalEarnings'));
 }
+
 
 
 }

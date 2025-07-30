@@ -28,7 +28,7 @@ class CampaignController extends Controller
         'title' => 'required|string|max:255',
         'description' => 'required|string',
         'goal_amount' => 'required|numeric|min:1',
-        'country' => 'required|string|max:255',
+        'district' => 'required|string|max:255',
         'category' => 'required|string|max:255',
         'campaign_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         'verification_document' => 'required|file|mimes:pdf,jpg,jpeg,png|max:5120',
@@ -77,6 +77,7 @@ class CampaignController extends Controller
     $request->validate([
         'title' => 'required|string|max:255',
         'description' => 'required|string',
+        // 'district' => 'required|string|max:255',
         'goal_amount' => 'required|numeric',
     ]);
 
@@ -93,17 +94,22 @@ class CampaignController extends Controller
 }
 
 
-    // Delete campaign
     public function destroy(Campaign $campaign)
-    {
-        if ($campaign->user_id != auth()->id()) {
-            abort(403);
-        }
-
-        $campaign->delete();
-
-        return redirect()->route('dashboard')->with('success', 'Campaign deleted successfully.');
+{
+    // Optional: ensure the user is authorized
+    if (auth()->id() !== $campaign->user_id) {
+        abort(403, 'Unauthorized');
     }
+
+    // Prevent deleting unless status is 'pending'
+    if ($campaign->status !== 'pending') {
+        return redirect()->back()->withErrors(['error' => 'Only pending campaigns can be deleted.']);
+    }
+
+    $campaign->delete();
+
+    return redirect()->route('dashboard')->with('success', 'Campaign deleted successfully.');
+}
 
     // Show a single campaign
 public function show(Campaign $campaign)

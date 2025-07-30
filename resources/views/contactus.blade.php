@@ -1,6 +1,6 @@
 @extends('layouts.custom')
 
-@section('title', 'Login')
+@section('title', 'Contact Us')
 
 @section('styles')
 <style>
