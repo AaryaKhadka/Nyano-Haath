@@ -13,7 +13,7 @@ class RoleController extends Controller
             abort(403);
         }
 
-        $users = User::all();
+        $users = User::where('role', '!=', 'admin')->get();
         return view('dashboard.roleManagement', compact('users'));
     }
 

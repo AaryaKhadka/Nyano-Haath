@@ -46,35 +46,35 @@
                       </div>
                     </a>
 
-                   <a href="{{ route('categories.detail', 'education') }}">
+                   <a href="{{ route('categories.detail', 'disaster') }}">
                      <div class="stat-item">
-                        <i class="fas fa-lightbulb"></i>
-                        <h3>Your Cause</h3>
-                        <p>Bring your ideas to life</p>
+                      <i class="fa-solid fa-house-damage"></i>
+                        <h3>Disaster Relief</h3>
+                        <p>Disaster Relief Support</p>
                      </div>
                     </a>
 
-                    <a href="{{ route('categories.detail', 'education') }}">
+                    <a href="{{ route('categories.detail', 'sports') }}">
                      <div class="stat-item">
-                        <i class="fas fa-bolt"></i>
-                        <h3>Emergency</h3>
-                        <p>Provide immediate relief</p>
+                        <i class="fa-solid fa-futbol"></i>
+                        <h3>Sports</h3>
+                        <p> Empower Through Sports</p>
                      </div>
                     </a>
 
-                    <a href="{{ route('categories.detail', 'education') }}">
+                    <a href="{{ route('categories.detail', 'environmental-cause') }}">
                      <div class="stat-item">
-                        <i class="fas fa-bolt"></i>
-                        <h3>Emergency</h3>
-                        <p>Provide immediate relief</p>
+                        <i class=" fa-solid fa-leaf"></i>
+                        <h3> Environmental</h3>
+                        <p>Protect Our Planet</p>
                      </div>
                     </a>
 
-                    <a href="{{ route('categories.detail', 'education') }}">
+                    <a href="{{ route('categories.detail', 'community-project') }}">
                     <div class="stat-item">
-                        <i class="fas fa-briefcase"></i>
-                        <h3>Business</h3>
-                        <p>Launch a new venture</p>
+                        <i class="fa-solid fa-house-user"></i>
+                        <h3>Community</h3>
+                        <p> Strengthen Your Community</p>
                      </div>
                     </a>
                 </div>

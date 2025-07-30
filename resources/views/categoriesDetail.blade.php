@@ -19,32 +19,10 @@
     <div class="textangled">
         <h1>{{ $title }}</h1>
         <p>{{ $description }}</p>
-        <a href="{{ route('login') }}" class="btn btn-primary btn-large">Start a Fundraiser</a>
+        <a href="#" class="btn btn-primary btn-large">Start a Fundraiser</a>
     </div>
 </main>
-
-<!-- HOW IT WORKS SECTION -->
-<section class="cat-howItWorks">
-    <h2>Getting Started is Easy</h2>
-    <div class="cat-stepsContainer">
-        <div class="cat-stepCard">
-            <div class="cat-stepIcon"><i class="fa-solid fa-bullhorn"></i></div>
-            <h3>1. Tell Your Story</h3>
-            <p>Create your page in minutes. Explain your situation clearly and set your fundraising goal. Be authentic and personal.</p>
-        </div>
-        <div class="cat-stepCard">
-            <div class="cat-stepIcon"><i class="fa-solid fa-share-nodes"></i></div>
-            <h3>2. Share Your Link</h3>
-            <p>Share your unique fundraiser link with friends, family, and on social media. The more you share, the more support you'll get.</p>
-        </div>
-        <div class="cat-stepCard">
-            <div class="cat-stepIcon"><i class="fa-solid fa-piggy-bank"></i></div>
-            <h3>3. Receive Funds</h3>
-            <p>Securely transfer the funds you've raised directly to your bank account. You don't need to reach your goal to receive money.</p>
-        </div>
-    </div>
-</section>
-
+     @include('layouts.donationstep')
 <!-- FAQ SECTION -->
 <section class="faq-section">
     <h2>Frequently Asked Questions</h2>
@@ -54,8 +32,7 @@
                 Can I start a fundraiser for a friend or family member?
             </summary>
             <div class="faq-answer">
-                <p>Yes, absolutely! You can start a fundraiser on behalf of someone else. During setup, you can invite them to be the beneficiary, so they can receive the funds directly and securely.</p>
-            </div>
+                <p>Yes, absolutely! You can start a fundraiser on behalf of someone else. Just make sure to provide accurate information about their needs and how the funds will be used.</p>
         </details>
 
         <details class="faq-item">

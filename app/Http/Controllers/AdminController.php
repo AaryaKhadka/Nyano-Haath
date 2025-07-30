@@ -40,7 +40,7 @@ class AdminController extends Controller
     // Show Role Management page with list of users
     public function showRoles()
     {
-        $users = User::all();
+        $users = User::where('role', '!=', 'admin')->get();
         return view('dashboard.roleManagement', compact('users'));
     }
 

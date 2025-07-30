@@ -7,7 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\WithdrawalController;
-
+use App\Models\Campaign;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -66,25 +66,29 @@ Route::middleware(['auth'])->group(function () {
     })->name('campaigns.store');
 
     Route::get('/campaigns/{campaign}/edit', function ($campaign) {
-        if (Auth::user()->role !== 'fundraiser') abort(403);
-        return app()->call('App\Http\Controllers\CampaignController@edit', ['campaign' => $campaign]);
-    })->name('campaigns.edit');
+    if (Auth::user()->role !== 'fundraiser') abort(403);
+    $campaignModel = \App\Models\Campaign::findOrFail($campaign);
+    return app()->call('App\Http\Controllers\CampaignController@edit', ['campaign' => $campaignModel]);
+})->name('campaigns.edit');
 
     Route::put('/campaigns/{campaign}', function (Request $request, $campaign) {
-        if (Auth::user()->role !== 'fundraiser') abort(403);
-        return app()->call('App\Http\Controllers\CampaignController@update', ['request' => $request, 'campaign' => $campaign]);
-    })->name('campaigns.update');
+    if (Auth::user()->role !== 'fundraiser') abort(403);
+    $campaignModel = Campaign::findOrFail($campaign);
+    return app()->call('App\Http\Controllers\CampaignController@update', ['request' => $request, 'campaign' => $campaignModel]);
+})->name('campaigns.update');
 
     Route::delete('/campaigns/{campaign}', function ($campaign) {
-        if (Auth::user()->role !== 'fundraiser') abort(403);
-        return app()->call('App\Http\Controllers\CampaignController@destroy', ['campaign' => $campaign]);
-    })->name('campaigns.destroy');
+    if (Auth::user()->role !== 'fundraiser') abort(403);
+    $campaignModel = Campaign::findOrFail($campaign);
+    return app()->call('App\Http\Controllers\CampaignController@destroy', ['campaign' => $campaignModel]);
+})->name('campaigns.destroy');
 
     // Show single campaign view for fundraiser (optional)
     Route::get('/campaigns/{campaign}/view', function ($campaign) {
-        if (Auth::user()->role !== 'fundraiser') abort(403);
-        return app()->call('App\Http\Controllers\CampaignController@show', ['campaign' => $campaign]);
-    })->name('creators.view');
+    if (Auth::user()->role !== 'fundraiser') abort(403);
+    $campaignModel = Campaign::findOrFail($campaign);
+    return app()->call('App\Http\Controllers\CampaignController@show', ['campaign' => $campaignModel]);
+})->name('creators.view');
 
 
     Route::get('/withdraw', function () {
@@ -146,52 +150,61 @@ Route::middleware(['auth'])->group(function () {
         })->name('campaigns.index');
 
         Route::post('/campaigns/{campaign}/approve', function ($campaign) {
-            if (Auth::user()->role !== 'admin') abort(403);
-            return app()->call('App\Http\Controllers\AdminController@approveCampaign', ['campaign' => $campaign]);
-        })->name('campaigns.approve');
+    if (Auth::user()->role !== 'admin') abort(403);
+    $campaignModel = \App\Models\Campaign::findOrFail($campaign);
+    return app()->call('App\Http\Controllers\AdminController@approveCampaign', ['campaign' => $campaignModel]);
+})->name('campaigns.approve');
 
         Route::post('/campaigns/{campaign}/reject', function ($campaign) {
-            if (Auth::user()->role !== 'admin') abort(403);
-            return app()->call('App\Http\Controllers\AdminController@rejectCampaign', ['campaign' => $campaign]);
-        })->name('campaigns.reject');
+    if (Auth::user()->role !== 'admin') abort(403);
+    $campaignModel = \App\Models\Campaign::findOrFail($campaign);
+    return app()->call('App\Http\Controllers\AdminController@rejectCampaign', ['campaign' => $campaignModel]);
+})->name('campaigns.reject');
 
         Route::get('/campaigns/{campaign}', function ($campaign) {
-            if (Auth::user()->role !== 'admin') abort(403);
-            return app()->call('App\Http\Controllers\AdminController@showCampaign', ['campaign' => $campaign]);
-        })->name('campaigns.show');
+    if (Auth::user()->role !== 'admin') abort(403);
+    $campaignModel = \App\Models\Campaign::findOrFail($campaign);
+    return app()->call('App\Http\Controllers\AdminController@showCampaign', ['campaign' => $campaignModel]);
+})->name('campaigns.show');
 
         Route::post('/campaigns/{campaign}/feature', function ($campaign) {
-            if (Auth::user()->role !== 'admin') abort(403);
-            return app()->call('App\Http\Controllers\AdminController@featureCampaign', ['campaign' => $campaign]);
-        })->name('campaigns.feature');
+    if (Auth::user()->role !== 'admin') abort(403);
+    $campaignModel = \App\Models\Campaign::findOrFail($campaign);
+    return app()->call('App\Http\Controllers\AdminController@featureCampaign', ['campaign' => $campaignModel]);
+})->name('campaigns.feature');
 
         Route::post('/campaigns/{campaign}/unfeature', function ($campaign) {
-            if (Auth::user()->role !== 'admin') abort(403);
-            return app()->call('App\Http\Controllers\AdminController@unfeatureCampaign', ['campaign' => $campaign]);
-        })->name('campaigns.unfeature');
+    if (Auth::user()->role !== 'admin') abort(403);
+    $campaignModel = \App\Models\Campaign::findOrFail($campaign);
+    return app()->call('App\Http\Controllers\AdminController@unfeatureCampaign', ['campaign' => $campaignModel]);
+})->name('campaigns.unfeature');
 
-        // Admin Withdrawals management
-        Route::get('/withdrawals', function () {
-            if (Auth::user()->role !== 'admin') abort(403);
-            return app()->call('App\Http\Controllers\AdminController@withdrawals');
-        })->name('withdrawals.index');
+Route::get('/withdrawals', function () {
+    if (Auth::user()->role !== 'admin') abort(403);
+    return app()->call('App\Http\Controllers\AdminController@withdrawals'); // or whatever method lists withdrawals
+})->name('withdrawals.index');
 
         Route::post('/withdrawals/{withdrawal}/approve', function ($withdrawal) {
-            if (Auth::user()->role !== 'admin') abort(403);
-            return app()->call('App\Http\Controllers\AdminController@approveWithdrawal', ['withdrawal' => $withdrawal]);
-        })->name('withdrawals.approve');
+    if (Auth::user()->role !== 'admin') abort(403);
+    $withdrawalModel = \App\Models\Withdrawal::findOrFail($withdrawal);
+    return app()->call('App\Http\Controllers\AdminController@approveWithdrawal', ['withdrawal' => $withdrawalModel]);
+})->name('withdrawals.approve');
 
-        Route::post('/withdrawals/{withdrawal}/reject', function ($withdrawal) {
-            if (Auth::user()->role !== 'admin') abort(403);
-            return app()->call('App\Http\Controllers\AdminController@rejectWithdrawal', ['withdrawal' => $withdrawal]);
-        })->name('withdrawals.reject');
+Route::post('/withdrawals/{withdrawal}/reject', function ($withdrawal) {
+    if (Auth::user()->role !== 'admin') abort(403);
+    $withdrawalModel = \App\Models\Withdrawal::findOrFail($withdrawal);
+    return app()->call('App\Http\Controllers\AdminController@rejectWithdrawal', ['withdrawal' => $withdrawalModel]);
+})->name('withdrawals.reject');
 
-        Route::post('/withdrawals/{withdrawal}/release', function ($withdrawal) {
-            if (Auth::user()->role !== 'admin') abort(403);
-            return app()->call('App\Http\Controllers\AdminController@releaseWithdrawal', ['withdrawal' => $withdrawal]);
-        })->name('withdrawals.release');
-    });
-});
+Route::post('/withdrawals/{withdrawal}/release', function ($withdrawal) {
+    if (Auth::user()->role !== 'admin') abort(403);
+    $withdrawalModel = \App\Models\Withdrawal::findOrFail($withdrawal);
+    return app()->call('App\Http\Controllers\AdminController@releaseWithdrawal', ['withdrawal' => $withdrawalModel]);
+})->name('withdrawals.release');
+
+    }); // <-- closes Route::prefix('admin')->name('admin.')->group(function () {
+
+}); // <-- closes Route::middleware(['auth'])->group(function () {
 
 // LOGOUT WITH REDIRECT TO HOME
 Route::post('/logout-redirect', function (Request $request) {
