@@ -7,10 +7,10 @@
 
         <nav class="main-nav">
             <!-- Search Button/Input -->
-            <div class="search-container">
+            <!-- <div class="search-container">
                 <input type="text" class="search-input" placeholder="Search campaigns...">
                 <a href="#" class="search-icon"><i class="fas fa-search"></i></a>
-            </div>
+            </div> -->
 
             <a href="{{ route('home') }}">Home</a>
             <a href="{{ route('feed') }}">Campaigns</a>

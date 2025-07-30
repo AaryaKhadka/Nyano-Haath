@@ -26,10 +26,10 @@
 
         <nav class="main-nav">
             <!-- Search Button/Input -->
-            <div class="search-container">
+            <!-- <div class="search-container">
                 <input type="text" class="search-input" placeholder="Search campaigns...">
                 <a href="#" class="search-icon"><i class="fas fa-search"></i></a>
-            </div>
+            </div> -->
 
             <a href="{{ route('home') }}">Home</a>
             <a href="{{ route('feed') }}">Campaigns</a>
@@ -88,18 +88,21 @@
                     <p style="text-align: center;">From personal emergencies to community projects, find your cause.</p>
                 </div>
                <div class="category-circles">
-    <div class="circle-item">
-        <div class="circle-icon"><i class="fas fa-heart-pulse"></i></div>
-        <span>Medical</span>
-    </div>
-    <div class="circle-item">
-        <div class="circle-icon"><i class="fas fa-bolt"></i></div>
-        <span>Emergency</span>
-    </div>
-    <div class="circle-item">
-        <div class="circle-icon"><i class="fas fa-paw"></i></div>
-        <span>Animal</span>
-    </div>
+   <a href="{{ route('categories.detail', 'medical') }}">
+        <div class="circle-item">
+            <div class="circle-icon"><i class="fas fa-heart-pulse"></i></div>
+            <span>Medical</span>
+        </div>
+    <a href="{{ route('categories.detail', 'emergency') }}">
+        <div class="circle-item">
+            <div class="circle-icon"><i class="fas fa-bolt"></i></div>
+            <span>Emergency</span>
+        </div>
+    <a href="{{ route('categories.detail', 'animal') }}">
+        <div class="circle-item">
+            <div class="circle-icon"><i class="fas fa-paw"></i></div>
+            <span>Animal Welfare</span>
+        </div>
    <a href="{{ route('categories') }}">
   <div class="circle-item">
     <div class="circle-icon"><i class="fas fa-arrow-right"></i></div>

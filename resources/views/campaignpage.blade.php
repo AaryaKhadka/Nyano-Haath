@@ -16,9 +16,9 @@
            ========================================================================== -->
         <aside class="sidebar-left">
             <a href="{{ route('login') }}" class="sidebar-button active"><i class="fa-solid fa-pen-to-square"></i><span>Start Petition</span></a>
-            <a href="#" class="sidebar-button"><i class="fa-solid fa-magnifying-glass"></i><span>Search</span></a>
-            <a href="#" class="sidebar-button"><i class="fa-solid fa-bell"></i><span>Notifications</span></a>
-            <a href="#" class="sidebar-button"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+            <!-- <a href="#" class="sidebar-button"><i class="fa-solid fa-magnifying-glass"></i><span>Search</span></a> -->
+            <a href="{{route('common')}}" class="sidebar-button"><i class="fa-solid fa-question"></i><span>Notifications</span></a>
+            <a href="{{route('contactus')}}" class="sidebar-button"><i class="fa-solid fa-envelope"></i><span>Settings</span></a>
         </aside>
 
         <!-- ==========================================================================
@@ -236,15 +236,18 @@
             <div class="trending-topics">
                 <h3><i class="fa-solid fa-arrow-trend-up"></i> Trends for You</h3>
                 <ul class="trending-list">
-                    <li><a href="#">#stop</a><span>4 posts</span></li>
-                    <li><a href="#">#Nepal</a><span>3 posts</span></li>
-                    <li><a href="#">#parliament</a><span>1 post</span></li>
-                    <li><a href="#">#rajbiraj</a><span>1 post</span></li>
-                    <li><a href="#">#change</a><span>1 post</span></li>
-                    <li><a href="#">#financebill2080</a><span>1 post</span></li>
-                    <li><a href="#">#nepalbudgetbhasan</a><span>1 post</span></li>
+                    <li><a href="{{ route('categories.detail', 'emergency') }}">#Emergency</a></li>
+                    <li><a href="{{ route('categories.detail', 'medical') }}">#Medical</a></li>
+                    <li><a href="{{ route('categories.detail', 'education') }}">#Education</a></li>
+                    <li><a href="{{ route('categories.detail', 'animal') }}">#Animal Welfare</a></li>
+                    <li><a href="{{ route('categories.detail', 'disaster') }}">#Disaster Relief</a></li>
+                    <li><a href="{{ route('categories.detail', 'sports') }}">#Sports</a></li>
+                    <li><a href="{{ route('categories.detail', 'environment') }}">#Environment</a></li>
+                    <li><a href="{{ route('categories.detail', 'community') }}">#Community Projects</a></li>
+                    
+                    
                 </ul>
-                <a href="#" class="show-more-trends">Show More <i class="fa-solid fa-arrow-right"></i></a>
+                <!-- <a href="#" class="show-more-trends">Show More <i class="fa-solid fa-arrow-right"></i></a> -->
             </div>
         </aside>
     </div>
