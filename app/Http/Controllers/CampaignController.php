@@ -85,7 +85,7 @@ class CampaignController extends Controller
     $campaign->description = $request->description;
     $campaign->goal_amount = $request->goal_amount;
 
-    // 👇 Revert to pending status for re-approval
+    
     $campaign->status = 'pending';
 
     $campaign->save();
